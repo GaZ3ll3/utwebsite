@@ -1,0 +1,220 @@
+<html>
+  <head>
+    <meta content='Mex Coding III - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Mex Coding III - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2015/01/28/mex-coding-iii/' property='og:url' />
+<meta content="#### MEX PARALLELAs we talked about, shared memory system will benefit some speedup with parallel computing. MPI is u..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/users/yzhong/2015/01/28/inverse-problem/">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/users/yzhong/2015/01/30/more-than-julia/">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>28 Jan 2015</div>
+            Mex Coding III
+          </h1>
+          <h4 id="toc_0">MEX PARALLEL</h4>
+
+<p>As we talked about, shared memory system will benefit some speedup with parallel computing. MPI is unacceptable for most cases, there are too much overheads.</p>
+
+<ul>
+<li><code>pthread</code></li>
+</ul>
+
+<p>Low level programming, use extensive <code>mutex</code> for multithreading.  </p>
+
+<ul>
+<li><code>OpenMP</code></li>
+</ul>
+
+<p>Ready to use and easy to integrate. Remember to add <code>-fopenmp</code> during comp</p>
+
+<h4 id="toc_1">ACCESS DATA</h4>
+
+<p>All data exchange has to be done via its internal format <code>mxArray*</code> or <code>mxArray-tag</code>, it holds all information of the data, such as <code>class</code>, <code>size</code>, <code>address</code>, <code>real</code>, <code>complex</code> and so on. Matlab provides almost all <code>get</code> methods which are defined in <code>matrix.h</code>. Once there was a <code>headerdump</code> on <em>fileexchange</em> to find out exact data of object in Matlab, but the format of <code>mxArray</code> changes along versions, it does not work anymore unless modifying it.</p>
+
+<h4 id="toc_2">PROFILING</h4>
+
+<p><code>tic/toc</code> is not exact, using <code>profiler</code> would be better. Put <code>clock()</code> in code will also work.</p>
+
+<h4 id="toc_3">MEX VS. LOADLIBRARY</h4>
+
+<p>I sometimes experienced hard time with porting codes into MEX domain. It is quite annoying to encounter various problems with internal problem with compiling codes against MEX. However, if I have my ready-to-use codes already built with some library, it is much easier to wrap all things I need to do in pure C/C++ and use <code>loadlibrary</code> as a workaround, porting time could be a loss but also could be negligible in most cases.</p>
+
+<h4 id="toc_4">Problematic <code>-lmwblas</code> and <code>-lmwlapack</code></h4>
+
+<p>I had a tough time on compiling <code>pardiso</code> interface with Matlab, the manual solution provides me linking options as Matlab uses. However, <code>pardiso</code> has been upgraded to version <code>5.0.0</code>, it no longer supports the old fashioned codes, and could produce errors like <code>MKL Error</code>.</p>
+
+<p>If compiling <code>pardiso</code> with MEX support, using <code>-lblas</code> and <code>-llapack</code> is fine with compiling process, but would get you crash with Matlab. To overcome the problem:</p>
+
+<ul>
+<li>preload <code>lapack</code> before starting Matlab.</li>
+</ul>
+
+<p>is the only solution I have found. Be careful, <code>lapack</code> preloading is the only thing needed, <code>blas</code> is not very important here. The side effect is other functions depending on <code>lapack</code> maybe get lagged. Especially <code>eig</code>, <code>lmwlapack</code> version is <code>~2x</code> faster than <code>apt-get</code> version of lapack.</p>
+
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,316 @@
+<html>
+  <head>
+    <meta content='From ODE45 to others I - Welcome to Yimin's Homepage' property='og:title' />
+    <title>From ODE45 to others I - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2015/02/14/from-ode45-to-others-i/' property='og:url' />
+<meta content="``ode45`` is a popular function within Matlab in each version. It uses explicit Runge Kutta 4(5) as integrator for fi..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/users/yzhong/2015/02/13/on-writing-a-post/">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/users/yzhong/2015/02/17/transport/">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>14 Feb 2015</div>
+            From ODE45 to others I
+          </h1>
+          <p><code>ode45</code> is a popular function within Matlab in each version. It uses explicit Runge Kutta 4(5) as integrator for first order equation:</p>
+
+<p>$$\dot{\xi} = f(\xi, t)$$</p>
+
+<p><code>ode45</code> has function definition as</p>
+
+<div class="highlight"><pre><code class="matlab"><span class="p">[</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(@</span><span class="n">fname</span><span class="p">,</span> <span class="n">tspan</span><span class="p">,</span> <span class="n">xinit</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>about <code>tspan</code></li>
+</ul>
+
+<p>where <code>tspan</code> is used to control the size of output. The default setting for <code>tspan</code> with only two elements will enforce integration for the whole domain and output all the tiny time step.</p>
+
+<p>In general, do not output all the things. Large system with long time interval will consume the memory rapidly. Simply insert some interested time steps into <code>tspan</code> will be efficient for computing, without extra overhead on allocating memory for storage.</p>
+
+<ul>
+<li>about <code>fname</code></li>
+</ul>
+
+<p>The usual case for solving ODE is the first order equation stated above. But in some cases, we are more interested in solving
+$$M(t, \xi) \dot{\xi} = f(\xi, t)$$</p>
+
+<p>Some solvers do not support variable mass matrix or <em>singular</em> ones.</p>
+
+<p>To apply the solver to this kind of equation, we need to adapt our option through <code>odeset</code>, otherwise default values will be used without any notice.</p>
+
+<h4 id="toc_0">Remark on Error Control</h4>
+
+<div class="highlight"><pre><code class="matlab"><span class="c">% Error Control</span>
+<span class="c">% RelTol        1e-3</span>
+<span class="c">% AbsTol        1e-6</span>
+<span class="c">% NormControl   off</span>
+
+<span class="c">% example</span>
+<span class="n">options</span> <span class="p">=</span> <span class="n">odeset</span><span class="p">(</span><span class="s">&#39;RelTol&#39;</span><span class="p">,</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="s">&#39;AbsTol&#39;</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">,</span> <span class="s">&#39;NormControl&#39;</span><span class="p">,</span> <span class="s">&#39;on&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>The default normal control is off then there is a stringent element-wise condition on error vector, when it is turned on, we only focus on the integral error only, which might be faster, since there will be only one judgment.</p>
+
+<h4 id="toc_1">Remark on Output Properties</h4>
+
+<div class="highlight"><pre><code class="matlab"><span class="c">% Solver Output Properties</span>
+<span class="c">% NonNegative</span>
+<span class="c">% OutputFcn</span>
+<span class="c">% OutputSel</span>
+<span class="c">% Refine</span>
+<span class="c">% Stats</span>
+<span class="c">% example</span>
+<span class="n">options</span> <span class="p">=</span> <span class="n">odeset</span><span class="p">(</span><span class="s">&#39;NonNegative&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="s">&#39;OutputFcn&#39;</span><span class="p">,</span> <span class="p">@</span><span class="n">func</span><span class="p">,</span> <span class="s">&#39;OutputSel&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">3</span><span class="p">],</span><span class="c">...</span>
+ <span class="s">&#39;Refine&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Stats&#39;</span><span class="p">,</span> <span class="s">&#39;off&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p><code>NonNegative</code> indicates which slots of solution must be non-negative, default as <code>[]</code>.</p>
+
+<p><code>OutputFcn</code> is the callback function handle. Should be called as <code>status = f(t, x, flag)</code>.</p>
+
+<ul>
+<li><p>If <code>flag</code> is <code>&#39;init&#39;</code>, the function calls callback with <code>tspan</code> and <code>y0</code>.</p></li>
+<li><p>If <code>flag</code> is <code>[]</code>, it continues with normal callback. <code>status</code> controls the process, whenever <code>status</code> gives 1, the process stops, otherwise, the <code>status</code> must be 0.</p></li>
+<li><p>If <code>flag</code> is <code>&#39;done&#39;</code>, the function calls <code>f([], [], &#39;done&#39;)</code>.</p></li>
+</ul>
+
+<p><code>OutputSel</code> is the index of solution passed to the callback.</p>
+
+<p><code>Refine</code> controls the number of integration steps. Since we usually use <code>tspan</code> with inserted time stamps, <code>Refine</code> is not useful here.</p>
+
+<p><code>Stats</code> is not used usually for efficiency purpose.</p>
+
+<h4 id="toc_2">Remark on Mass Matrix Properties</h4>
+
+<div class="highlight"><pre><code class="matlab"><span class="c">% Mass Matrix and DAE Properties</span>
+<span class="c">% Mass</span>
+<span class="c">% MStateDependence</span>
+<span class="c">% MvPattern</span>
+<span class="c">% MassSingular</span>
+<span class="c">% InitialSlope</span>
+<span class="c">% example</span>
+<span class="n">options</span> <span class="p">=</span> <span class="n">odeset</span><span class="p">(</span><span class="s">&#39;Mass&#39;</span><span class="p">,</span> <span class="p">@</span><span class="n">massfcn</span><span class="p">,</span> <span class="s">&#39;MStateDependence&#39;</span><span class="p">,</span> <span class="s">&#39;weak&#39;</span><span class="p">,</span> <span class="s">&#39;MvPattern&#39;</span><span class="p">,</span><span class="c">...</span>
+ <span class="p">@</span><span class="n">mvpatternfcn</span><span class="p">,</span> <span class="s">&#39;MassSingular&#39;</span><span class="p">,</span> <span class="s">&#39;no&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p><code>Mass</code> could be a matrix or a handle, and a handle is more efficient. If the matrix is not singular, then just set <code>MassSingular</code> as <code>no</code> to avoid testing. For performance consideration, if the mass matrix is a fixed matrix $M$ and also invertible, then make the equation as
+$$\dot{\xi} = M^{-1}(f(\xi))$$
+is much better.</p>
+
+<p>In our wave equation, we encountered the case like:</p>
+
+<p>$$M [\dot{\mathbf{u}}, \dot{\mathbf{v}}, \dot{\mathbf{w}}, \dot{\mathbf{z}}] = \mathbf{f}(\mathbf{u}, \mathbf{v}, \mathbf{w}, \mathbf{z})$$</p>
+
+<p>With common setting, it would be written as</p>
+
+<p>$$ p = \left( \matrix{u \\
+  v\\w\\z} \right) , \left(\matrix{M &amp; &amp; &amp;\\
+  &amp; M &amp;  &amp; \\
+  &amp;&amp; M &amp; \\
+  &amp;&amp;&amp; M}\right)\dot{p} = f (p)$$</p>
+
+<p>Inverting the diagonal matrix is a vain of time, since it only needs to calculate a <code>mldivide</code> on each time step.</p>
+
+<p>In Matlab, the fastest way I found is doing this, however, the setback is the allocation of space. At each round, $p$ has to be allocated for <code>ode45</code>, on the other hand, we are calculating the component in following way, which means using <code>horizcat</code> to create a extra copy of the vectors $[u, v, w, z]$, and then copy the left hand side into the output vector.</p>
+
+<p>$$[\dot{\mathbf{u}}, \dot{\mathbf{v}}, \dot{\mathbf{w}}, \dot{\mathbf{z}}] = M^{-1}\mathbf{f}(\mathbf{u}, \mathbf{v}, \mathbf{w}, \mathbf{z})$$</p>
+
+<p>The reason that we do not use <code>mldivide</code> component-wisely is: <strong>TOO SLOW</strong>, overheads will dominate the computing cost, use <code>2.5x</code> more time than the other way we used.</p>
+
+<hr>
+
+<p>Quoted from official:</p>
+
+<blockquote>
+<p><a href="http://en.wikipedia.org/wiki/Dormand%E2%80%93Prince_method">ode45</a> is based on an explicit Runge-Kutta (4,5) formula, the Dormand-Prince pair. It is a one-step solver – in computing $y(t_n)$, it needs only the solution at the immediately preceding time point, $y(t_{n-1})$. In general, ode45 is the best function to apply as a first try for most problems.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Bogacki%E2%80%93Shampine_method">ode23</a> is an implementation of an explicit Runge-Kutta (2,3) pair of Bogacki and Shampine. It may be more efficient than ode45 at crude tolerances and in the presence of moderate stiffness. Like ode45, ode23 is a one-step solver.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Linear_multistep_method">ode113</a> is a variable order Adams-Bashforth-Moulton <a href="http://en.wikipedia.org/wiki/Predictor%E2%80%93corrector_method">PECE</a> solver. It may be more efficient than ode45 at stringent tolerances and when the ODE file function is particularly expensive to evaluate. ode113 is a multistep solver — it normally needs the solutions at several preceding time points to compute the current solution.</p>
+
+<p>The above algorithms are intended to solve nonstiff systems. If they appear to be unduly slow, try using one of the stiff solvers below.</p>
+
+<p>ode15s is a variable order solver based on the numerical differentiation formulas (NDFs). Optionally, it uses the backward differentiation formulas (BDFs, also known as Gear&#39;s method) that are usually less efficient. Like ode113, ode15s is a multistep solver. Try ode15s when ode45 fails, or is very inefficient, and you suspect that the problem is stiff, or when solving a differential-algebraic problem.</p>
+
+<p>ode23s is based on a modified Rosenbrock formula of order 2. Because it is a one-step solver, it may be more efficient than ode15s at crude tolerances. It can solve some kinds of stiff problems for which ode15s is not effective.</p>
+
+<p>ode23t is an implementation of the trapezoidal rule using a &quot;free&quot; interpolant. Use this solver if the problem is only moderately stiff and you need a solution without numerical damping. ode23t can solve DAEs.</p>
+
+<p>ode23tb is an implementation of TR-BDF2, an implicit Runge-Kutta formula with a first stage that is a trapezoidal rule step and a second stage that is a backward differentiation formula of order two. By construction, the same iteration matrix is used in evaluating both stages. Like ode23s, this solver may be more efficient than ode15s at crude tolerances.</p>
+</blockquote>
+
+<p>The <code>ode45</code> is usually the first one to be used for solving ODE with Matlab, while if the local 5th(4th) order accuracy is not the goal, then <code>ode113</code> is more economic and time-saving, much better than <code>ode23</code>.</p>
+<div class="highlight"><pre><code class="tex language-tex" data-lang="tex"><span class="c">% timing for PML, all of them share the same config.</span>
+<span class="c">% only uses [0, 0.5, 1.0] as 3 outputs. That is minimum.</span>
+ode45:  234 seconds
+ode23:  524 seconds
+ode113: 116 seconds
+</code></pre></div>
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>

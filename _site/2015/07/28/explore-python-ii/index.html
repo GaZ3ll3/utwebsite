@@ -1,0 +1,263 @@
+<html>
+  <head>
+    <meta content='Explore Python II - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Explore Python II - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2015/07/28/explore-python-ii/' property='og:url' />
+<meta content="Rather than talking about the sorting algorithm, we probably should write our own version.Then main function shall be..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/users/yzhong/2015/07/27/explore-python/">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/users/yzhong/2015/07/31/qPAT/">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>28 Jul 2015</div>
+            Explore Python II
+          </h1>
+          <p>Rather than talking about the sorting algorithm, we probably should write our own version.</p>
+
+<p>Then main function shall be (if in a typical <code>c</code> way)</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">typedef</span> <span class="nf">int</span> <span class="p">(</span><span class="n">compar</span> <span class="o">*</span><span class="p">)(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">);</span>
+<span class="n">timsort</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">base</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">len</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="n">compar</span> <span class="n">c</span><span class="p">)</span>
+</code></pre></div>
+<p>main frame of the function is (ignoring invalid implicit conversions of pointers)</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">&lt;</span> <span class="n">MIN_MERGE</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">init_run_len</span> <span class="o">=</span> <span class="n">countRunAndMakeAscending</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+  <span class="n">binarysort</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="n">init_run_len</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">size_t</span> <span class="n">min_run</span> <span class="o">=</span> <span class="n">minRunLength</span><span class="p">(</span><span class="n">len</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">*</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">base</span><span class="p">;</span>
+
+<span class="k">do</span> <span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">run_len</span> <span class="o">=</span> <span class="n">countRunAndMakeAscending</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="n">c</span> <span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">run_len</span> <span class="o">&lt;</span> <span class="n">min_run</span><span class="p">){</span>
+    <span class="kt">size_t</span> <span class="n">force</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">len</span><span class="p">,</span> <span class="n">min_run</span><span class="p">);</span>
+    <span class="n">binarysort</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">force</span><span class="p">,</span> <span class="n">run_len</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">push_run</span> <span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">run_len</span><span class="p">);</span>
+  <span class="n">merge_collapse</span><span class="p">();</span>
+
+  <span class="n">cur</span> <span class="o">+=</span> <span class="n">run_len</span><span class="p">;</span>
+  <span class="n">len</span> <span class="o">-=</span> <span class="n">run_len</span><span class="p">;</span>
+
+<span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="n">len</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">merge_force_collapse</span><span class="p">();</span>
+</code></pre></div>
+<p>We need to implement following functions:</p>
+
+<ul>
+<li><code>int countRunAndMakeAscending(void *, size_t, compar )</code></li>
+<li><code>void binarysort(void *, size_t ,size_t, compar)</code></li>
+<li><code>void push_run(void *, size_t)</code></li>
+<li><code>void merge_collapse()</code></li>
+<li><code>void merge_force_collapse()</code></li>
+</ul>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">int</span> <span class="n">countRunAndMakeAscending</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">base</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">hi</span><span class="p">,</span> <span class="n">compar</span> <span class="n">c</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="n">push_run</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">,</span> <span class="kt">size_t</span><span class="p">)</span>
+</code></pre></div>
+<p>are simple.</p>
+
+<p>The key is <code>binarysort</code> and <code>merge_collapse</code>.
+- binarysort only is activated if current <code>run</code> is not long enough, and has to be manually inserting elements behind the sorted array into the ascending sequence. A typical <code>binarysort</code> should like</p>
+<div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">binarysort</span><span class="p">(</span><span class="n">TYPE</span> <span class="o">*</span><span class="n">base</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">lo</span><span class="p">,</span> <span class="n">size_hi</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">start</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">==</span> <span class="n">lo</span><span class="p">)</span> <span class="n">start</span> <span class="o">++</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(;</span><span class="n">start</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">;</span> <span class="n">start</span><span class="o">++</span><span class="p">){</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span> <span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="c1">// to illustrate, we don&#39;t use void* here</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">base</span><span class="p">[</span><span class="n">start</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="n">start</span> <span class="o">-</span> <span class="n">left</span><span class="p">;</span>
+    <span class="cm">/*</span>
+<span class="cm">     * move the memory here</span>
+<span class="cm">     */</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>and</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="nf">merge_collapse</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// check n &gt; 0, run[n - 1] &gt;= run[n] + run[n + 1]</span>
+  <span class="c1">// check n &gt; 1, run[n - 2] &gt;= run[n - 1] + run[n]</span>
+  <span class="c1">// check n &gt; 0, run[n - 1] &gt; run[n]</span>
+  <span class="c1">// otherwise, merge the shorter two runs among the top 3 runs.</span>
+<span class="p">}</span>
+</code></pre></div>
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>

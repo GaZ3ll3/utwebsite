@@ -1,0 +1,30 @@
+title:            Welcome to Yimin's Homepage
+description:      Academic homepage of Yimin
+url:              http://www.ma.utexas.edu/users/yzhong
+signoff:          Yimin
+disqus_shortname: # disqus comment thread for post header options. ( leave blank if unwanted. )
+facebook_appid:   # appid for like button, remove from /_includes/share.html if unwanted.
+google_analytics: # set tracking, remove from /javascripts/basic.js if unwanted."
+
+links:
+  - name:         CV
+    url:          /users/yzhong/cv
+  - name:         Research
+    url:          /users/yzhong/research
+  - name:         Teach
+    url:          /users/yzhong/teach
+  - name:         More
+    url:          /users/yzhong/more
+  - name:         Blog
+    url:          /users/yzhong/blog
+  - name:         Email
+    url:          mailto:yzhong@math.utexas.edu
+    external:     true
+
+highlighter:      pygments
+permalink:        pretty
+markdown:         redcarpet
+redcarpet:
+    extensions: ["no_intra_emphasis", "fenced_code_blocks","autolink","tables","with_toc_data"]
+kramdown:
+  input: GFM

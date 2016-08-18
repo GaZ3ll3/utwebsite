@@ -1,0 +1,228 @@
+<html>
+  <head>
+    <meta content='Iterative regularization method - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Iterative regularization method - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2016/06/13/iterative-methods/' property='og:url' />
+<meta content="## Regularization methodConsider non-linear problem $F(x) = y$, when $y$ is noised as $y^{\delta}$, such that $|y - y..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/users/yzhong/2016/03/05/fenics-in-matlab/">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/users/yzhong/2016/07/23/monte-carlo-transport/">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>13 Jun 2016</div>
+            Iterative regularization method
+          </h1>
+          <h2 id="toc_0">Regularization method</h2>
+
+<p>Consider non-linear problem $F(x) = y$, when $y$ is noised as $y^{\delta}$, such that $|y - y_{\delta}| \le \delta$, we know that ill-posed problem may not have a continuous inversion, and regularization methods are used to generate stable approximation of the solutions, especially when $\delta \to 0$, the approximation will converge to identification.</p>
+
+<p>$$ x_{\alpha}^{\delta} = \arg\min_{x} |F(x) - y^{\delta}|^2 + \alpha |x - x_0|^2 $$</p>
+
+<p>as I wrote before, this Tikhonov regularization is equivalent to maximum likelihood method, with prior information added. Under mild assumption, convergence rates results have been shown that if</p>
+
+<p>$$ \tilde{x} - x_0 = (F&#39;(\tilde{x})^{\ast}F&#39;(\tilde{x}))^{\mu})v  $$</p>
+
+<p>where $\mu \in (1/2, 1)$ and $|v|$ small enough, we have convergence</p>
+
+<p>$$|x^{\delta}_{\alpha} - \tilde{x}| = O(\delta^{2\mu/(2\mu + 1)})$$</p>
+
+<h2 id="toc_1">Iterative regularization method</h2>
+
+<p>For linear case, $Kx = y$, we only need to find Moore-Penrose pseudo-inverse $K^{\dagger}$, by minimizing $|Kx - y|^2$, the gradient based method will give negative gradient $K^{\dagger}(y - Kx)$, if we have that</p>
+
+<p>$$x = \phi(x) = x + K^{\dagger}(y - Kx)$$ is a contraction, then it would be nice to have an iterative scheme. However, contraction is a very rare property in nonlinear ill-posed problems, all we need to do here is to create some <em>nonexpansive</em> operator $\phi$ which has contraction property.</p>
+
+<h2 id="toc_2">Nonlinear Landweber iteration</h2>
+
+<p>$$x_{k+1} = x_{k} + \tau F&#39;(x_k)^{\ast}(y^{\delta} - F(x_k))$$</p>
+
+<p>The converging solution might not be the $x_0$-minimized solution.</p>
+
+<h2 id="toc_3">Modified nonlinear Landweber iteration</h2>
+
+<p>$$x_{k+1} = x_{k} + \tau F&#39;(x_k)^{\ast}(y^{\delta} - F(x_k)) + \beta_k(x_0 - x_k)$$</p>
+
+<p>$\tau$ should be selected to be small enough.</p>
+
+<h2 id="toc_4">Newton type</h2>
+
+<p>Newton type methods are aiming to solve $$F&#39;(x_k) (x_{k+1} - x_k) = y^{\delta} - F(x_k)$$</p>
+
+<p>Regularization is needed for most cases when ill-posedness are present, even for linearized case.</p>
+
+<h2 id="toc_5">Levenberg-Marquardt</h2>
+
+<p>Instead of minimizing usual squared misfit, this method goes one more step further, $$z_k = \arg\min_z |y^{\delta} - F(x_k) - F&#39;(x_k)z| + \alpha_k |z|^2$$</p>
+
+<p>and $x_{k+1} =x_k + z_k$.</p>
+
+<h2 id="toc_6">Gauss-Newton</h2>
+
+<p>$$x_{k+1} = x_k + (F&#39;(x_k)^{\ast} F&#39;(x_k) + \alpha_k I)^{-1} (F&#39;(x_k)^{\ast}(y^{\delta} - F(x_k)) + \alpha_k(x_0 - x_k)) $$ which is very similar to Levenberg-Marquardt.</p>
+
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>

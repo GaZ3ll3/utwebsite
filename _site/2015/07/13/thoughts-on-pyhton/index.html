@@ -1,0 +1,227 @@
+<html>
+  <head>
+    <meta content='Thoughts on Python - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Thoughts on Python - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2015/07/13/thoughts-on-pyhton/' property='og:url' />
+<meta content="``Python`` was slow, a few years ago. At that time, it is not a option for massive numerical computing for performanc..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/users/yzhong/2015/06/29/faster-codes/">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/users/yzhong/2015/07/27/explore-python/">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>13 Jul 2015</div>
+            Thoughts on Python
+          </h1>
+          <p><code>Python</code> was slow, a few years ago. At that time, it is not a option for massive numerical computing for performance concern.</p>
+
+<p>Now, <code>Numpy</code>, <code>Numba</code>, <code>Cython</code>, <code>Pyston</code>, <code>Blaze</code>, etc. are giving a lot of hope to numerical computing community. Another competitor <code>Julia</code> is also an impressive language in numerical regime.</p>
+
+<p>Numerics have been made extremely easy with modern JIT techniques, <code>MATLAB</code> is very fast on usual linear algebraic computing using commercial software and libraries. As <code>LLVM 3.x</code> has been released, several languages using <code>LLVM</code> like <code>Julia</code> has been made fast enough to compete with <code>C</code>, within a factor of 2 or 3.</p>
+
+<ul>
+<li><code>Julia</code> is built with <code>LLVM 3.3</code>, types in <code>Julia</code> can be omitted and promoted at runtime. However, delaration of types can make program running robust and faster.</li>
+<li><code>Numba</code> is built with <code>LLVM 3.5(3.6)</code>, uses JIT,  aiming to transform <code>Python</code>&#39;s bytecode into machine code.</li>
+<li><code>Numpy</code> is a low level implementation of various numerics, can be regarded as a replacement of generic Python math library.</li>
+<li><code>Cython</code> is more like <code>C</code> than <code>Python</code> when the performance is critical, porting <code>C</code> code to <code>Python</code> code is made easier using this. Since it is basically running <code>C</code> program, the performance is secured, if optimization flags are turned on.</li>
+<li>Also, <code>Numba</code> and <code>Cython</code> claim they are <code>Numpy</code> aware, however, <code>Numba</code> probably cannot recognize all <code>Numpy</code> routes yet, for those code blocks that it cannot transform, it will maintain the original machine code, which will just as slow as pure Python.</li>
+<li><code>Pyston</code> is a project from Dropbox, which is a lot like <code>Numba</code>.</li>
+</ul>
+
+<h3 id="toc_0">Numba / NumbaPro</h3>
+
+<p>If there is not need to wrap a C/C++ library into <code>Python</code> module, <code>Numba</code> would be very convenient to acclerate the code. Now <code>Numba</code> is at <code>version 0.20</code>, pretty early stage, but very powerful with help of <code>LLVM</code>.</p>
+
+<h4 id="toc_1">Features</h4>
+
+<ul>
+<li><code>@jit</code> decorator only, automatically infers types.</li>
+<li><code>@jit(OutputType(InputType_1, ...))</code> explicitly indicates the signature of function, if violated, an error would be threw out.</li>
+<li><code>nopython</code> force compiling without objects</li>
+<li><code>nogil</code> release <code>GIL</code>, would allow concurrency.</li>
+<li><code>@vectorize</code> decorator allows operations like <code>npufunc</code>.</li>
+</ul>
+
+<h4 id="toc_2">Supported coding</h4>
+
+<p>Simply quote the link from <a href="http://numba.pydata.org/numba-doc/0.20.0/reference/pysupported.html#pysupported">Supported Python features</a> on pydata&#39;s website.</p>
+
+<h4 id="toc_3">OOP</h4>
+
+<p>In earlier releases of <code>numba</code>, <code>class</code> can be applied with <code>@jit</code> to acclerate all methods, it seems this has been removed, and <code>@jit</code> is only usable on suitable functions(with <code>numba</code> types) now.</p>
+
+<h4 id="toc_4">Scipy and Numpy integration</h4>
+
+<p>Doubtlessly <code>Scipy</code>(refer to the library not the bundle) and <code>Numpy</code> are the core of modern scientific <code>Python</code>, the library are mostly written in fast <code>c</code> and <code>fortran</code>, though not optimized at assembly level. Frontends are written with <code>Python</code> and inlining some functions with <code>weave</code>. Now <code>numba</code> can recognize part of <code>numpy</code> interface.</p>
+
+<h4 id="toc_5">ASM level tuning</h4>
+
+<p>LLVM is not the most efficient for sure, sometimes we can observe a performance difference with <code>gcc</code>. If we look at <code>mkl</code> and <code>libm</code> as well as <code>BLAS</code>, we will find out, libraries are totally different, they handle different machine codes on different platform, yielding different performance, <code>mkl</code> can only generate fast codes for <code>intel</code> based machines <strong>only</strong>.</p>
+
+<p>[TO BE CONTINUED]</p>
+
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>

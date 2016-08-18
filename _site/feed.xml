@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Welcome to Yimin's Homepage</title>
+    <description>Academic homepage of Yimin</description>
+    <link>http://www.ma.utexas.edu/users/yzhong</link>
+    <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Thoughts on Fast Multipole</title>
+        <description>&lt;p&gt;We are most interested in those kernel independent methods, and so far, we are aware of two mainstream methods, one is &lt;code&gt;KIFMM&lt;/code&gt;, the other is &lt;code&gt;BBFMM&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;They have very similar structure(upward pass, downward pass) of algorithm and exact the same data interaction, we call these common steps &lt;code&gt;M2M&lt;/code&gt;, &lt;code&gt;M2L&lt;/code&gt;, &lt;code&gt;L2L&lt;/code&gt;, by building a &lt;code&gt;kd-tree&lt;/code&gt;, with each leaf node containing at least $s$ particles. The brief algorithm is described as&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;# build tree(partly) involves S2M, M2M two parts.&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;upwardPass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# postorder traversal&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;particles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;threshold&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# it is at leaf&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;S2M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# not leaf&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;divide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;xrange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;upwardPass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;M2M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;# downPass involves M2L, L2L.&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;downPass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# preorder&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isLeaf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;L2L&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# U List&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;L2P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# put current data into correct spots&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;processData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# V List&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;M2L&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# preorder traversal&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;xrange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;downPass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The algorithm is trivial with understanding of the information flow, however, we are particular interested in the core idea.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;KIFMM&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;It bases on potential theory in harmonic analysis, or simply Green&amp;#39;s formula for second order operator like Laplacian. Second order PDE always has unique solution for exterior and interior boundary value problem, which means, the kernel must obey harmonic property, inside information must be equivalent(can transform to each other) to information on surface.&lt;/p&gt;
+
+&lt;p&gt;This makes the algorithm very effective if the kernel is fundmental solution of second order PDE, because, using a few points on surface will total be equivalent to all nodes inside the grid.&lt;/p&gt;
+
+&lt;p&gt;However, the limitation is also obvious, it can only work under the second order PDE, because the equation must have the potential property, that outside information can be calculated through following boundary integral, since the source is inside $\Omega$, it is a homogeneous exterior boundary value problem, solution should be something like&lt;/p&gt;
+
+&lt;p&gt;$$u(x) = \int_{\partial\Omega} K(x, y) \psi(y)$$&lt;/p&gt;
+
+&lt;p&gt;If the kernel does not fit the potential theory framework, this method does not work anymore, surface/boundary value cannot be used for the evaluation of the solution merely.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;BBFMM&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This is method is something general, but requires more time on solution for special problems, since interpolation methods always need redundant interior data, this method actually is doing expansion of the kernel into small decoupling products.&lt;/p&gt;
+
+&lt;p&gt;$$K(x, y) \sim \sum_{k=1}^N c_k S_k(x)T_k(y)$$&lt;/p&gt;
+
+&lt;p&gt;Currently, there are some polynomial based $S_k, T_k$ such as Chebyshev and Lagrange, providing cut-off residue as higher ordered terms.&lt;/p&gt;
+
+&lt;p&gt;We are more interested in selecting appropriate basis $S$ and $T$ such that&lt;/p&gt;
+
+&lt;p&gt;$$\min |K(x, y) - \sum_{k=1}^N c_k S_k(x)T_k(y)|_{L^p(\Omega\times \Omega)}$$&lt;/p&gt;
+
+&lt;p&gt;since in discretized model, this turns out to be&lt;/p&gt;
+
+&lt;p&gt;$$\min\max_i | \sum_j K(x_i, y_j)\phi_j -\sum_{k=1}^N c_k S_k(x_i)\sum_j T_k(y_j)\phi_j| $$&lt;/p&gt;
+
+&lt;p&gt;we observe that once the functions are found, the cost will be $\mathcal{O}(N n)$. It is quite straightforward to see Fourier transform is an example, but only good for fluctuation kernel, for smooth case, polynomial could be good approximation with good performance in accuracy. Thus if we are facing some unknown kernel or something other than second order PDE, &lt;code&gt;BBFMM&lt;/code&gt; is somewhat a first choice for the first try.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 16 Aug 2016 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/08/16/thoughts-on-fast-multipole/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/08/16/thoughts-on-fast-multipole/</guid>
+      </item>
+    
+      <item>
+        <title>More on Transport</title>
+        <description>&lt;p&gt;The radiative transfer equation involves several parameters, $\mu_t$,
+$\mu_s$ be the attenuation(transport) and scattering coefficient
+respectively. $K(\hat{\mathbf{s}}, \hat{\mathbf{s}}&amp;#39;)$ is the phase
+function describing the probability of scattering from
+$\hat{\mathbf{s}}$ to $\hat{\mathbf{s}}&amp;#39;$.&lt;/p&gt;
+
+&lt;p&gt;$$\hat{\mathbf{s}}\cdot \nabla u(\mathbf{r}, \hat{\mathbf{s}}) + \mu_t u(\mathbf{r}, \hat{\mathbf{s}}) = \mu_s \frac{1}{\mathrm{Vol}(\mathbb{S}^{d-1})}\int_{\mathbb{S}^{d-1}} K(\hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39;) u(\mathbf{r}, \hat{\mathbf{s}}&amp;#39;) d\hat{\mathbf{s}}&amp;#39; + q$$&lt;/p&gt;
+
+&lt;p&gt;When the phase function is isotropic, we are aware that FMM based
+algorithm would be a good approximation to the solution. Here we try to
+develop more application cases.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_0&quot;&gt;Isotropic $\delta$-Eddington approximation&lt;/h2&gt;
+
+&lt;p&gt;In 3D, the phase function is selected as&lt;/p&gt;
+
+&lt;p&gt;$$K(\cos\theta) = 2f\delta(1 - \cos\theta) + (1-f)(1 + 3g&amp;#39;\cos\theta)$$&lt;/p&gt;
+
+&lt;p&gt;where $f = g^2, g&amp;#39; = g/(1+g)$ are constant parameters and
+$\cos\theta = \hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39;$. Then the RTE
+will be reduced to&lt;/p&gt;
+
+&lt;p&gt;$$\hat{\mathbf{s}}\cdot \nabla u(\mathbf{r}, \hat{\mathbf{s}}) + \mu_t&amp;#39;u(\mathbf{r}, \hat{\mathbf{s}}) = \mu_s&amp;#39;\frac{1}{\mathrm{Vol}(\mathbb{S}^{d-1})}\int_{\mathbb{S}^2}(1 + 3g&amp;#39; \hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39;) u(\mathbf{r}, \hat{\mathbf{s}}&amp;#39;) d\hat{\mathbf{s}}&amp;#39; + q$$&lt;/p&gt;
+
+&lt;p&gt;where $\mu_s&amp;#39; = (1- f)\mu_s$ and $\mu_t&amp;#39; = \mu_a + \mu_s&amp;#39;$. If $g&amp;#39; = 0$,
+we will again land on our original FMM settings.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_1&quot;&gt;Anisotrpic $\delta$-Eddington approximation&lt;/h2&gt;
+
+&lt;p&gt;Here we consider more general case $g&amp;#39;\neq 0$, to simplify our work, we
+assume the domain $\Omega\subset \mathbb{R}^2$, where $\delta$-Eddington
+approximation should be similar. We consider the equation with ,&lt;/p&gt;
+
+&lt;p&gt;$$\hat{\mathbf{s}}\cdot \nabla u(\mathbf{r}, \hat{\mathbf{s}}) + \mu_t u(\mathbf{r}, \hat{\mathbf{s}}) = \mu_s \frac{1}{\mathrm{Vol}(\mathbb{S}^{d-1})}\int_{\mathbb{S}^2}(1 + \kappa\hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39;) u(\mathbf{r}, \hat{\mathbf{s}}&amp;#39;) d\hat{\mathbf{s}}&amp;#39; + q$$&lt;/p&gt;
+
+&lt;p&gt;where $\kappa$ is an appropriate constant. In 2D, we can substitute
+$\hat{\mathbf{s}}$ with $\theta$. And
+$\hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39; = \cos\theta \cos\theta&amp;#39; + \sin\theta\sin\theta&amp;#39;$.
+Then&lt;/p&gt;
+
+&lt;p&gt;$$
+    u(\mathbf{r}, \theta) = \int_0^{\tau_{-}(\mathbf{r}, \theta)} E(\mathbf{r}, \mathbf{y})\Big( \mu_s(\mathbf{y})\left(U(\mathbf{y}) + \kappa C(\mathbf{y})\cos\theta  + \kappa S(\mathbf{y})\sin\theta \right) + q(\mathbf{y})\Big) dt
+$$&lt;/p&gt;
+
+&lt;p&gt;where $y = \mathbf{r}- t\hat{\mathbf{s}}$, $E(\mathbf{r},\mathbf{y})$ is
+the line integral, and&lt;/p&gt;
+
+&lt;p&gt;$$\begin{aligned}
+    U(\mathbf{r}) &amp;amp;= \frac{1}{2\pi}\int_0^{2\pi} u(\mathbf{r}, \theta) d\theta\\
+    C(\mathbf{r}) &amp;amp;=  \frac{1}{2\pi}\int_0^{2\pi} \cos\theta u(\mathbf{r}, \theta) d\theta\\
+    S(\mathbf{r}) &amp;amp;=  \frac{1}{2\pi}\int_0^{2\pi} \sin\theta u(\mathbf{r}, \theta) d\theta
+    \end{aligned}
+$$&lt;/p&gt;
+
+&lt;p&gt;Then we integrate over $\theta \in \mathbb{S}^1$.&lt;/p&gt;
+
+&lt;p&gt;$$U(\mathbf{r}) =  \frac{1}{2\pi}\int_0^{2\pi}  \int_0^{\tau_{-}(\mathbf{r}, \theta)} E(\mathbf{r}, \mathbf{y})\Big( \mu_s(\mathbf{y})\left(U(\mathbf{y}) + \kappa C(\mathbf{y})\cos\theta  + \kappa S(\mathbf{y})\sin\theta \right) + q(\mathbf{y})\Big) dt$$&lt;/p&gt;
+
+&lt;p&gt;change from polar coordinate to Cartesian, also we know that&lt;/p&gt;
+
+&lt;p&gt;$$(\cos\theta, \sin\theta) = \frac{\mathbf{r}- \mathbf{y}}{|\mathbf{r}- \mathbf{y}|}$$&lt;/p&gt;
+
+&lt;p&gt;then&lt;/p&gt;
+
+&lt;p&gt;$$\begin{aligned}
+    U(\mathbf{r}) &amp;amp;= \int_{\mathbf{y}\in \Omega} \frac{1}{2\pi} \frac{E(\mathbf{r}, \mathbf{y})}{|\mathbf{r}- \mathbf{y}|} \Big(\mu_s(\mathbf{y}) U(\mathbf{y}) + q(\mathbf{y})\Big)d\mathbf{y}\\
+    &amp;amp;+ \int_{y\in\Omega} \frac{\kappa}{2\pi} \frac{E(\mathbf{r}, \mathbf{y}) (\mathbf{r}_x - \ \mathbf{y}_x)}{|\mathbf{r}- \mathbf{y}|^2}\mu_s(\mathbf{y}) C(\mathbf{y}) d\mathbf{y}\\
+    &amp;amp;+ \int_{y\in\Omega} \frac{\kappa}{2\pi} \frac{E(\mathbf{r}, \mathbf{y}) (\mathbf{r}_y - \ \mathbf{y}_y)}{|\mathbf{r}- \mathbf{y}|^2}\mu_s(\mathbf{y}) S(\mathbf{y}) d\mathbf{y}\end{aligned}
+$$&lt;/p&gt;
+
+&lt;p&gt;In the same way, we also have&lt;/p&gt;
+
+&lt;p&gt;$$\begin{aligned}
+    C(\mathbf{r}) &amp;amp;= \int_{\mathbf{y}\in \Omega} \frac{1}{2\pi} \frac{E(\mathbf{r}, \mathbf{y})(\mathbf{r}_x - \mathbf{y}_x)}{|\mathbf{r}- \mathbf{y}|^2} \Big(\mu_s(\mathbf{y}) U(\mathbf{y}) + q(\mathbf{y})\Big)d\mathbf{y}\\
+    &amp;amp;+ \int_{y\in\Omega} \frac{\kappa}{2\pi} \frac{E(\mathbf{r}, \mathbf{y}) (\mathbf{r}_x - \ \mathbf{y}_x)^2}{|\mathbf{r}- \mathbf{y}|^3}\mu_s(\mathbf{y}) C(\mathbf{y}) d\mathbf{y}\\
+    &amp;amp;+ \int_{y\in\Omega} \frac{\kappa}{2\pi} \frac{E(\mathbf{r}, \mathbf{y}) (\mathbf{r}_x - \ \mathbf{y}_x)(\mathbf{r}_y - \ \mathbf{y}_y)}{|\mathbf{r}- \mathbf{y}|^3}\mu_s(\mathbf{y}) S(\mathbf{y}) d\mathbf{y}\end{aligned}
+$$&lt;/p&gt;
+
+&lt;p&gt;$$\begin{aligned}
+    S(\mathbf{r}) &amp;amp;= \int_{\mathbf{y}\in \Omega} \frac{1}{2\pi} \frac{E(\mathbf{r}, \mathbf{y})(\mathbf{r}_y - \mathbf{y}_y)}{|\mathbf{r}- \mathbf{y}|^2} \Big(\mu_s(\mathbf{y}) U(\mathbf{y}) + q(\mathbf{y})\Big) d\mathbf{y}\\
+    &amp;amp;+ \int_{y\in\Omega} \frac{\kappa}{2\pi} \frac{E(\mathbf{r}, \mathbf{y}) (\mathbf{r}_x - \ \mathbf{y}_x)(\mathbf{r}_y - \mathbf{y}_y)}{|\mathbf{r}- \mathbf{y}|^3}\mu_s(\mathbf{y}) C(\mathbf{y}) d\mathbf{y}\\
+    &amp;amp;+ \int_{y\in\Omega} \frac{\kappa}{2\pi} \frac{E(\mathbf{r}, \mathbf{y}) (\mathbf{r}_y - \ \mathbf{y}_y)^2}{|\mathbf{r}- \mathbf{y}|^3}\mu_s(\mathbf{y}) S(\mathbf{y}) d\mathbf{y}\end{aligned}
+$$&lt;/p&gt;
+
+&lt;p&gt;which is a system of first kind integrals, let
+$\Psi(\mathbf{r}) =   \begin{pmatrix}
+    U(\mathbf{r})\\
+    C(\mathbf{r})\\
+    S(\mathbf{r})
+    \end{pmatrix}$ and $Q(\mathbf{r}) =\begin{pmatrix}
+    q(\mathbf{r})\\
+    0\\
+    0
+    \end{pmatrix}$, then&lt;/p&gt;
+
+&lt;p&gt;$$\Psi(\mathbf{r}) =
+    \int_{y\in \Omega} \mathcal{K} (\mathbf{r}, \mathbf{y})\Big(\mu_s(\mathbf{y})\Psi(\mathbf{y}) + Q(\mathbf{y})\Big)
+    d\mathbf{y}= K(\mu_s\Psi + Q
+)$$&lt;/p&gt;
+
+&lt;p&gt;It is obvious that solving $\Psi$ will automatically give solution
+$u(\mathbf{r}, \theta)$ from .&lt;/p&gt;
+
+&lt;p&gt;$$\Psi(\mathbf{r}) = \frac{1}{\mu_s} (I - \mu_sK )^{-1}(\mu_s K Q)$$&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_2&quot;&gt;Algorithm complexity&lt;/h2&gt;
+
+&lt;p&gt;From above system, there are six kernels ($\mathcal{K}$ is symmetric) to
+be calculated, also $\kappa K_{UU} = K_{CC} + K_{SS}$ can reduce the
+evaluation complexity. Unlike our previous algorithm for isotropic phase
+function, instead of caching all matrices for interaction (M2L) only, we
+also will cache variables $E(\mathbf{r}, \mathbf{y})$ in order to
+accelerate other kernels building process by re-using them, the time
+complexity in caching the kernels will be $\mathcal{O}(nN_p)$. We solve
+the linear system by Krylov subspace methods such as GMRES or MINRES, if
+there are $l$ iterations, then the time cost is $\mathcal{O}(l^2 nN_p)$.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_3&quot;&gt;Possible pre-conditioner for the system&lt;/h2&gt;
+
+&lt;p&gt;In FMM, we have to evaluate the self-contribution on each grid, however,
+we can easily observe that off-diagonal kernels in $K$ should produce
+zero for self-contributions, and integrand will drop fast for further
+points, thus we may approximate $K$ using its diagonal operators.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_4&quot;&gt;Possible anisotropic source&lt;/h2&gt;
+
+&lt;p&gt;Currently we cannot handle anisotropic source term
+$q(\mathbf{r}, \hat{\mathbf{s}})$ unless we know exact explicit form, since the coupling between
+$\mathbf{r}$ and $\hat{\mathbf{s}}$ could involve higher ordered terms
+(in Legendre polynomial sense). In this very case, first order
+approximation, we could assume
+$q(\mathbf{r}, \theta) \sim q_0(\mathbf{r}) + \cos\theta q_c(\mathbf{r}) + \sin\theta q_s(\mathbf{r})$
+without hurting the analysis and algorithm too much.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_5&quot;&gt;Error analysis&lt;/h2&gt;
+
+&lt;p&gt;Similar to previous report, the error of approximation by FMM is bounded
+by $-C l \log (l) + \varepsilon_{FMM}$, when $l\to 0^{+}$.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_6&quot;&gt;More general case&lt;/h2&gt;
+
+&lt;p&gt;Consider the phase function $K(\hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39;)$
+expansion in terms of $\hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39;$, with
+Legendre polynomials for 3D or Chebyshev polynomial for 2D. Then similar
+argument will bring us to a large linear system which requires very
+intense evaluations of FMM kernels.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 02 Aug 2016 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/08/02/more-on-transport/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/08/02/more-on-transport/</guid>
+      </item>
+    
+      <item>
+        <title>Accelerated Transport</title>
+        <description>&lt;p&gt;As I am concerned, all solvers without approximating with simply diffusion models must suffer from a very huge time cost in solutions. Including $P_N$, Monte Carlo, finite volume/element approaches in discrete ordinate method. The reason that diffusion model is plausible in many cases is the scattering effect is so strong, the particles movement is very similar as heat transfer in macroscopic scale. A very interesting thing here is, people were using DSA method for accelerate the transport solution by damping the error with diffusion solver first as a pre-conditioner, then it will be fast for transport solver to get the rest things done.&lt;/p&gt;
+
+&lt;p&gt;Without a high priority in accuracy, the transport equation might be solved in a coarse way in every sense, it seems that without hurting the result, we can modify the transport model a little to achieve some boost in speed.&lt;/p&gt;
+
+&lt;p&gt;$$ -\delta \Delta u + v\cdot \nabla u(x, v) + \sigma_t u = \sigma_s \frac{1}{\mathrm{Vol}(V)} \int_{V} u(x, v) dv +  q $$&lt;/p&gt;
+
+&lt;p&gt;Now the equation will converge faster in each iteration, because we enhanced the first order approximation, which plays an important role in iterating.&lt;/p&gt;
+
+&lt;p&gt;It seems this does not work well under the integration form since it produces differential-integral equation, which makes thing worse. Under other framework like discrete ordinate method, this method is better because Laplacian is easy to handle under Galerkin sense.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 27 Jul 2016 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/07/27/accelerated-transport/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/07/27/accelerated-transport/</guid>
+      </item>
+    
+      <item>
+        <title>Monte Carlo Transport</title>
+        <description>&lt;p&gt;Radiative transport equation has multiple ways to solve, here I prefer to talk about one efficient way using MC.&lt;/p&gt;
+
+&lt;p&gt;MC simulation will try to emit a huge number of particles and track each particle&amp;#39;s life cycle. We are particularly interested in intensity of the solution which is the angular integral of solution at each point. This will save a lot of time in simulating. As we know, the error related to MC is proportional to $\frac{1}{\sqrt{N}}$, where $N$ is the particles emitted at each point.&lt;/p&gt;
+
+&lt;p&gt;We select an easier case to handle here,&lt;/p&gt;
+
+&lt;p&gt;$$v \cdot \nabla u(x, v) + \sigma_t u = \sigma_s \frac{1}{\mathrm{Vol}(V)}\int_V u + q$$&lt;/p&gt;
+
+&lt;p&gt;where $\sigma_t = \sigma_a + \sigma_s$, and coefficients are all positive constants. To put the model into numerical framework, we discretize the domain $[0,1]^2$ into small squares for convenience. Suppose we have mesh as $L \times L$, $L$ represents the number of boxes along one side.&lt;/p&gt;
+
+&lt;p&gt;Following is the pseudo-code.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;location&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;spawn&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;particles&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;particle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;carries&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;energy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;initially&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;has&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;finished&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traveling&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;travel&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;along&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;its&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;illuminate&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39; with its energy&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;going&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;absorbed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;loop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;since&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;change&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;its&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;another&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;one&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The most time-costing part is random number generating. We can do this very quickly if we know the distribution and sample the distribution intentionally, which works perfectly under our case.&lt;/p&gt;
+
+&lt;p&gt;The distance traveled is $-\log(\xi)/\sigma_t$, where $\xi\in U[0,1]$. The performance is good if there is not a large $N$ or $\sigma_s$ is not too large, we should have a quick stop for one run. For other cases, it will take a long time for sure.&lt;/p&gt;
+
+&lt;p&gt;For parallel computing in this case, it will be better to run simulation distributed, using the MapReduce framework.&lt;/p&gt;
+
+&lt;p&gt;One thing needs to point out is the discretized case, if we try to approximate the solution in $C^0$ sense, the error will not just first order, it will be worse than first order. Even if the coefficients are constants.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 23 Jul 2016 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/07/23/monte-carlo-transport/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/07/23/monte-carlo-transport/</guid>
+      </item>
+    
+      <item>
+        <title>Iterative regularization method</title>
+        <description>&lt;h2 id=&quot;toc_0&quot;&gt;Regularization method&lt;/h2&gt;
+
+&lt;p&gt;Consider non-linear problem $F(x) = y$, when $y$ is noised as $y^{\delta}$, such that $|y - y_{\delta}| \le \delta$, we know that ill-posed problem may not have a continuous inversion, and regularization methods are used to generate stable approximation of the solutions, especially when $\delta \to 0$, the approximation will converge to identification.&lt;/p&gt;
+
+&lt;p&gt;$$ x_{\alpha}^{\delta} = \arg\min_{x} |F(x) - y^{\delta}|^2 + \alpha |x - x_0|^2 $$&lt;/p&gt;
+
+&lt;p&gt;as I wrote before, this Tikhonov regularization is equivalent to maximum likelihood method, with prior information added. Under mild assumption, convergence rates results have been shown that if&lt;/p&gt;
+
+&lt;p&gt;$$ \tilde{x} - x_0 = (F&amp;#39;(\tilde{x})^{\ast}F&amp;#39;(\tilde{x}))^{\mu})v  $$&lt;/p&gt;
+
+&lt;p&gt;where $\mu \in (1/2, 1)$ and $|v|$ small enough, we have convergence&lt;/p&gt;
+
+&lt;p&gt;$$|x^{\delta}_{\alpha} - \tilde{x}| = O(\delta^{2\mu/(2\mu + 1)})$$&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_1&quot;&gt;Iterative regularization method&lt;/h2&gt;
+
+&lt;p&gt;For linear case, $Kx = y$, we only need to find Moore-Penrose pseudo-inverse $K^{\dagger}$, by minimizing $|Kx - y|^2$, the gradient based method will give negative gradient $K^{\dagger}(y - Kx)$, if we have that&lt;/p&gt;
+
+&lt;p&gt;$$x = \phi(x) = x + K^{\dagger}(y - Kx)$$ is a contraction, then it would be nice to have an iterative scheme. However, contraction is a very rare property in nonlinear ill-posed problems, all we need to do here is to create some &lt;em&gt;nonexpansive&lt;/em&gt; operator $\phi$ which has contraction property.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_2&quot;&gt;Nonlinear Landweber iteration&lt;/h2&gt;
+
+&lt;p&gt;$$x_{k+1} = x_{k} + \tau F&amp;#39;(x_k)^{\ast}(y^{\delta} - F(x_k))$$&lt;/p&gt;
+
+&lt;p&gt;The converging solution might not be the $x_0$-minimized solution.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_3&quot;&gt;Modified nonlinear Landweber iteration&lt;/h2&gt;
+
+&lt;p&gt;$$x_{k+1} = x_{k} + \tau F&amp;#39;(x_k)^{\ast}(y^{\delta} - F(x_k)) + \beta_k(x_0 - x_k)$$&lt;/p&gt;
+
+&lt;p&gt;$\tau$ should be selected to be small enough.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_4&quot;&gt;Newton type&lt;/h2&gt;
+
+&lt;p&gt;Newton type methods are aiming to solve $$F&amp;#39;(x_k) (x_{k+1} - x_k) = y^{\delta} - F(x_k)$$&lt;/p&gt;
+
+&lt;p&gt;Regularization is needed for most cases when ill-posedness are present, even for linearized case.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_5&quot;&gt;Levenberg-Marquardt&lt;/h2&gt;
+
+&lt;p&gt;Instead of minimizing usual squared misfit, this method goes one more step further, $$z_k = \arg\min_z |y^{\delta} - F(x_k) - F&amp;#39;(x_k)z| + \alpha_k |z|^2$$&lt;/p&gt;
+
+&lt;p&gt;and $x_{k+1} =x_k + z_k$.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_6&quot;&gt;Gauss-Newton&lt;/h2&gt;
+
+&lt;p&gt;$$x_{k+1} = x_k + (F&amp;#39;(x_k)^{\ast} F&amp;#39;(x_k) + \alpha_k I)^{-1} (F&amp;#39;(x_k)^{\ast}(y^{\delta} - F(x_k)) + \alpha_k(x_0 - x_k)) $$ which is very similar to Levenberg-Marquardt.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 13 Jun 2016 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/06/13/iterative-methods/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/06/13/iterative-methods/</guid>
+      </item>
+    
+      <item>
+        <title>Fenics in MATLAB</title>
+        <description>&lt;p&gt;Fenics is a known open-source FEM software, it provides C++ and Python interfaces for developers to use. One year ago I tried to make Fenics working in MATLAB using &amp;quot;mex&amp;quot; interface with C/C++, however, this method is not recommended, since it will cause crashes when exiting MATLAB.&lt;/p&gt;
+
+&lt;p&gt;The main problem is consistency of libraries between system and MATLAB, we clearly know that there is a dramatical lag in versions of libraries for MATLAB.&lt;/p&gt;
+
+&lt;p&gt;The method is listed in &lt;a href=&quot;https://gist.github.com/GaZ3ll3/d508c1ba31a6327247ae&quot;&gt;gist file&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;It includes a working example, Poisson equation. To compile the target, We include all necessary libraries, (ignore those unnecessary ones), and use &lt;code&gt;export&lt;/code&gt; to preload the libraries before MATLAB loads the wrong ones.&lt;/p&gt;
+
+&lt;p&gt;This will lead to two problems:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;GUI will not work anymore, since it will load too many libraries.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Confusing &lt;code&gt;double free or corruption&lt;/code&gt; error when exiting, because the corresponding &lt;code&gt;C++&lt;/code&gt; code can run very well. &lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 05 Mar 2016 00:00:00 -0600</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/03/05/fenics-in-matlab/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/03/05/fenics-in-matlab/</guid>
+      </item>
+    
+      <item>
+        <title>Simultaneous recovery and PAT</title>
+        <description>&lt;p&gt;I only give an outline on how to prove the uniqueness, this process will yield a stability estimate. but not useful.&lt;/p&gt;
+
+&lt;p&gt;update:
+It seems working now for a special case, for general case, I have to look at it carefully.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 01 Mar 2016 00:00:00 -0600</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/03/01/simultaneous-recovery-and-pat/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/03/01/simultaneous-recovery-and-pat/</guid>
+      </item>
+    
+      <item>
+        <title>Bayesian Reconstruction</title>
+        <description>&lt;p&gt;It is nothing but regularization, stem from distributional framework.&lt;/p&gt;
+
+&lt;p&gt;Suppose $Y = f(X) + E$, with $E$ obey some distribution $\pi(e)$. Then Bayesian framework says&lt;/p&gt;
+
+&lt;p&gt;$$\pi(y|x) = \pi(e)$$&lt;/p&gt;
+
+&lt;p&gt;then $\pi(y) = \pi(e) \pi(x)$, the first term describes the error density, where $E$ has zero mean $\int e\pi(e) = 0$.&lt;/p&gt;
+
+&lt;p&gt;For $\pi(x)$, it largely depends on prior information of input data. If we do not have any constraint on $x$, then $\pi(y)$ is proportional to $\pi(y | x)$, the maximum likelihood will simple be a minimization on $e$, or finding inverse of $f$.&lt;/p&gt;
+
+&lt;p&gt;If we add constraint on $x$, then there is a distribution of $x$, also adding some regularization term to the maximum likelihood functional, only depends on $x$.&lt;/p&gt;
+
+&lt;p&gt;$$ML = \ln (\pi(y)) = \ln(\pi(y|x)) + \ln(\pi(x))$$&lt;/p&gt;
+
+&lt;p&gt;the latter term is regularization, the first term is the objective functional. If all things are Gaussian, then we will arrive at Tikhonov, kind of trivial.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 29 Feb 2016 00:00:00 -0600</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/02/29/bayesian-reconstruction/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/02/29/bayesian-reconstruction/</guid>
+      </item>
+    
+      <item>
+        <title>Time Reversal and PAT</title>
+        <description>&lt;p&gt;The time reversal method works well when the wave speed is known and no attenuation is present, but it requires a long time observation on $\partial\Omega$.&lt;/p&gt;
+
+&lt;p&gt;However, it is already known that the observation time must be larger than a minimum $T$, to let all information pass through. And in 2D, the waiting time is much longer than odd dimension due to $\mathcal{O}(t^{1-d})$ decay rate of energy. Thus we do not have enough resources to wait such a long time.&lt;/p&gt;
+
+&lt;p&gt;The ending solution does not vanish $u(T, x)\neq 0$, not even close to $0$ maybe. The Neumann series method works here, using an &amp;quot;error&amp;quot; operator.&lt;/p&gt;
+
+&lt;p&gt;Take pressure field mapping to measurement as  $A:f\to u(t, \partial\Omega)$, and take time reversal operator $Q: u(t,\partial\Omega)\to u(0, x)$. The error operator is defined as&lt;/p&gt;
+
+&lt;p&gt;$$Kf = f - Q(Af)$$&lt;/p&gt;
+
+&lt;p&gt;if we take $Af = h$ which is known measurement, then&lt;/p&gt;
+
+&lt;p&gt;$$Qh = (I - K)f$$&lt;/p&gt;
+
+&lt;p&gt;when $T&amp;gt;T_0$, it is possible to show that $|K|&amp;lt;1$, therefore,&lt;/p&gt;
+
+&lt;p&gt;$$f = (I-K)^{-1}(Qh) = \sum K^m (Qh)$$&lt;/p&gt;
+
+&lt;p&gt;The algorithm is trivial here.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;calculate time reversal $Qh$ as an initial guess of $f$, let $v = Qh$, $r = Qh$.&lt;/li&gt;
+&lt;li&gt;calculate $w = v - Q A(v)$, $r = r + w$&lt;/li&gt;
+&lt;li&gt;$v = w$ and repeat step 2.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;We must see that each iteration consists of one forward and one backward propagation. It will take $\mathcal{O}(T)$ time for each. That is the sketchy outline of this method.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.ma.utexas.edu/users/yzhong/images/post_img/non-trap.png&quot; alt=&quot;Reconstruction&quot;&gt;
+This is the reconstruction image for initial condition. There is larger errors on jumps around phantom (WF set), for smooth bumps at corners, the reconstruction is accurate (w.r.t to the spatial discretization).&lt;/p&gt;
+
+&lt;p&gt;Now let&amp;#39;s look at the implementation.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;forward model, namely operator $A$, it is to solve a wave equation in $\Omega\times[0, T]$, the wave equation lives in $\mathbb{R}^3$, thus finite domain has to deal with some absorption boundary, using PML or sufficient large domain would help.&lt;/p&gt;
+
+&lt;p&gt;The PML method sets the absorption layer around $\Omega$, we will solve an equation like&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{equation}
+\frac{d}{dt}\pmatrix{u\\u_t\\p\\q} = F(u, u_t, p ,q)
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;any solver for first order ODE will work here, the forward model should be solved with high accuracy, thus a fine mesh will be necessary.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;backward model, iteratively, calculate&lt;/p&gt;
+
+&lt;p&gt;$$K^m Qh = K(K^{m-1}Qh) = K^{m-1}Qh - QAK^{m-1}Qh$$&lt;/p&gt;
+
+&lt;p&gt;The first term was stored from last step, the second term will need a forward plus a reversal.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 25 Feb 2016 00:00:00 -0600</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/02/25/time-reversal-and-pat/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/02/25/time-reversal-and-pat/</guid>
+      </item>
+    
+      <item>
+        <title>Range Condition and PAT</title>
+        <description>&lt;p&gt;Here I propose an idea to prove the uniqueness on reconstructing $c(x) = c(\gamma_1,\cdots,\gamma_n)$ during the first step, $H$ is unknown either, the wave speed is depending only on several variables, and assume this dependence is continuous and mild.&lt;/p&gt;
+
+&lt;p&gt;Now come to range condition, suppose $\lambda_j &amp;gt; 0$ are eigenvalues of $-c^2(x)\Delta$, then the eigenvalues are depending on $\gamma_1,\cdots, \gamma_n$, hopefully, this dependence is also mild.&lt;/p&gt;
+
+&lt;p&gt;The uniqueness only needs us to show that small perturbation on $\gamma_1,\cdots,\gamma_n$ won&amp;#39;t let those eigenvalues collide.&lt;/p&gt;
+
+&lt;p&gt;Since the changes in $\lambda_j$ might be small, we just need to show that the gap between eigenvalues is non-vanishing: $\inf_{j} (\lambda_{j+1} - \lambda_j) &amp;gt; 0$.&lt;/p&gt;
+
+&lt;p&gt;Now the sketched proof is done.&lt;/p&gt;
+
+&lt;p&gt;P.S. this problem is proved to the unstable in Sobolev norm and some numerical results also suggests that it is unstable to recover the wave speed. However, there are some uniqueness results already.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 20 Feb 2016 00:00:00 -0600</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/02/20/range_condition-and-pat/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/02/20/range_condition-and-pat/</guid>
+      </item>
+    
+  </channel>
+</rss>

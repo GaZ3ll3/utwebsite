@@ -1,0 +1,238 @@
+<html>
+  <head>
+    <meta content='Adjoint Framework - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Adjoint Framework - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2015/03/11/adjoint-framework/' property='og:url' />
+<meta content="In the previous post on ``adjoint``, we addressed that$$\frac{\partial J}{\partial \alpha}^{\ast} = -u^{\ast}\frac{\p..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/users/yzhong/2015/03/10/openmp-transport/">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/users/yzhong/2015/03/31/weak-constraint/">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>11 Mar 2015</div>
+            Adjoint Framework
+          </h1>
+          <p>In the previous post on <code>adjoint</code>, we addressed that</p>
+
+<p>$$\frac{\partial J}{\partial \alpha}^{\ast} = -u^{\ast}\frac{\partial P}{\partial \alpha} \underline{P^{-\ast} \frac{\partial J}{\partial u}^{\ast}}$$</p>
+
+<p>involves three sub-problems, two of them are simply solving equations, the other is about matrix multiplications.</p>
+
+<p>In this post, I plan to try to implement the framework of the <code>adjoint</code> method.</p>
+<div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Adjoint</span> <span class="p">{</span>
+<span class="nl">private:</span>
+  <span class="kt">bool</span> <span class="n">is_m_updated</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">is_u_updated</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">is_lambda_updated</span><span class="p">;</span>
+<span class="nl">public:</span>
+  <span class="n">Adjoint</span><span class="p">();</span>
+  <span class="o">~</span><span class="n">Adjoint</span><span class="p">();</span>
+  <span class="c1">// objective function of interest</span>
+  <span class="n">T</span> <span class="n">J</span><span class="p">;</span>
+  <span class="c1">// explicit derivative of J regards to u</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">dJdu</span><span class="p">;</span>
+  <span class="c1">// explicit derivative of J regards to m</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">dJdm</span><span class="p">;</span>
+  <span class="c1">// solution of forward problem</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">u</span><span class="p">;</span>
+  <span class="c1">// parameter</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+  <span class="c1">// adjoint solution</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">lambda</span><span class="p">;</span>
+  <span class="c1">// output as LHS</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">gradient</span><span class="p">;</span>
+  <span class="cm">/*</span>
+<span class="cm">   * methods</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">set_m</span><span class="p">(</span><span class="n">T</span><span class="o">*</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="nf">update_dJdu</span><span class="p">();</span>
+  <span class="kt">void</span> <span class="nf">update_dJdm</span><span class="p">();</span>
+  <span class="kt">void</span> <span class="nf">update_J</span><span class="p">();</span>
+  <span class="n">T</span><span class="o">*</span> <span class="nf">get_m</span><span class="p">();</span>
+  <span class="n">T</span><span class="o">*</span> <span class="nf">get_u</span><span class="p">();</span>
+  <span class="n">T</span>  <span class="nf">get_J</span><span class="p">();</span>
+  <span class="n">T</span><span class="o">*</span> <span class="nf">get_grad</span><span class="p">();</span>
+  <span class="c1">// calculate u, if is_m_updated == true, then calculate u</span>
+  <span class="c1">// otherwise, u won&#39;t change. after calculating, set is_m_updated</span>
+  <span class="c1">// as false. And set is_u_updated as true.</span>
+  <span class="kt">void</span> <span class="nf">forward_solve</span><span class="p">();</span>
+  <span class="c1">// calculate lambda, if is_u_updated == true, then calculate lambda</span>
+  <span class="c1">// otherwise, lambda won&#39;t change, after calculating, set is_u_updated</span>
+  <span class="c1">// as false. And set is_lambda_updated as true.</span>
+  <span class="kt">void</span> <span class="nf">adjoint_solve</span><span class="p">();</span>
+  <span class="c1">// calculate the final step, taken as a binary operator.</span>
+  <span class="c1">// if is_lambda_updated == true, then use the binary operator on</span>
+  <span class="c1">// u and lambda to generate the gradient.</span>
+  <span class="c1">// meanwhile, set is_lambda_updated as false.</span>
+  <span class="kt">void</span> <span class="nf">binary_op</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <code>adjoint</code> class is easy to implement if the forward solver and adjoint solver are obtained outside the class. One possibility is to implement the solver as Matlab script/function and called by the member method, though there is some overhead, if the computing takes time, the overhead can be negligible. Another possibility is to implement in C++ as friend function. The best way might be implementing it in pure Matlab OOP using handle. Since most of the operations are trivial, and overheads can be reduced if called within Matlab.</p>
+
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>

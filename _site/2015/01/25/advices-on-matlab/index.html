@@ -1,0 +1,264 @@
+<html>
+  <head>
+    <meta content='Advices on Matlab - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Advices on Matlab - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2015/01/25/advices-on-matlab/' property='og:url' />
+<meta content="As almost everyone uses MATLAB(After 2009b), I think there are some things to write down.- Use built-in commands inst..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+  
+    <div class="right">
+      <a href="/users/yzhong/2015/01/25/mex-coding-i/">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>25 Jan 2015</div>
+            Advices on Matlab
+          </h1>
+          <p>As almost everyone uses MATLAB(After 2009b), I think there are some things to write down.</p>
+
+<ul>
+<li>Use built-in commands instead of cooking up one yourself</li>
+</ul>
+
+<p>You guys already programmed Strassen, it is faster than usual \(O(n^3)\) time complexity, since it trades
+expensive(why?) floating-point multiplication with cheap additions. Why don’t we use it? You might
+have noticed, Strassen is a memory killer, it takes almost \(O(n^2)\) extra space, but our usual method mtimes
+takes \(O(1)\). Many built-in commands are very handy and fast, and faster than your naive implementation
+such as <code>ldivide</code>, <code>svd</code>, <code>eig</code>, etc.</p>
+
+<ul>
+<li>MATLAB is slow, unless you are doing pure matrix computation(in a correct way)</li>
+</ul>
+
+<p>You might have heard of some stories about how terribly does MATLAB work on “loops”, in many cases,
+if you do not vectorize your algorithm manually, then it could be up to years until MATLAB is no longer
+“busy”. However, working with “mex” requires a lot of self memory management and maybe there is
+some possible library problem if your MATLAB uses a out-dated one and your system uses a different
+one. Fortunately, there is something that MATLAB is pretty fast with and good at -- Matrix computation,
+highly optimized and parallelized. So if you are going to use a large “loop” with MATLAB, please think
+if there is another way out.</p>
+
+<ul>
+<li>Please use <code>sparse</code> if the matrix is sparse</li>
+</ul>
+
+<p>When your target matrix is sparse, say tri-diagonal or penta-diagonal, it is much more convenient to
+use it as a sparse one instead of using it as a full one. Full matrix stores redundant zeros and slows
+down computation. Sparse matrix class has its way to handle all common computations. Furthermore,
+MATLAB possibly will ring a warning if you are assigning values, that could be a slow indexing process.
+If you want to be fast, use standard way to build/create a sparse matrix. You may look up(type help
+sparse) usage of sparse in MATLAB.</p>
+<div class="highlight"><pre><code class="matlab language-matlab" data-lang="matlab"><span class="n">S</span> <span class="p">=</span> <span class="n">sparse</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">S</span> <span class="p">=</span> <span class="n">sparse</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">nzmax</span><span class="p">)</span>
+<span class="n">S</span> <span class="p">=</span> <span class="n">sparse</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">S</span> <span class="p">=</span> <span class="n">sparse</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+<span class="n">S</span> <span class="p">=</span> <span class="n">sparse</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Be careful about allocation overhead</li>
+</ul>
+
+<p>Though it won’t be a big problem, since MATLAB has its memory management to handle it. Inside
+MATLAB environment, it is pass-by-value, but all operations are actually pass-by-pointer -- <code>mxArray*</code>,
+and involves allocation for output. So when you are using something like <code>A(i : j, m : n)</code>, you are making a
+shallow copy, which could be dangerous if the sub-matrix is too large. Another example, solving <code>Ax = b</code>
+by using <code>x = A \ b</code>, not by <code>x = A ^(-1)*b</code> or <code>x = inv(A)*b</code>, that will take more time and more space.
+So, if you are simply creating some small arrays, then just go and do it, while when it involves too much
+memory allocation/reallocation which is not necessary, find another way out.</p>
+<div class="highlight"><pre><code class="matlab language-matlab" data-lang="matlab"><span class="n">A</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">);</span>
+<span class="n">b</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">tic</span><span class="p">;</span> <span class="n">x</span> <span class="p">=</span> <span class="n">A</span><span class="o">\</span><span class="n">b</span><span class="p">;</span> <span class="n">toc</span><span class="p">;</span>
+<span class="n">tic</span><span class="p">;</span> <span class="n">x</span> <span class="p">=</span> <span class="n">A</span>^<span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">b</span><span class="p">;</span> <span class="n">toc</span><span class="p">;</span>
+<span class="n">tic</span><span class="p">;</span> <span class="n">x</span> <span class="p">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">b</span><span class="p">;</span> <span class="n">toc</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre><code class="text language-text" data-lang="text">Elapsed time is 2.441786 seconds.
+Elapsed time is 6.760536 seconds.
+Elapsed time is 6.734927 seconds.
+</code></pre></div>
+<ul>
+<li>Row or Column</li>
+</ul>
+
+<p>C/C++ is row-majored, but MATLAB/Fortran is column-majored. So when looping over a matrix, be
+sure you are following the comfortable way.</p>
+<div class="highlight"><pre><code class="matlab language-matlab" data-lang="matlab"><span class="n">tic</span><span class="p">;</span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5000</span>
+<span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,:));</span>
+<span class="k">end</span>
+<span class="n">toc</span><span class="p">;</span>
+<span class="n">tic</span><span class="p">;</span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5000</span>
+<span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">(:,</span><span class="nb">i</span><span class="p">));</span>
+<span class="k">end</span>
+<span class="n">toc</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre><code class="text language-text" data-lang="text">Elapsed time is 0.117392 seconds.
+Elapsed time is 0.057798 seconds.
+</code></pre></div>
+<ul>
+<li>Think about how to optimize your program</li>
+</ul>
+
+<p>Do you find your code slow? Why is it slow? which part consumes the most time?
+Is there a way to reduce consumed space ? Sometimes, the diagonal is just repeating the same number.
+Sometimes, you do not even have to use/store matrix or sparse matrix, element-wised for-loop might be
+faster(usually it is not).
+Is there a way to vectorize? Is there a way to use matrix operation instead of element-wise operations,
+such as <code>kron</code>?</p>
+
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>

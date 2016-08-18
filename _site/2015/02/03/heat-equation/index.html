@@ -1,0 +1,228 @@
+<html>
+  <head>
+    <meta content='Heat Equation - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Heat Equation - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2015/02/03/heat-equation/' property='og:url' />
+<meta content="The simplest case of diffusion in two dimensional domain $\Omega\subset\mathbf{R}^2$,$$\Delta u = f$$with given whate..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/users/yzhong/2015/02/01/l1-regularization/">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/users/yzhong/2015/02/03/wave-equation/">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>03 Feb 2015</div>
+            Heat Equation
+          </h1>
+          <p>The simplest case of diffusion in two dimensional domain $\Omega\subset\mathbf{R}^2$,</p>
+
+<p>$$\Delta u = f$$</p>
+
+<p>with given whatever boundary condition. It has been studied thousands of times. Numerically, it is also easy to show it is computational stable.</p>
+
+<p>With structured grid, finite difference would be a natural first order method, taking Dirichlet boundary condition without any extrapolating.</p>
+
+<p>$$\Delta u \sim \frac{u(x + h, y) + u(x - h, y) + u(x, y + h) + u(x, y- h) - 4 u(x ,y)}{h^2}$$</p>
+
+<p>When we are going to use higher ordered method on the grid, it does not permit us to extrapolate to outside of the domain. But if the grid is fine enough, we can always do interpolate, but without graceful symmetric property. Interpolate $u_{xx}$ with $u(x+h, y)$ and $u(x - jh, y)$ might not give a stable approximation, but could be an accurate one.</p>
+
+<p>Instead of looking for coefficients - which means solving an easy linear system, finite element approach is much more straight-forward. First order method coincides with finite difference, higher order methods will formulate sparse system. Apart from this, we still can tweak the problem more.</p>
+
+<p>FEM-BEM is a standard extension, free the boundary, make everything unconstrained and then use all conditions to constrain them,</p>
+
+<p>$$\int_{\partial\Omega} \frac{\partial u}{\partial \nu} v - \int_{\Omega} \nabla u \cdot \nabla v = \int_{\Omega} fv$$</p>
+
+<p>Sparse solver could be <code>UMFPACK</code> or <code>gmres</code> directly from Matlab. Or use <code>AMG</code> alike solvers which would provide reasonable speed.</p>
+
+<p>Use <code>multigrid</code> to sacrifice memory for performance and accuracy, building mapping between grids would be memory killer if mesh is unstructured.</p>
+
+<hr>
+
+<p>Consider more about diffusive processing, if there is transport $\sigma_t &gt; 0$, where</p>
+
+<p>$$\nabla\cdot (D\nabla u) - \sigma_t u = f$$</p>
+
+<p>Since there is nothing to worry about the oscillation - the kernel is positive definite, the solution will decay rapidly, it is very stable to solve this without any problem.</p>
+
+<p>If we reverse the transport, instead of that, negative $\sigma_t$ could be some trapping effect, making things not going away, and force oscillation, which is like wave equation.</p>
+
+<p>It is also easy to prove if $D$ has positive lower bound, then  $\sigma_t$ could be negative, but not exceeding negative first eigenvalue, the problem is still fine to solve without wave effect(without any proof). That is - even trapped, diffusive process is still working, as I understand intuitively.</p>
+
+<hr>
+
+<p>For this kind of wave equation, we have a lot of theory on it, and it could be approximated by eikonal equation, wavefront is propagating along some geodesic line.</p>
+
+<p>$$|\nabla u| = f$$</p>
+
+<p>which could be solved with a variety of methods, one of them is <code>marching</code> method.</p>
+
+<ul>
+<li>Fast marching</li>
+<li>Fast sweeping</li>
+<li>Ray tracing</li>
+</ul>
+
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,232 @@
+<html>
+  <head>
+    <meta content='Time Reversal and PAT - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Time Reversal and PAT - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2016/02/25/time-reversal-and-pat/' property='og:url' />
+<meta content="The time reversal method works well when the wave speed is known and no attenuation is present, but it requires a lon..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/users/yzhong/2016/02/20/range_condition-and-pat/">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/users/yzhong/2016/02/29/bayesian-reconstruction/">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>25 Feb 2016</div>
+            Time Reversal and PAT
+          </h1>
+          <p>The time reversal method works well when the wave speed is known and no attenuation is present, but it requires a long time observation on $\partial\Omega$.</p>
+
+<p>However, it is already known that the observation time must be larger than a minimum $T$, to let all information pass through. And in 2D, the waiting time is much longer than odd dimension due to $\mathcal{O}(t^{1-d})$ decay rate of energy. Thus we do not have enough resources to wait such a long time.</p>
+
+<p>The ending solution does not vanish $u(T, x)\neq 0$, not even close to $0$ maybe. The Neumann series method works here, using an &quot;error&quot; operator.</p>
+
+<p>Take pressure field mapping to measurement as  $A:f\to u(t, \partial\Omega)$, and take time reversal operator $Q: u(t,\partial\Omega)\to u(0, x)$. The error operator is defined as</p>
+
+<p>$$Kf = f - Q(Af)$$</p>
+
+<p>if we take $Af = h$ which is known measurement, then</p>
+
+<p>$$Qh = (I - K)f$$</p>
+
+<p>when $T&gt;T_0$, it is possible to show that $|K|&lt;1$, therefore,</p>
+
+<p>$$f = (I-K)^{-1}(Qh) = \sum K^m (Qh)$$</p>
+
+<p>The algorithm is trivial here.</p>
+
+<ol>
+<li>calculate time reversal $Qh$ as an initial guess of $f$, let $v = Qh$, $r = Qh$.</li>
+<li>calculate $w = v - Q A(v)$, $r = r + w$</li>
+<li>$v = w$ and repeat step 2.</li>
+</ol>
+
+<p>We must see that each iteration consists of one forward and one backward propagation. It will take $\mathcal{O}(T)$ time for each. That is the sketchy outline of this method.</p>
+
+<p><img src="http://www.ma.utexas.edu/users/yzhong/images/post_img/non-trap.png" alt="Reconstruction">
+This is the reconstruction image for initial condition. There is larger errors on jumps around phantom (WF set), for smooth bumps at corners, the reconstruction is accurate (w.r.t to the spatial discretization).</p>
+
+<p>Now let&#39;s look at the implementation.</p>
+
+<ul>
+<li><p>forward model, namely operator $A$, it is to solve a wave equation in $\Omega\times[0, T]$, the wave equation lives in $\mathbb{R}^3$, thus finite domain has to deal with some absorption boundary, using PML or sufficient large domain would help.</p>
+
+<p>The PML method sets the absorption layer around $\Omega$, we will solve an equation like</p>
+
+<p>$$
+\begin{equation}
+\frac{d}{dt}\pmatrix{u\\u_t\\p\\q} = F(u, u_t, p ,q)
+\end{equation}
+$$</p>
+
+<p>any solver for first order ODE will work here, the forward model should be solved with high accuracy, thus a fine mesh will be necessary.</p></li>
+<li><p>backward model, iteratively, calculate</p>
+
+<p>$$K^m Qh = K(K^{m-1}Qh) = K^{m-1}Qh - QAK^{m-1}Qh$$</p>
+
+<p>The first term was stored from last step, the second term will need a forward plus a reversal.</p></li>
+</ul>
+
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>

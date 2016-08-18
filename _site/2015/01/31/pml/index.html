@@ -1,0 +1,223 @@
+<html>
+  <head>
+    <meta content='PML - Welcome to Yimin's Homepage' property='og:title' />
+    <title>PML - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2015/01/31/pml/' property='og:url' />
+<meta content="Solving wave equation in time/frequency domain with ``PML`` requires decent modifications on equation$$\frac{\partial..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/users/yzhong/2015/01/30/more-than-julia/">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/users/yzhong/2015/02/01/l1-regularization/">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>31 Jan 2015</div>
+            PML
+          </h1>
+          <p>Solving wave equation in time/frequency domain with <code>PML</code> requires decent modifications on equation</p>
+
+<p>$$\frac{\partial w}{\partial t} = H w$$</p>
+
+<p>with initial Cauchy conditions and $H$ is anti-Hermitian. Where $w$ is phase space coordinate. Anti-Hermitian operator brings oscillations and numerically makes the problem not easy to be accurate.</p>
+
+<p>The idea of <code>PML</code> is to transform:</p>
+
+<p>$$\frac{\partial}{\partial x} \rightarrow \frac{1}{1 + i\frac{\sigma(x)}{\omega}}\frac{\partial}{\partial x}$$</p>
+
+<p>within <code>PML</code> region, using positive $\sigma$ to damp the energy. In other regions, $\sigma = 0$. However, a dilemma is:</p>
+
+<ul>
+<li><p>We would like to make <code>PML</code> region as small as possible to reduce overall cost.</p></li>
+<li><p>We would like $\sigma$ as large as possible but continuous, then it would absorb as much as possible.</p></li>
+</ul>
+
+<p>However, in order to preserve the thinness of our layer, then $\sigma$ is chosen as a rapid increasing function from domain of interest into <code>PML</code>, numerically it will require finer mesh to reduce reflection error from discretization, that is not a cheap deal. A slow increasing function may not need such a fine mesh due to <a href="http://en.wikipedia.org/wiki/Adiabatic_theorem">Adiabatic</a>, but it may not be able to absorb the desired level of energy.</p>
+
+<p>As we quoted from Steve Johnson</p>
+
+<blockquote>
+<p>With
+PML, however, the constant factor is very good to start with, so experience
+shows that a simple quadratic or cubic turn-on of the PML absorption usually
+produces negligible reflections for a PML layer of only half a wavelength or
+thinner.</p>
+</blockquote>
+
+<p>It has been seen that the layer need not be thick, half a wavelength is enough, however, that also requires resolution. Usually within a wavelength, there should be 10~20 pixels or nodes, which means the resolution $h \sim 0.1 \lambda$.</p>
+
+<p>In frequency domain, solving Helmholtz equation</p>
+
+<p>$$\Delta u + k^2 u = 0$$</p>
+
+<p>is hard for large wave number $k$ because of its oscillatory operator kernel. <code>PML</code> is a method as described above. Using <code>limit absorption principle</code> is another way. Instead of solving original equation, adding absorption term with remove the non-uniqueness of the equation.</p>
+
+<p>$$\Delta u + k^2 u + i k \sigma u = 0$$</p>
+
+<p>with conductivity $\sigma &gt; 0$. And let $\sigma\rightarrow 0^+$ will force the solution approximate the true solution.</p>
+
+<p>Consider a combination of the two. If our median has conductivity to make wave dissipative. And we also want no-reflection effect to ruin the result, we may use <code>PML</code> to solve the equation. Boundary condition can be vanishing, since positive $\sigma$ will act as a damping factor on the solution.</p>
+
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>

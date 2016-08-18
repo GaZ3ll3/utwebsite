@@ -1,0 +1,272 @@
+<html>
+  <head>
+    <meta content='Mex Coding I - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Mex Coding I - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2015/01/25/mex-coding-i/' property='og:url' />
+<meta content="Using Matlab for quite a long time, now Matlab _2014b_ has already equipped with various programming language support..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/users/yzhong/2015/01/25/advices-on-matlab/">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/users/yzhong/2015/01/26/hash-with-matlab/">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>25 Jan 2015</div>
+            Mex Coding I
+          </h1>
+          <p>Using Matlab for quite a long time, now Matlab <em>2014b</em> has already equipped with various programming language support, such as C#, Python 2.7. However, it does not  mean an easy job to stir fry them together.</p>
+
+<p>For scientific programming, we consider the most common ones: C++, Python,  Java(Scala) and Julia.</p>
+
+<p>The lastest version of Matlab has already provided generic interfaces with C++, Python, Java. However, Python&#39;s support is limited to version 2.7 without some important types, which might be a huge problem for migrating codes from other platforms.</p>
+
+<p>Limitations for <em>Python</em> support:</p>
+
+<ul>
+<li> <strong>Multidimensional arrays</strong></li>
+<li> Structure arrays</li>
+<li>Complex, scalar integers or arrays</li>
+<li><strong>Sparse arrays</strong></li>
+<li>Logical vectors</li>
+<li>Categorical, table, containers.Map, datatime types</li>
+<li>Matlab objects</li>
+<li><strong>Function handle</strong></li>
+<li>meta.class</li>
+</ul>
+
+<p>For Java, <a href="http://www.mathworks.com/help/matlab/using-java-libraries-in-matlab.html">reference</a>:</p>
+
+<p>Since Matlab itself runs inside a JVM, it would provide most generic support for Java, with all access of Java API and can call Java object methods within Matlab, the most important one, passing data would be easy.</p>
+
+<p>In return of easy integration, Java method called from Matlab could have very high overhead before each call, much higher than other <a href="http://stackoverflow.com/questions/1693429/is-matlab-oop-slow-or-am-i-doing-something-wrong">approaches</a>.</p>
+
+<p>Another thing needs to be mentioned is Object Oriented Programming within Matlab, it is slow compared to other mainstream languages, and the overhead cannot be avoid.</p>
+
+<p>For C/C++, Matlab <em>2014b</em> has provided two ways for interacting.</p>
+
+<ul>
+<li><code>loadlibrary</code> inside Matlab console, then <code>calllib</code> calls function from the library.</li>
+<li> use <code>MEX</code> as bridge.</li>
+</ul>
+
+<p>C-MEX interface as</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="n">mexFunction</span><span class="p">(</span><span class="kt">int</span> <span class="n">nlhs</span><span class="p">,</span> <span class="n">mxArray</span><span class="o">*</span> <span class="n">plhs</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">nrhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">mxArray</span><span class="o">*</span> <span class="n">prhs</span><span class="p">[])</span>
+</code></pre></div>
+<p>While C++ users may create C++ objects and reuse them later by <a href="http://www.mathworks.com/matlabcentral/newsreader/view_thread/278243">implementing some wrapper</a>. In that thread, there are tons of potential dangers with memory leaks. The best way found is to define a class inherits the handle class using <code>classdef</code> and also implement constructor and destructor within the class.</p>
+
+<p>A reasonable implementation can be found as <a href="https://github.com/kyamagu/mexplus">mexplus</a>.</p>
+
+<p>However, when object is created and wants running its method with <code>parfor</code>, Matlab needs to copy the object for each <em>worker</em> in the pool. The <a href="http://stackoverflow.com/questions/13842893/matlab-parfor-and-c-class-mex-wrappers-copy-constructor-required">solution</a> shows that marking the handle property as Transient will work and force calling <code>loadobj</code>.</p>
+<div class="highlight"><pre><code class="matlab language-matlab" data-lang="matlab"><span class="k">classdef</span> <span class="n">myclass</span> <span class="o">&lt;</span> <span class="n">handle</span>
+    <span class="k">properties</span><span class="p">(</span><span class="n">SetAccess</span><span class="p">=</span><span class="n">protected</span><span class="p">,</span> <span class="n">Transient</span><span class="p">=</span><span class="n">true</span><span class="p">)</span>
+        <span class="n">cpp_handle</span>
+    <span class="k">end</span>
+    <span class="k">methods</span><span class="p">(</span><span class="n">Static</span><span class="p">=</span><span class="n">true</span><span class="p">)</span>
+<span class="k">        function</span><span class="w"> </span>obj <span class="p">=</span><span class="w"> </span><span class="nf">loadobj</span><span class="p">(</span>a<span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">a</span><span class="p">.</span><span class="n">cpp_handle</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="nb">disp</span><span class="p">([</span><span class="s">&#39;Load initialized encoder with handle: &#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">cpp_handle</span><span class="p">)]);</span>
+            <span class="n">obj</span> <span class="p">=</span> <span class="n">a</span><span class="p">;</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="k">methods</span>
+<span class="k">        function</span><span class="w"> </span>obj <span class="p">=</span><span class="w"> </span><span class="nf">myclass</span><span class="p">(</span>val<span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">obj</span><span class="p">.</span><span class="n">cpp_handle</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="nb">disp</span><span class="p">([</span><span class="s">&#39;Initialized myclass with handle: &#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">cpp_handle</span><span class="p">)]);</span>
+        <span class="k">end</span>
+        <span class="c">% destructor</span>
+<span class="k">        function</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span>obj<span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="nb">disp</span><span class="p">([</span><span class="s">&#39;Deleted myclass with handle: &#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">cpp_handle</span><span class="p">)]);</span>
+        <span class="k">end</span>
+        <span class="c">% class method</span>
+<span class="k">        function</span><span class="w"> </span><span class="nf">amethod</span><span class="p">(</span>obj<span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="nb">disp</span><span class="p">([</span><span class="s">&#39;Class method called with handle: &#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">cpp_handle</span><span class="p">)]);</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Tested below :</p>
+<div class="highlight"><pre><code class="matlab language-matlab" data-lang="matlab"><span class="n">cls</span> <span class="p">=</span> <span class="n">myclass</span><span class="p">();</span>
+<span class="k">parfor</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span>
+    <span class="n">cls</span><span class="p">.</span><span class="n">amethod</span><span class="p">()</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Result :</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Load initialized encoder with handle: 0.096779
+Class method called with handle: 0.096779
+Class method called with handle: 0.096779
+Class method called with handle: 0.096779
+Class method called with handle: 0.096779
+Load initialized encoder with handle: 0.66182
+Class method called with handle: 0.66182
+Class method called with handle: 0.66182
+Class method called with handle: 0.66182
+Class method called with handle: 0.66182
+Class method called with handle: 0.096779
+Class method called with handle: 0.096779
+Deleted myclass with handle: 0.096779
+Deleted myclass with handle: 0.66182
+</code></pre></div>
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>

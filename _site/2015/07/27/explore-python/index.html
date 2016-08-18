@@ -1,0 +1,254 @@
+<html>
+  <head>
+    <meta content='Explore Python - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Explore Python - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2015/07/27/explore-python/' property='og:url' />
+<meta content="I looked at the [trunk](http://svn.python.org/projects/python/trunk) of ``Python``, found a few interesting old ``.tx..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/users/yzhong/2015/07/13/thoughts-on-pyhton/">
+        ‹
+      </a>
+    </div>
+  
+  
+    <div class="right">
+      <a href="/users/yzhong/2015/07/28/explore-python-ii/">
+        ›
+      </a>
+    </div>
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>27 Jul 2015</div>
+            Explore Python
+          </h1>
+          <p>I looked at the <a href="http://svn.python.org/projects/python/trunk">trunk</a> of <code>Python</code>, found a few interesting old <code>.txt</code> files instead of <code>.c</code> files.</p>
+
+<p>One of them is <code>listsort.txt</code> or so-called <code>timsort</code> appears in <code>Python v2.3</code> first. Maybe I can write more posts on those <code>.txt</code> files later.</p>
+
+<h2 id="toc_0">TimSort</h2>
+
+<p>Various languages have implemented or rephrased <code>timsort</code> including <code>Java</code>, <code>Julia</code>, <code>Python</code>, <code>Octave</code>, etc.</p>
+
+<p>In <code>timsort</code>, it is necessary to declare the ideas.</p>
+
+<ul>
+<li><p><code>timsort</code> is nothing more than a modified <code>mergesort</code></p>
+
+<p>so we should expect its performance at <code>O(nlog n)</code> at worse case to match the performance of traditional <code>mergesort</code>.</p></li>
+<li><p>comparisons are extremely expensive than moving/swapping elements.</p>
+
+<p>it is quite true that for those dynamic languages, comparing two elements is very time-costing without some type inferring(like <code>numba</code>). For <code>Python</code>, comparing two objects will involve type checking and value checking at least.</p></li>
+<li><p><code>mergesort</code> does not appreciate imbalanced merge</p>
+
+<p>Think about <code>mergesort</code> of two sorted list <code>A (len = 5000)</code> and <code>B (len = 5)</code>, traditionally, we locate the location of elements of <code>B</code> in <code>A</code>, that is typically <code>log n</code> in average using binary search, if the list <code>A</code> is long, searching would be very expensive and in return we only get 5 more elements merged, with a lot of efforts.</p></li>
+<li><p>small case trade-in performance</p>
+
+<p><code>mergesort</code> will eventually get into some trivial case of only a few elements to be sorted, and in small case, <code>mergesort</code> is worse than many other methods, like <code>insert</code> or <code>qsort</code>.</p></li>
+</ul>
+
+<p>And <code>timsort</code> is created to solve/implement the above problems/questions/ideas.</p>
+
+<p>In order to avoid getting annoyed by meaningless comparisons, there is a concept called <code>run</code>, which represents a block of elements which are already sorted(either way).</p>
+
+<p>When the data is random, it is hopeless to observe a long <code>run</code>, very likely
+  each run will only consists of two or three elements only, not very effective if we directly use them in <code>mergesort</code>. We need to make each <code>run</code> long enough. Whenever <code>timsort</code> gets a small <code>run</code>, it will automatically augment it to a fixed size <code>minrun</code> using any stable sorting algorithm should be fine, <code>timsort</code> uses insertion sort to put elements one-by-one into the previous <code>run</code>, each insertion will perform a binary search, minimize the comparisons but maybe will get some cache effect when moving elements backwards.</p>
+
+<p>Now we are clear that there are at most <code>N/minrun</code> runs to merge, each run is a range of sorted elements, if reverse ordered, we probably will correct it.</p>
+
+<h3 id="toc_1">How to set <code>minrun</code></h3>
+
+<p><code>minrun</code> is created by insertion sort, it is also necessary to set appropriate <code>minrun</code> to maintain the balance when merging, and to avoid cache effect (large <code>minrun</code>). <code>timsort</code> uses a dynamic way to generate the <code>minrun</code>.</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">int</span> <span class="nf">minrun</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">assert</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="n">MIN_MERGE</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">r</span> <span class="o">|=</span> <span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">n</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If we choose <code>MIN_MERGE</code> as a power of 2, say 32,  then this program simply truncates <code>n</code> to its first 5 bits and plus 1 if the rest bits are non-zero.</p>
+
+<h3 id="toc_2">How to merge</h3>
+
+<p>Now we are stacking the <code>run</code>s in a pre-defined stack/array. In order to avoid imbalanced merge, we must follow some rule.</p>
+
+<p><code>timsort</code> requires invariant satisfies</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="n">stack</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">stack</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">stack</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">stack</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">stack</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+</code></pre></div>
+<p>But it has been proved this <strong>cannot</strong> ensure the invariant be sustained along the stack, and it has been pointed out that using 4 elements on stack is enough</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="n">stack</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">stack</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">stack</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">stack</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">stack</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">stack</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<span class="n">stack</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">stack</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+</code></pre></div>
+<p>if these inequalities fail, it will trigger a merge of two short immediate runs, after a merge is fulfilled, hopefully the inequalities cannot hold on anymore and get a chain of merges.</p>
+
+<h3 id="toc_3">Merge two runs</h3>
+
+<p><code>timsort</code> does not use in-place merge, so it would be easy if a copy of shorter list is allowed.</p>
+
+<h3 id="toc_4">Galloping</h3>
+
+<p>That is a faster version for longer(<code>MIN_GALLOP</code>) merge when comparisons are non-trivial. Since two runs are sorted, say <code>A</code> and <code>B</code>, we can compare <code>A[0]</code> with <code>B[0]</code>, <code>B[1]</code>, <code>B[3]</code>, <code>B[7]</code>, ...<code>B[2**n - 1]</code>, and get a lower bound and higher bound for <code>A[0]</code>.  Then binary search between the bounds, it is much more effective when a lot of linear comparisons should be applied.</p>
+
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>
