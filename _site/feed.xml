@@ -37,7 +37,7 @@ $$\sum_{|\alpha|\le m-1} \int (D^{\alpha}u) d\mu^{\alpha} = \sum_{|\alpha|\le m 
 
 &lt;h3 id=&quot;toc_1&quot;&gt;Equivalent cluster of surfaces&lt;/h3&gt;
 
-&lt;p&gt;Define cluster of surfaces $C({t_i}_{i=0,\cdots, m-1})$, where $C(t_i) = {x + t_i \mathbf{n}, x\in \partial\Omega}$. We also consider the solutions on each surfaces $C_i = C(t_i)$ as $u_i$.&lt;/p&gt;
+&lt;p&gt;Define cluster of surfaces $C(t_i),i=0,\cdots, m-1$, where $C(t_i) = {x + t_i \mathbf{n}, x\in \partial\Omega}$. We also consider the solutions on each surfaces $C_i = C(t_i)$ as $u_i$.&lt;/p&gt;
 
 &lt;p&gt;Then $D^{\alpha} u$ can be computed through finite difference. Especially, on square surface, this is quite straightforward to compute each derivatives.&lt;/p&gt;
 
