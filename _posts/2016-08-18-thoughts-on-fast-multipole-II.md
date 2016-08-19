@@ -34,7 +34,7 @@ Then $D^{\alpha} u$ can be computed through finite difference. Especially, on sq
 ### Exterior to Interior problem
 Consider free space Green function for internal source $f$, the whole space solution is
 $$u(x) = \int_{\Omega} K(x, y) f(y) dy$$
-and here we are looking for$\Lambda_{\alpha}$ such that $x\in \Omega^{c}$,
+and here we are looking for $\Lambda_{\alpha}$ such that $x\in \Omega^{c}$,
 $$u(x) = \sum_{|\alpha|\le m - 1} \int_{\partial\Omega} \Lambda_{\alpha}(x, y) \underline{D^{\alpha} u(y)}dy$$
 
 ### Interior to Exterior problem
