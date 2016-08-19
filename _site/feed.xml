@@ -7,6 +7,31 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Thoughts on Fast Multipole III</title>
+        <description>&lt;p&gt;Continue with last post. Consider the pseudo-differential elliptic operator $P = \sum_{|\alpha|\le 2m} c_{\alpha}(x) D^{\alpha}$, if we have $P u(x) = f(x)$, with Dirichlet boundary condition $u^{\alpha} = 0$ for $|\alpha|\le m-1$.&lt;/p&gt;
+
+&lt;p&gt;$$\int_{\Omega}(P^{\ast}v(x, y))u(x) -  (Pu(x)) v(x, y) dx   = \sum_{\beta}\int_{\partial\Omega}\psi_{\beta}(x) v^{\beta}(x, y) dx$$&lt;/p&gt;
+
+&lt;p&gt;Here consider Green function $P^{\ast}v(x, y) = \delta_y(x)$, which is $P v(y, x) = \delta_y(x)$. If we say $K(x, y)$ is Green function of $P$, then we have to replace $x$ and $y$ in $v$, thus $K(x, y) = v(y, x)$.&lt;/p&gt;
+
+&lt;p&gt;$$u(y) - \int_{\Omega}  f(x)K(y, x)dx = \sum_{\beta} \int_{\partial\Omega}\psi_{\beta}(x) K^{\beta}(y, x) dx$$&lt;/p&gt;
+
+&lt;p&gt;Now come back to our previous exterior problem, if $f = 0$ in $\Omega^{c}$, then for $y\in\Omega$, here $\Omega$ could be internal domain or external domain.&lt;/p&gt;
+
+&lt;p&gt;$$u(y) =\sum_{|\beta|\le m - 1}\int_{\partial\Omega}\psi_{\beta}(x) K^{\beta}(y, x) dx$$&lt;/p&gt;
+
+&lt;p&gt;In 2D, there are $C_{m+1}^2$ terms in this summation, with discretization, and merge weights into $\psi$.&lt;/p&gt;
+
+&lt;p&gt;$$u(y_j) = \sum_{\beta} \sum_{k=1}^p \psi_{\beta}(x_k) K^{\beta}(x_k, y_j) $$&lt;/p&gt;
+
+&lt;p&gt;There are $pC_{m+1}^2$ unknowns for this problem. Just one surface is enough. This can be seen as an extension of &lt;code&gt;KIFMM&lt;/code&gt; method. &lt;/p&gt;
+</description>
+        <pubDate>Fri, 19 Aug 2016 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/08/19/thoughts-on-fast-multipole/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/08/19/thoughts-on-fast-multipole/</guid>
+      </item>
+    
+      <item>
         <title>Thoughts on Fast Multipole II</title>
         <description>&lt;p&gt;In last post, I sort of believe that &lt;code&gt;KIFMM&lt;/code&gt; was limited to a small portion of PDE, especially for second order elliptic equations, while the deeper idea is not the same thing at all.&lt;/p&gt;
 
@@ -447,65 +472,6 @@ It seems working now for a special case, for general case, I have to look at it 
         <pubDate>Mon, 29 Feb 2016 00:00:00 -0600</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/02/29/bayesian-reconstruction/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/02/29/bayesian-reconstruction/</guid>
-      </item>
-    
-      <item>
-        <title>Time Reversal and PAT</title>
-        <description>&lt;p&gt;The time reversal method works well when the wave speed is known and no attenuation is present, but it requires a long time observation on $\partial\Omega$.&lt;/p&gt;
-
-&lt;p&gt;However, it is already known that the observation time must be larger than a minimum $T$, to let all information pass through. And in 2D, the waiting time is much longer than odd dimension due to $\mathcal{O}(t^{1-d})$ decay rate of energy. Thus we do not have enough resources to wait such a long time.&lt;/p&gt;
-
-&lt;p&gt;The ending solution does not vanish $u(T, x)\neq 0$, not even close to $0$ maybe. The Neumann series method works here, using an &amp;quot;error&amp;quot; operator.&lt;/p&gt;
-
-&lt;p&gt;Take pressure field mapping to measurement as  $A:f\to u(t, \partial\Omega)$, and take time reversal operator $Q: u(t,\partial\Omega)\to u(0, x)$. The error operator is defined as&lt;/p&gt;
-
-&lt;p&gt;$$Kf = f - Q(Af)$$&lt;/p&gt;
-
-&lt;p&gt;if we take $Af = h$ which is known measurement, then&lt;/p&gt;
-
-&lt;p&gt;$$Qh = (I - K)f$$&lt;/p&gt;
-
-&lt;p&gt;when $T&amp;gt;T_0$, it is possible to show that $|K|&amp;lt;1$, therefore,&lt;/p&gt;
-
-&lt;p&gt;$$f = (I-K)^{-1}(Qh) = \sum K^m (Qh)$$&lt;/p&gt;
-
-&lt;p&gt;The algorithm is trivial here.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;calculate time reversal $Qh$ as an initial guess of $f$, let $v = Qh$, $r = Qh$.&lt;/li&gt;
-&lt;li&gt;calculate $w = v - Q A(v)$, $r = r + w$&lt;/li&gt;
-&lt;li&gt;$v = w$ and repeat step 2.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;We must see that each iteration consists of one forward and one backward propagation. It will take $\mathcal{O}(T)$ time for each. That is the sketchy outline of this method.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://www.ma.utexas.edu/users/yzhong/images/post_img/non-trap.png&quot; alt=&quot;Reconstruction&quot;&gt;
-This is the reconstruction image for initial condition. There is larger errors on jumps around phantom (WF set), for smooth bumps at corners, the reconstruction is accurate (w.r.t to the spatial discretization).&lt;/p&gt;
-
-&lt;p&gt;Now let&amp;#39;s look at the implementation.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;forward model, namely operator $A$, it is to solve a wave equation in $\Omega\times[0, T]$, the wave equation lives in $\mathbb{R}^3$, thus finite domain has to deal with some absorption boundary, using PML or sufficient large domain would help.&lt;/p&gt;
-
-&lt;p&gt;The PML method sets the absorption layer around $\Omega$, we will solve an equation like&lt;/p&gt;
-
-&lt;p&gt;$$
-\begin{equation}
-\frac{d}{dt}\pmatrix{u\\u_t\\p\\q} = F(u, u_t, p ,q)
-\end{equation}
-$$&lt;/p&gt;
-
-&lt;p&gt;any solver for first order ODE will work here, the forward model should be solved with high accuracy, thus a fine mesh will be necessary.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;backward model, iteratively, calculate&lt;/p&gt;
-
-&lt;p&gt;$$K^m Qh = K(K^{m-1}Qh) = K^{m-1}Qh - QAK^{m-1}Qh$$&lt;/p&gt;
-
-&lt;p&gt;The first term was stored from last step, the second term will need a forward plus a reversal.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Thu, 25 Feb 2016 00:00:00 -0600</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/02/25/time-reversal-and-pat/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/02/25/time-reversal-and-pat/</guid>
       </item>
     
   </channel>

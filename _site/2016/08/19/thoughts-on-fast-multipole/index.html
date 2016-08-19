@@ -1,7 +1,7 @@
 <html>
   <head>
-    <meta content='Thoughts on Fast Multipole II - Welcome to Yimin's Homepage' property='og:title' />
-    <title>Thoughts on Fast Multipole II - Welcome to Yimin's Homepage</title>
+    <meta content='Thoughts on Fast Multipole III - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Thoughts on Fast Multipole III - Welcome to Yimin's Homepage</title>
     <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
 <link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
@@ -58,8 +58,8 @@
 <meta content="/users/yzhong/image/fav.png" property="og:image" />
 <meta content="" property="fb:app_id" />
 
-<meta content='http://www.ma.utexas.edu/users/yzhong/2016/08/18/thoughts-on-fast-multipole-II/' property='og:url' />
-<meta content="In last post, I sort of believe that ``KIFMM`` was limited to a small portion of PDE, especially for second order ell..." property='og:description' />
+<meta content='http://www.ma.utexas.edu/users/yzhong/2016/08/19/thoughts-on-fast-multipole/' property='og:url' />
+<meta content="Continue with last post. Consider the pseudo-differential elliptic operator $P = \sum_{|\alpha|\le 2m} c_{\alpha}(x) ..." property='og:description' />
 <meta content="article" property="og:type" />
 
 <!-- - -->
@@ -108,69 +108,37 @@
       <section class="paging">
   
     <div class="left">
-      <a href="/users/yzhong/2016/08/16/thoughts-on-fast-multipole/">
+      <a href="/users/yzhong/2016/08/18/thoughts-on-fast-multipole-II/">
         ‹
       </a>
     </div>
   
-  
-    <div class="right">
-      <a href="/users/yzhong/2016/08/19/thoughts-on-fast-multipole/">
-        ›
-      </a>
-    </div>
   
 </section>
 
       <div class="content">
         <section class='post'>
           <h1 class="upcase">
-            <div class='date'>18 Aug 2016</div>
-            Thoughts on Fast Multipole II
+            <div class='date'>19 Aug 2016</div>
+            Thoughts on Fast Multipole III
           </h1>
-          <p>In last post, I sort of believe that <code>KIFMM</code> was limited to a small portion of PDE, especially for second order elliptic equations, while the deeper idea is not the same thing at all.</p>
+          <p>Continue with last post. Consider the pseudo-differential elliptic operator $P = \sum_{|\alpha|\le 2m} c_{\alpha}(x) D^{\alpha}$, if we have $P u(x) = f(x)$, with Dirichlet boundary condition $u^{\alpha} = 0$ for $|\alpha|\le m-1$.</p>
 
-<h3 id="toc_0">Equivalence of information</h3>
+<p>$$\int_{\Omega}(P^{\ast}v(x, y))u(x) -  (Pu(x)) v(x, y) dx   = \sum_{\beta}\int_{\partial\Omega}\psi_{\beta}(x) v^{\beta}(x, y) dx$$</p>
 
-<p>I realized that there is something called <code>Equivalence of information</code> here, for example, Laplacian $\Delta u = 0$ made solution depending only information on boundary, as we called boundary value problems.  Then we can define the equivalence class of equation $P u = 0$ that associated with pseudo-differential operator $P$.</p>
+<p>Here consider Green function $P^{\ast}v(x, y) = \delta_y(x)$, which is $P v(y, x) = \delta_y(x)$. If we say $K(x, y)$ is Green function of $P$, then we have to replace $x$ and $y$ in $v$, thus $K(x, y) = v(y, x)$.</p>
 
-<p>In theory, even higher ordered elliptic equation</p>
+<p>$$u(y) - \int_{\Omega}  f(x)K(y, x)dx = \sum_{\beta} \int_{\partial\Omega}\psi_{\beta}(x) K^{\beta}(y, x) dx$$</p>
 
-<p>$$P(x, D) u =  \sum_{|\alpha| \le 2m} c_{\alpha} D^{\alpha} u = 0$$</p>
+<p>Now come back to our previous exterior problem, if $f = 0$ in $\Omega^{c}$, then for $y\in\Omega$, here $\Omega$ could be internal domain or external domain.</p>
 
-<p>we can see that for this equation, classical results could apply easily, and we consider the weak formulation, if vector-function $\tilde{g} = (g_{\alpha})_{|\alpha|\le m-1}$,  which satisfies
-$$|\tilde{g}| = \sum_{\alpha} |g_{\alpha}| $$
-is finite, we say $\tilde{g} \in W^{m-1}(\partial\Omega)$. We are looking for $u\in W^{2m}(\Omega)\cap W^{m-1}(\overline{\Omega})$ such that  $Pu = 0$ and $D^{\alpha} u|_{\partial\Omega} = g_{\alpha}$.</p>
+<p>$$u(y) =\sum_{|\beta|\le m - 1}\int_{\partial\Omega}\psi_{\beta}(x) K^{\beta}(y, x) dx$$</p>
 
-<blockquote>
-<p>For any bounded domain $\Omega$, there is unique weak solution to the Dirichlet problem $P u = 0$. When boundary is smooth enough, the weak solution is also classical solution.</p>
-</blockquote>
+<p>In 2D, there are $C_{m+1}^2$ terms in this summation, with discretization, and merge weights into $\psi$.</p>
 
-<p>On the other hand, the exterior problem also has unique solution for the same Dirichlet boundary conditions.</p>
+<p>$$u(y_j) = \sum_{\beta} \sum_{k=1}^p \psi_{\beta}(x_k) K^{\beta}(x_k, y_j) $$</p>
 
-<blockquote>
-<p>If $Pu = 0$, for any given measure $\nu^{\alpha}\in\Omega$, there exists $\mu^{\alpha}\in \partial\Omega$ that
-$$\sum_{|\alpha|\le m-1} \int (D^{\alpha}u) d\mu^{\alpha} = \sum_{|\alpha|\le m -1} \int (D^{\alpha} u) d\nu^{\alpha}$$</p>
-</blockquote>
-
-<p>The proof should be found somewhere in <code>ADN (Agmon, Douglis, Nirenberg)</code>, uniqueness could be concluded from something similar of Lax-Milgram. That also reveals the fact that this operator $P$ has equivalence class $\Omega\sim (\partial\Omega)^{m}$. Since we can use finite difference method to approximate $D^{\alpha} u$ on $\partial \Omega$, by giving $u$ at $\partial\Omega + t_i\mathbf{n}$ surfaces, where $t_0, \cdots, t_{m-1}\in (0,\epsilon)$. Now our problem is how to generate those surfaces/or small domains for equivalence potential.</p>
-
-<h3 id="toc_1">Equivalent cluster of surfaces</h3>
-
-<p>Define cluster of surfaces $C(t_i),i=0,\cdots, m-1$, where $C(t_i) = {x + t_i \mathbf{n}, x\in \partial\Omega}$. We also consider the solutions on each surfaces $C_i = C(t_i)$ as $u_i$.</p>
-
-<p>Then $D^{\alpha} u$ can be computed through finite difference. Especially, on square surface, this is quite straightforward to compute each derivatives.</p>
-
-<h3 id="toc_2">Exterior to Interior problem</h3>
-
-<p>Consider free space Green function for internal source $f$, the whole space solution is
-$$u(x) = \int_{\Omega} K(x, y) f(y) dy$$
-and here we are looking for $\Lambda_{\alpha}$ such that $x\in \Omega^{c}$,
-$$u(x) = \sum_{|\alpha|\le m - 1} \int_{\partial\Omega} \Lambda_{\alpha}(x, y) \underline{D^{\alpha} u(y)}dy$$</p>
-
-<h3 id="toc_3">Interior to Exterior problem</h3>
-
-<p>The exterior problem will be the same, except the source $f$ lives outside of the domain $\Omega$.</p>
+<p>There are $pC_{m+1}^2$ unknowns for this problem. Just one surface is enough. This can be seen as an extension of <code>KIFMM</code> method. </p>
 
           <br />
 
