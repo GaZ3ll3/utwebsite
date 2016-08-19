@@ -21,7 +21,7 @@ is finite, we say $\tilde{g} \in W^{m-1}(\partial\Omega)$. We are looking for $u
 
 On the other hand, the exterior problem also has unique solution for the same Dirichlet boundary conditions.
 
-> For any given measure $\nu^{\alpha}\in\Omega$, there exists $\mu^{\alpha}\in \partial\Omega$ that
+> If $Pu = 0$, for any given measure $\nu^{\alpha}\in\Omega$, there exists $\mu^{\alpha}\in \partial\Omega$ that
 $$\sum_{|\alpha|\le m-1} \int (D^{\alpha}u) d\mu^{\alpha} = \sum_{|\alpha|\le m -1} \int (D^{\alpha} u) d\nu^{\alpha}$$
 
 The proof should be found somewhere in ``ADN (Agmon, Douglis, Nirenberg)``, uniqueness could be concluded from something similar of Lax-Milgram. That also reveals the fact that this operator $P$ has equivalence class $\Omega\sim (\partial\Omega)^{m}$. Since we can use finite difference method to approximate $D^{\alpha} u$ on $\partial \Omega$, by giving $u$ at $\partial\Omega + t_i\mathbf{n}$ surfaces, where $t_0, \cdots, t_{m-1}\in (0,\epsilon)$. Now our problem is how to generate those surfaces/or small domains for equivalence potential.

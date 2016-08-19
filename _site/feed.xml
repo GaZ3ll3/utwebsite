@@ -29,7 +29,7 @@ is finite, we say $\tilde{g} \in W^{m-1}(\partial\Omega)$. We are looking for $u
 &lt;p&gt;On the other hand, the exterior problem also has unique solution for the same Dirichlet boundary conditions.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;For any given measure $\nu^{\alpha}\in\Omega$, there exists $\mu^{\alpha}\in \partial\Omega$ that
+&lt;p&gt;If $Pu = 0$, for any given measure $\nu^{\alpha}\in\Omega$, there exists $\mu^{\alpha}\in \partial\Omega$ that
 $$\sum_{|\alpha|\le m-1} \int (D^{\alpha}u) d\mu^{\alpha} = \sum_{|\alpha|\le m -1} \int (D^{\alpha} u) d\nu^{\alpha}$$&lt;/p&gt;
 &lt;/blockquote&gt;
 
