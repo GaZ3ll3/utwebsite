@@ -7,6 +7,57 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Thoughts on Fast Multipole II</title>
+        <description>&lt;p&gt;In last post, I sort of believe that &lt;code&gt;KIFMM&lt;/code&gt; was limited to a small portion of PDE, especially for second order elliptic equations, while the deeper idea is not the same thing at all.&lt;/p&gt;
+
+&lt;h5 id=&quot;toc_0&quot;&gt;Equivalence of information&lt;/h5&gt;
+
+&lt;p&gt;I realized that there is something called &lt;code&gt;Equivalence of information&lt;/code&gt; here, for example, Laplacian $\Delta u = 0$ made solution depending only information on boundary, as we called boundary value problems.  Then we can define the equivalence class of equation $P u = 0$ that associated with pseudo-differential operator $P$.&lt;/p&gt;
+
+&lt;p&gt;In theory, even higher ordered elliptic equation&lt;/p&gt;
+
+&lt;p&gt;$$P(x, D) u =  \sum_{|\alpha| \le 2m} c_{\alpha} D^{\alpha} u = 0$$&lt;/p&gt;
+
+&lt;p&gt;we can see that for this equation, classical results could apply easily, and we consider the weak formulation, if vector-function $\tilde{g} = (g_{\alpha})_{|\alpha|\le m-1}$,  which satisfies
+$$|\tilde{g}| = \sum_{\alpha} |g_{\alpha}| $$
+is finite, we say $\tilde{g} \in W^{m-1}(\partial\Omega)$. We are looking for $u\in W^{2m}(\Omega)\cap W^{m-1}(\overline{\Omega})$ such that  $Pu = 0$ and $D^{\alpha} u|_{\partial\Omega} = g_{\alpha}$.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;For any bounded domain $\Omega$, there is unique weak solution to the Dirichlet problem $P u = 0$. When boundary is smooth enough, the weak solution is also classical solution.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;On the other hand, the exterior problem also has unique solution for the same Dirichlet boundary conditions.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;For any given measure $\nu^{\alpha}\in\Omega$, there exists $\mu^{\alpha}\in \partial\Omega$ that
+$$\sum_{|\alpha|\le m-1} \int (D^{\alpha}u) d\mu^{\alpha} = \sum_{|\alpha|\le m -1} \int (D^{\alpha} u) d\nu^{\alpha}$$&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The proof should be found somewhere in &lt;code&gt;ADN (Agmon, Douglis, Nirenberg)&lt;/code&gt;, uniqueness could be concluded from something similar of Lax-Milgram. That also reveals the fact that this operator $P$ has equivalence class $\Omega\sim (\partial\Omega)^{m}$. Since we can use finite difference method to approximate $D^{\alpha} u$ on $\partial \Omega$, by giving $u$ at $\partial\Omega + t_i\mathbf{n}$ surfaces, where $t_0, \cdots, t_{m-1}\in (0,\epsilon)$. Now our problem is how to generate those surfaces/or small domains for equivalence potential.&lt;/p&gt;
+
+&lt;h5 id=&quot;toc_1&quot;&gt;Equivalent cluster of surfaces&lt;/h5&gt;
+
+&lt;p&gt;Define cluster of surfaces $C({t_i}_{i=0,\cdots, m-1})$, where $C(t_i) = {x + t_i \mathbf{n}, x\in \partial\Omega}$. We also consider the solutions on each surfaces $C_i = C(t_i)$ as $u_i$.&lt;/p&gt;
+
+&lt;p&gt;Then $D^{\alpha} u$ can be computed through finite difference. Especially, on square surface, this is quite straightforward to compute each derivatives.&lt;/p&gt;
+
+&lt;h5 id=&quot;toc_2&quot;&gt;Exterior to Interior problem&lt;/h5&gt;
+
+&lt;p&gt;Consider free space Green function for internal source $f$, the whole space solution is
+$$u(x) = \int_{\Omega} K(x, y) f(y) dy$$
+and here we are looking for$\Lambda_{\alpha}$ such that $x\in \Omega^{c}$,
+$$u(x) = \sum_{|\alpha|\le m - 1} \int_{\partial\Omega} \Lambda_{\alpha}(x, y) \underline{D^{\alpha} u(y)}dy$$&lt;/p&gt;
+
+&lt;h5 id=&quot;toc_3&quot;&gt;Interior to Exterior problem&lt;/h5&gt;
+
+&lt;p&gt;The exterior problem will be the same, except the source $f$ lives outside of the domain $\Omega$. &lt;/p&gt;
+</description>
+        <pubDate>Thu, 18 Aug 2016 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/08/18/thoughts-on-fast-multipole-II/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/08/18/thoughts-on-fast-multipole-II/</guid>
+      </item>
+    
+      <item>
         <title>Thoughts on Fast Multipole</title>
         <description>&lt;p&gt;We are most interested in those kernel independent methods, and so far, we are aware of two mainstream methods, one is &lt;code&gt;KIFMM&lt;/code&gt;, the other is &lt;code&gt;BBFMM&lt;/code&gt;.&lt;/p&gt;
 
@@ -455,25 +506,6 @@ $$&lt;/p&gt;
         <pubDate>Thu, 25 Feb 2016 00:00:00 -0600</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/02/25/time-reversal-and-pat/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/02/25/time-reversal-and-pat/</guid>
-      </item>
-    
-      <item>
-        <title>Range Condition and PAT</title>
-        <description>&lt;p&gt;Here I propose an idea to prove the uniqueness on reconstructing $c(x) = c(\gamma_1,\cdots,\gamma_n)$ during the first step, $H$ is unknown either, the wave speed is depending only on several variables, and assume this dependence is continuous and mild.&lt;/p&gt;
-
-&lt;p&gt;Now come to range condition, suppose $\lambda_j &amp;gt; 0$ are eigenvalues of $-c^2(x)\Delta$, then the eigenvalues are depending on $\gamma_1,\cdots, \gamma_n$, hopefully, this dependence is also mild.&lt;/p&gt;
-
-&lt;p&gt;The uniqueness only needs us to show that small perturbation on $\gamma_1,\cdots,\gamma_n$ won&amp;#39;t let those eigenvalues collide.&lt;/p&gt;
-
-&lt;p&gt;Since the changes in $\lambda_j$ might be small, we just need to show that the gap between eigenvalues is non-vanishing: $\inf_{j} (\lambda_{j+1} - \lambda_j) &amp;gt; 0$.&lt;/p&gt;
-
-&lt;p&gt;Now the sketched proof is done.&lt;/p&gt;
-
-&lt;p&gt;P.S. this problem is proved to the unstable in Sobolev norm and some numerical results also suggests that it is unstable to recover the wave speed. However, there are some uniqueness results already.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 20 Feb 2016 00:00:00 -0600</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/02/20/range_condition-and-pat/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/02/20/range_condition-and-pat/</guid>
       </item>
     
   </channel>
