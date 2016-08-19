@@ -58,7 +58,7 @@
 <meta content="/users/yzhong/image/fav.png" property="og:image" />
 <meta content="" property="fb:app_id" />
 
-<meta content='http://www.ma.utexas.edu/users/yzhong/2016/08/19/thoughts-on-fast-multipole/' property='og:url' />
+<meta content='http://www.ma.utexas.edu/users/yzhong/2016/08/19/thoughts-on-fast-multipole-iii/' property='og:url' />
 <meta content="Continue with last post. Consider the pseudo-differential elliptic operator $P = \sum_{|\alpha|\le 2m} c_{\alpha}(x) ..." property='og:description' />
 <meta content="article" property="og:type" />
 
@@ -138,7 +138,15 @@
 
 <p>$$u(y_j) = \sum_{\beta} \sum_{k=1}^p \psi_{\beta}(x_k) K^{\beta}(x_k, y_j) $$</p>
 
-<p>There are $pC_{m+1}^2$ unknowns for this problem. Just one surface is enough. This can be seen as an extension of <code>KIFMM</code> method. </p>
+<p>There are $pC_{m+1}^2$ unknowns for this problem. Just one surface is enough. This can be seen as an extension of <code>KIFMM</code> method.</p>
+
+<h3 id="toc_0">Numerical concerns</h3>
+
+<p>The summation over $\partial\Omega$ requires too many points (unknowns) to find out. Here we can simulate  $K^{\beta}(x_k, y_j)$ by taking finite difference to approximate the derivatives. Then we only need $m$ surfaces to find out all $K^{\beta}(x, \cdot)$, each surfaces we can place equally spaced $p$ points.</p>
+
+<h3 id="toc_1">Infinite order case</h3>
+
+<p>It seems to me that given all points inside a annulus will be enough for this.</p>
 
           <br />
 

@@ -19,4 +19,10 @@ In 2D, there are $C_{m+1}^2$ terms in this summation, with discretization, and m
 
 $$u(y_j) = \sum_{\beta} \sum_{k=1}^p \psi_{\beta}(x_k) K^{\beta}(x_k, y_j) $$
 
-There are $pC_{m+1}^2$ unknowns for this problem. Just one surface is enough. This can be seen as an extension of ``KIFMM`` method. 
+There are $pC_{m+1}^2$ unknowns for this problem. Just one surface is enough. This can be seen as an extension of ``KIFMM`` method.
+
+### Numerical concerns
+The summation over $\partial\Omega$ requires too many points (unknowns) to find out. Here we can simulate  $K^{\beta}(x_k, y_j)$ by taking finite difference to approximate the derivatives. Then we only need $m$ surfaces to find out all $K^{\beta}(x, \cdot)$, each surfaces we can place equally spaced $p$ points.
+
+### Infinite order case
+It seems to me that given all points inside a annulus will be enough for this.

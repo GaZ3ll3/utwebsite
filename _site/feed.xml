@@ -24,11 +24,19 @@
 
 &lt;p&gt;$$u(y_j) = \sum_{\beta} \sum_{k=1}^p \psi_{\beta}(x_k) K^{\beta}(x_k, y_j) $$&lt;/p&gt;
 
-&lt;p&gt;There are $pC_{m+1}^2$ unknowns for this problem. Just one surface is enough. This can be seen as an extension of &lt;code&gt;KIFMM&lt;/code&gt; method. &lt;/p&gt;
+&lt;p&gt;There are $pC_{m+1}^2$ unknowns for this problem. Just one surface is enough. This can be seen as an extension of &lt;code&gt;KIFMM&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;h3 id=&quot;toc_0&quot;&gt;Numerical concerns&lt;/h3&gt;
+
+&lt;p&gt;The summation over $\partial\Omega$ requires too many points (unknowns) to find out. Here we can simulate  $K^{\beta}(x_k, y_j)$ by taking finite difference to approximate the derivatives. Then we only need $m$ surfaces to find out all $K^{\beta}(x, \cdot)$, each surfaces we can place equally spaced $p$ points.&lt;/p&gt;
+
+&lt;h3 id=&quot;toc_1&quot;&gt;Infinite order case&lt;/h3&gt;
+
+&lt;p&gt;It seems to me that given all points inside a annulus will be enough for this.&lt;/p&gt;
 </description>
         <pubDate>Fri, 19 Aug 2016 00:00:00 -0500</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/08/19/thoughts-on-fast-multipole/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/08/19/thoughts-on-fast-multipole/</guid>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/08/19/thoughts-on-fast-multipole-iii/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/08/19/thoughts-on-fast-multipole-iii/</guid>
       </item>
     
       <item>
