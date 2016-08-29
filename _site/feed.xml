@@ -33,6 +33,10 @@
 &lt;h3 id=&quot;toc_1&quot;&gt;Infinite order case&lt;/h3&gt;
 
 &lt;p&gt;It seems to me that given all points inside a annulus will be enough for this.&lt;/p&gt;
+
+&lt;h3 id=&quot;toc_2&quot;&gt;Failure for numerics&lt;/h3&gt;
+
+&lt;p&gt;Just for a update. In numerical world, finite difference is rather a really bad idea to approximate derivatives, esp. those high order terms. Thus &lt;code&gt;KIFMM&lt;/code&gt; is an effective fast &lt;em&gt;low&lt;/em&gt; order PDE solver.&lt;/p&gt;
 </description>
         <pubDate>Fri, 19 Aug 2016 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/08/19/thoughts-on-fast-multipole-iii/</link>

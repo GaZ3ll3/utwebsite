@@ -26,3 +26,6 @@ The summation over $\partial\Omega$ requires too many points (unknowns) to find 
 
 ### Infinite order case
 It seems to me that given all points inside a annulus will be enough for this.
+
+### Failure for numerics
+Just for a update. In numerical world, finite difference is rather a really bad idea to approximate derivatives, esp. those high order terms. Thus ``KIFMM`` is an effective fast _low_ order PDE solver.
