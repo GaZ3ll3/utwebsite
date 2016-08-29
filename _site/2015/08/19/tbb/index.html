@@ -138,24 +138,22 @@ The scheduler is expensive to open up and shut down. Always put the initializer 
 
 <ul>
 <li><code>parallel_for</code>
-The loop should be independent with each other, the iteration number must be fixed.
-``` cpp
-#include &quot;tbb/blocked_range.h&quot;</li>
+The loop should be independent with each other, the iteration number must be fixed.</li>
 </ul>
+<div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="cp">#include &quot;tbb/blocked_range.h&quot;</span>
 
-<p>class ApplyFunc {
-private:
-T* a_;
-public:
-void operator() (const blocked_range<size_t>&amp; r) const {
-  for (auto i : r) {
-    Func(a_[i]);
-  }
-}
-ApplyFunc(T a[]): a_(a) {}
-}
-```</p>
-<div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="cp">#include &quot;tbb/parallel_for.h&quot;</span>
+<span class="k">class</span> <span class="nc">ApplyFunc</span> <span class="p">{</span>
+<span class="nl">private:</span>
+<span class="n">T</span><span class="o">*</span> <span class="n">a_</span><span class="p">;</span>
+<span class="nl">public:</span>
+<span class="kt">void</span> <span class="nf">operator</span><span class="p">()</span> <span class="p">(</span><span class="k">const</span> <span class="n">blocked_range</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;&amp;</span> <span class="n">r</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">:</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Func</span><span class="p">(</span><span class="n">a_</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">ApplyFunc</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">[])</span><span class="o">:</span> <span class="n">a_</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="cp">#include &quot;tbb/parallel_for.h&quot;</span>
 
 <span class="kt">void</span> <span class="nf">ParallelApplyFunc</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">[])</span> <span class="p">{</span>
 <span class="n">parallel_for</span><span class="p">(</span><span class="n">blocked_range</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">ApplyFunc</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">auto_partitioner</span><span class="p">());</span>
@@ -173,7 +171,7 @@ For those tree structure, <code>parallel_while</code> could be a choice. Though 
 <li><p><code>parallel_sort</code>
 Taken as a replacement of <code>qsort</code>.</p></li>
 <li><p>concurrent containers
-<code>Queue</code>, <code>Vector</code>, <code>HashMap</code>, look familiar, just have concurrent access. </p></li>
+<code>Queue</code>, <code>Vector</code>, <code>HashMap</code>, look familiar, just have concurrent access.</p></li>
 </ul>
 
           <br />
