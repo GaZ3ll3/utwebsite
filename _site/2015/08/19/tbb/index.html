@@ -133,11 +133,48 @@
 <ul>
 <li><p>initialize task scheduler.
 The scheduler is expensive to open up and shut down. Always put the initializer at the very beginning and try not to create any scheduler afterwards.</p></li>
-<li><p>three main loops
-<code>parallel_for</code>, <code>parallel_reduce</code>, <code>parallel_scan</code> are three main loops used.</p></li>
+<li><p>three main kinds of loops
+<code>parallel_for</code>, <code>parallel_reduce</code>, <code>parallel_scan</code> are three main kinds of loops used.</p>
+
+<ul>
+<li><code>parallel_for</code>
+The loop should be independent with each other, the iteration number must be fixed.
+``` cpp
+#include &quot;tbb/blocked_range.h&quot;</li>
 </ul>
 
-<p>[to be continued]</p>
+<p>class ApplyFunc {
+private:
+T* a_;
+public:
+void operator() (const blocked_range<size_t>&amp; r) const {
+  for (auto i : r) {
+    Func(a_[i]);
+  }
+}
+ApplyFunc(T a[]): a_(a) {}
+}
+```</p>
+<div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="cp">#include &quot;tbb/parallel_for.h&quot;</span>
+
+<span class="kt">void</span> <span class="nf">ParallelApplyFunc</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">[])</span> <span class="p">{</span>
+<span class="n">parallel_for</span><span class="p">(</span><span class="n">blocked_range</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">ApplyFunc</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">auto_partitioner</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>parallel_reduce</code>
+The loop should be independent with each other, with fixed number iterations. The reduce operation applies whenever we are evaluating something like $c = a[0] \circ a[1]\cdots \circ a[n-1]$.
+This fork-join loop requires a splitting constructor and a <code>join</code> method to work. Very easy to design.</li>
+<li><code>parallel_scan</code>
+This is used to calculate parallel prefix. Parallel version uses a two-pass method.</li>
+</ul></li>
+<li><p>queue based parallelism
+For those tree structure, <code>parallel_while</code> could be a choice. Though fetching is serialized, there is <code>add</code> which can make use of the resources by adding more tasks.</p></li>
+<li><p><code>parallel_sort</code>
+Taken as a replacement of <code>qsort</code>.</p></li>
+<li><p>concurrent containers
+<code>Queue</code>, <code>Vector</code>, <code>HashMap</code>, look familiar, just have concurrent access. </p></li>
+</ul>
 
           <br />
 
