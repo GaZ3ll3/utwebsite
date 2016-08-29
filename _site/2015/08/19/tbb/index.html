@@ -59,7 +59,7 @@
 <meta content="" property="fb:app_id" />
 
 <meta content='http://www.ma.utexas.edu/users/yzhong/2015/08/19/tbb/' property='og:url' />
-<meta content="" property='og:description' />
+<meta content="The ``Intel Threading Building Blocks`` or ``tbb`` is a library used to parallelize program in ``C++``. It does not d..." property='og:description' />
 <meta content="article" property="og:type" />
 
 <!-- - -->
@@ -128,7 +128,17 @@
             <div class='date'>19 Aug 2015</div>
             Faster Codes III - tbb
           </h1>
-          
+          <p>The <code>Intel Threading Building Blocks</code> or <code>tbb</code> is a library used to parallelize program in <code>C++</code>. It does not depends on compiler like <code>cilkplus</code>, it is more like <code>OpenMP</code> but with higher level access, and easier to handle with lambda from <code>C++11</code>.</p>
+
+<ul>
+<li><p>initialize task scheduler.
+The scheduler is expensive to open up and shut down. Always put the initializer at the very beginning and try not to create any scheduler afterwards.</p></li>
+<li><p>three main loops
+<code>parallel_for</code>, <code>parallel_reduce</code>, <code>parallel_scan</code> are three main loops used.</p></li>
+</ul>
+
+<p>[to be continued]</p>
+
           <br />
 
 
