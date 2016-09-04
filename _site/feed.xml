@@ -7,6 +7,31 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Differential Equation VS. FMM</title>
+        <description>&lt;p&gt;After a long time of thinking, I would say fast multiple method is not a good method for solving differential equation, though it is a great algorithm.&lt;/p&gt;
+
+&lt;h4 id=&quot;toc_0&quot;&gt;interpolation vs. extrapolation&lt;/h4&gt;
+
+&lt;p&gt;Finite difference method on a structured grid, approximating the differential operator using stencil, will generate a sparse system, which generally gives $\mathcal{O}(N)$ complexity, the constant depends on the wanted precision and order of equation.&lt;/p&gt;
+
+&lt;p&gt;The error analysis usually gives $\mathcal{O}(h^s)$, decreasing w.r.t $h$ the grid size.&lt;/p&gt;
+
+&lt;p&gt;FMM, in someway we can obtain the Green function, the solution is integral form, the error comes from two parts.&lt;/p&gt;
+
+&lt;p&gt;The first is discretization, depending on $h$. The second is from FMM algorithm itself, depending on its parameters, could be arbitrarily small, but will be dominated by the first one easily, a good rule is to select parameters to be comparable to the discretization error.&lt;/p&gt;
+
+&lt;p&gt;Well, the discretization error is terrible for FMM, to make the precision high enough, interpolation is very important, we need to import more points on the smallest resolution to get a high order quadrature rule, increasing the computing cost by a linear constant. The case is: this constant is as the same level as FDM (which uses extrapolation).&lt;/p&gt;
+
+&lt;h4 id=&quot;toc_1&quot;&gt;when to use&lt;/h4&gt;
+
+&lt;p&gt;I think, the only case to use FMM on equation, is only good on integral equation only, no explicit differential equation is available. Unless FMM can reduce a lot of computation cost, otherwise, there is no need to use.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 04 Sep 2016 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/09/04/differential-equation-vs-fmm/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/09/04/differential-equation-vs-fmm/</guid>
+      </item>
+    
+      <item>
         <title>Thoughts on Fast Multipole III</title>
         <description>&lt;p&gt;Continue with last post. Consider the pseudo-differential elliptic operator $P = \sum_{|\alpha|\le 2m} c_{\alpha}(x) D^{\alpha}$, if we have $P u(x) = f(x)$, with Dirichlet boundary condition $u^{\alpha} = 0$ for $|\alpha|\le m-1$.&lt;/p&gt;
 
@@ -461,29 +486,6 @@ It seems working now for a special case, for general case, I have to look at it 
         <pubDate>Tue, 01 Mar 2016 00:00:00 -0600</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/03/01/simultaneous-recovery-and-pat/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/03/01/simultaneous-recovery-and-pat/</guid>
-      </item>
-    
-      <item>
-        <title>Bayesian Reconstruction</title>
-        <description>&lt;p&gt;It is nothing but regularization, stem from distributional framework.&lt;/p&gt;
-
-&lt;p&gt;Suppose $Y = f(X) + E$, with $E$ obey some distribution $\pi(e)$. Then Bayesian framework says&lt;/p&gt;
-
-&lt;p&gt;$$\pi(y|x) = \pi(e)$$&lt;/p&gt;
-
-&lt;p&gt;then $\pi(y) = \pi(e) \pi(x)$, the first term describes the error density, where $E$ has zero mean $\int e\pi(e) = 0$.&lt;/p&gt;
-
-&lt;p&gt;For $\pi(x)$, it largely depends on prior information of input data. If we do not have any constraint on $x$, then $\pi(y)$ is proportional to $\pi(y | x)$, the maximum likelihood will simple be a minimization on $e$, or finding inverse of $f$.&lt;/p&gt;
-
-&lt;p&gt;If we add constraint on $x$, then there is a distribution of $x$, also adding some regularization term to the maximum likelihood functional, only depends on $x$.&lt;/p&gt;
-
-&lt;p&gt;$$ML = \ln (\pi(y)) = \ln(\pi(y|x)) + \ln(\pi(x))$$&lt;/p&gt;
-
-&lt;p&gt;the latter term is regularization, the first term is the objective functional. If all things are Gaussian, then we will arrive at Tikhonov, kind of trivial.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 29 Feb 2016 00:00:00 -0600</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/02/29/bayesian-reconstruction/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/02/29/bayesian-reconstruction/</guid>
       </item>
     
   </channel>
