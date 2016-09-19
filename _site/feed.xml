@@ -7,6 +7,48 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Time domain RTE</title>
+        <description>&lt;p&gt;The time dependent radiative transport equation is stated as
+$$
+\begin{equation}
+\begin{aligned}
+&amp;amp;\frac{1}{c}\frac{\partial u}{\partial t} + \hat{s}\cdot \nabla u = \sigma(B(\nu, T) - u)\\
+&amp;amp;C_{\nu}\frac{\partial T}{\partial t} = \int_{S^{d-1}}\int_0^{\infty} \sigma(u - B(\nu, T)) d\nu d\hat{s}
+\end{aligned}
+\end{equation}
+$$
+which describes the interaction of material and radiation. where $u(x, t, \hat{s},\nu)$ is radiation intensity, $T = T(x,t)$ is material temperature. $\sigma = \sigma(x, \nu, T)$ is opacity thickness, $C_{\nu}$ is heat capacity.
+$$B(\nu, T) = \frac{2h}{c^3}\frac{\nu^3}{\exp(h\nu/k T) - 1}$$&lt;/p&gt;
+
+&lt;p&gt;by using approximation, the equation can be rewritten as an easier one,
+$$
+\begin{equation}
+\begin{aligned}
+&amp;amp;\frac{1}{c}\frac{\partial u}{\partial t} + \hat{s}\cdot \nabla u + \sigma u = \frac{\sigma b}{|S^{d-1}|} acT^4\\
+&amp;amp;C_{\nu}\frac{\partial T}{\partial t} = \int_{S^{d-1}}\int_0^{\infty} \sigma d\nu \int_{S^{d-1}} u \hat{s} - \sigma_p acT^4
+\end{aligned}
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;where $b$ is average of $B$, $\sigma_p$ is average of $\sigma b$.&lt;/p&gt;
+
+&lt;p&gt;There is a way to decouple the equations, by taking $t$ as another spatial variable. $z = (x, t)$, we have
+$$
+\tilde{s}\cdot \nabla_z u + \sigma(z, \nu) u = H(z, \nu)
+$$&lt;/p&gt;
+
+&lt;p&gt;which is quite easy to come up with a solution for $\phi = \int_{S^{d-1}} u$. And insert into temperature equation.&lt;/p&gt;
+
+&lt;p&gt;$$C_{\nu}\frac{\partial T}{\partial t} = \int_0^{\infty}\sigma d\nu \int_{S^{d-1}}\int_0^{\tau^{-}(z,\tilde{s})} \exp(-\int_0^p\sigma(z-\mu\tilde{s})d\mu) H(z - p\tilde{s}) dp d\tilde{s} - \sigma_p ac T^4$$&lt;/p&gt;
+
+&lt;p&gt;And solving this can apply some fast algorithm like &lt;code&gt;treecode&lt;/code&gt; or &lt;code&gt;FMM&lt;/code&gt; as we did before, forward Euler scheme will generate $O(\Delta x)$ error.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 19 Sep 2016 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/09/19/time-domain-RTE/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/09/19/time-domain-RTE/</guid>
+      </item>
+    
+      <item>
         <title>Differential Equation VS. FMM</title>
         <description>&lt;p&gt;After a long time of thinking, I would say fast multiple method is not a good method for solving differential equation, though it is a great algorithm.&lt;/p&gt;
 
@@ -474,18 +516,6 @@ intense evaluations of FMM kernels.&lt;/p&gt;
         <pubDate>Sat, 05 Mar 2016 00:00:00 -0600</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/03/05/fenics-in-matlab/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/03/05/fenics-in-matlab/</guid>
-      </item>
-    
-      <item>
-        <title>Simultaneous recovery and PAT</title>
-        <description>&lt;p&gt;I only give an outline on how to prove the uniqueness, this process will yield a stability estimate. but not useful.&lt;/p&gt;
-
-&lt;p&gt;update:
-It seems working now for a special case, for general case, I have to look at it carefully.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 01 Mar 2016 00:00:00 -0600</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/03/01/simultaneous-recovery-and-pat/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/03/01/simultaneous-recovery-and-pat/</guid>
       </item>
     
   </channel>
