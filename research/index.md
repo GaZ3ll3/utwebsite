@@ -5,6 +5,7 @@ title: Research
 ## Publications
 
 - *[Inverse transport problems in quantitative PAT for molecular imaging](http://arxiv.org/abs/1506.01460)* (with K. Ren and R. Zhang), <del>_submitted_</del>  Inverse Problems, 31, 125012, 2015.
+- *[A fast algorithm for radiative transport in isotropic media](https://arxiv.org/abs/1610.00835)* (with K.Ren and R.Zhang), submitted.
 
 ## Activities
 
