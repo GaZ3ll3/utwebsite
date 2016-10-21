@@ -10,6 +10,8 @@ title: Research
 ## Activities
 
 - 2016 - 2017
+  - Sept. 30, 2016
+      - Numerical Seminar, Fast multipole method for frequency-dependent radiative transfer equation (RTE)@Austin
   - May 23, 2016
       - SIAM IS16, Inverse transport problems in quantitative PAT for molecular imaging@Albuquerque[.pdf](/users/yzhong/_static/is16.pdf)
   - April 15, 2016
