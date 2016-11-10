@@ -7,6 +7,14 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Simplified Spherical Harmonics</title>
+        <description></description>
+        <pubDate>Thu, 10 Nov 2016 00:00:00 -0600</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/</guid>
+      </item>
+    
+      <item>
         <title>Time domain RTE</title>
         <description>&lt;p&gt;The time dependent radiative transport equation is stated as
 $$
@@ -494,28 +502,6 @@ intense evaluations of FMM kernels.&lt;/p&gt;
         <pubDate>Mon, 13 Jun 2016 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/06/13/iterative-methods/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/06/13/iterative-methods/</guid>
-      </item>
-    
-      <item>
-        <title>Fenics in MATLAB</title>
-        <description>&lt;p&gt;Fenics is a known open-source FEM software, it provides C++ and Python interfaces for developers to use. One year ago I tried to make Fenics working in MATLAB using &amp;quot;mex&amp;quot; interface with C/C++, however, this method is not recommended, since it will cause crashes when exiting MATLAB.&lt;/p&gt;
-
-&lt;p&gt;The main problem is consistency of libraries between system and MATLAB, we clearly know that there is a dramatical lag in versions of libraries for MATLAB.&lt;/p&gt;
-
-&lt;p&gt;The method is listed in &lt;a href=&quot;https://gist.github.com/GaZ3ll3/d508c1ba31a6327247ae&quot;&gt;gist file&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;It includes a working example, Poisson equation. To compile the target, We include all necessary libraries, (ignore those unnecessary ones), and use &lt;code&gt;export&lt;/code&gt; to preload the libraries before MATLAB loads the wrong ones.&lt;/p&gt;
-
-&lt;p&gt;This will lead to two problems:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;GUI will not work anymore, since it will load too many libraries.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Confusing &lt;code&gt;double free or corruption&lt;/code&gt; error when exiting, because the corresponding &lt;code&gt;C++&lt;/code&gt; code can run very well. &lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Sat, 05 Mar 2016 00:00:00 -0600</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/03/05/fenics-in-matlab/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/03/05/fenics-in-matlab/</guid>
       </item>
     
   </channel>
