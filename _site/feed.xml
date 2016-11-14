@@ -10,7 +10,35 @@
         <title>Simplified Spherical Harmonics</title>
         <description>&lt;p&gt;Simplified spherical harmonics $SP_n$ comes from infinite slab model, under strong scattering, one only needs to focus on azimuth angle scattering, and for the other direction of angle, it will integrate out.&lt;/p&gt;
 
-&lt;p&gt;Another good property of $SP_n$ is the recursive property of Legendre polynomials, indicates some sparsity of the operator system.&lt;/p&gt;
+&lt;p&gt;Another good property of $SP_n$ is the recursive property of Legendre polynomials combined with odd-even parity, gives a &lt;strong&gt;non-sparse&lt;/strong&gt; system.&lt;/p&gt;
+
+&lt;p&gt;Take
+$$\psi_i = (2i-1)\phi_{2i - 2} + (2i)\phi_{2i}$$&lt;/p&gt;
+
+&lt;p&gt;$SP_7$ will give a matrix between $\psi$ and $\phi$, only with even terms of $\phi$.
+$$
+\begin{pmatrix}
+1 &amp;amp; 2 &amp;amp; 0 &amp;amp; 0\
+0 &amp;amp; 3 &amp;amp; 4 &amp;amp; 0\
+0 &amp;amp; 0 &amp;amp; 5 &amp;amp; 6\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 7
+\end{pmatrix}\phi = \psi
+$$
+with a trivial inversion.  The differential operator system gives&lt;/p&gt;
+
+&lt;p&gt;$$L_i \psi_i = \sum_i S_{ij} \psi_j + g_i$$&lt;/p&gt;
+
+&lt;p&gt;where $L_i$ are second order differential operators and $S$ &lt;strong&gt;is&lt;/strong&gt; sparse. Under finite element method framework, we will arrive at a linear system that&lt;/p&gt;
+
+&lt;p&gt;$$(\mathrm{diag}(L_i) - S )\psi = g$$&lt;/p&gt;
+
+&lt;p&gt;But with integral equation,&lt;/p&gt;
+
+&lt;p&gt;$$\psi_i = \sum_i A_{ij} \psi_j + f$$&lt;/p&gt;
+
+&lt;p&gt;the operators $A_{ij}$ are evaluated separately and $A = (A_{ij})$ is &lt;strong&gt;not&lt;/strong&gt; sparse.&lt;/p&gt;
+
+&lt;p&gt;These two methods have very similar last step, but they are quite different in many ways, in theory, differential equation form will work better because of lower computational cost. Unless there is a way to reduce the cost of integral equation&amp;#39;s cost.&lt;/p&gt;
 </description>
         <pubDate>Thu, 10 Nov 2016 00:00:00 -0600</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/</link>
