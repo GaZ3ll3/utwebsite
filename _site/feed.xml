@@ -28,7 +28,7 @@ with a trivial inversion.  The differential operator system gives&lt;/p&gt;
 
 &lt;p&gt;$$L_i \psi_i = \sum_i S_{ij} \psi_j + g_i$$&lt;/p&gt;
 
-&lt;p&gt;where $L_i$ are second order differential operators and $S$ &lt;strong&gt;is&lt;/strong&gt; sparse. Under finite element method framework, we will arrive at a linear system that&lt;/p&gt;
+&lt;p&gt;where $L_i$ are second order differential operators and $S$ is sparse when using constant coefficients, otherwise it is not. Under finite element method framework, we will arrive at a linear system that&lt;/p&gt;
 
 &lt;p&gt;$$(\mathrm{diag}(L_i) - S )\psi = g$$&lt;/p&gt;
 
