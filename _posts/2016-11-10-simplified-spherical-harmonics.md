@@ -14,9 +14,9 @@ $$\psi_i = (2i-1)\phi_{2i - 2} + (2i)\phi_{2i}$$
 $SP_7$ will give a matrix between $\psi$ and $\phi$, only with even terms of $\phi$.
 $$
 \begin{pmatrix}
-1 & 2 & 0 & 0\\
-0 & 3 & 4 & 0\\
-0 & 0 & 5 & 6\\
+1 & 2 & 0 & 0\\\\
+0 & 3 & 4 & 0\\\\
+0 & 0 & 5 & 6\\\\
 0 & 0 & 0 & 7
 \end{pmatrix}\phi = \psi
 $$
