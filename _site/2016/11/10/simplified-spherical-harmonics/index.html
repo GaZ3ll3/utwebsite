@@ -59,7 +59,7 @@
 <meta content="" property="fb:app_id" />
 
 <meta content='http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/' property='og:url' />
-<meta content="Simplified spherical harmonics $SP_n$ comes from infinite slab model, under strong scattering, one only needs to focu..." property='og:description' />
+<meta content="" property='og:description' />
 <meta content="article" property="og:type" />
 
 <!-- - -->
@@ -122,38 +122,7 @@
             <div class='date'>10 Nov 2016</div>
             Simplified Spherical Harmonics
           </h1>
-          <p>Simplified spherical harmonics $SP_n$ comes from infinite slab model, under strong scattering, one only needs to focus on azimuth angle scattering, and for the other direction of angle, it will integrate out.</p>
-
-<p>Another good property of $SP_n$ is the recursive property of Legendre polynomials combined with odd-even parity, gives a <strong>non-sparse</strong> system.</p>
-
-<p>Take
-$$\psi_i = (2i-1)\phi_{2i - 2} + (2i)\phi_{2i}$$</p>
-
-<p>$SP_7$ will give a matrix between $\psi$ and $\phi$, only with even terms of $\phi$.
-$$
-\begin{pmatrix}
-1 &amp; 2 &amp; 0 &amp; 0\\
-0 &amp; 3 &amp; 4 &amp; 0\\
-0 &amp; 0 &amp; 5 &amp; 6\\
-0 &amp; 0 &amp; 0 &amp; 7
-\end{pmatrix}\phi = \psi
-$$
-with a trivial inversion.  The differential operator system gives</p>
-
-<p>$$L_i \psi_i = \sum_i S_{ij} \psi_j + g_i$$</p>
-
-<p>where $L_i$ are second order differential operators and $S$ is sparse when using constant coefficients, otherwise it is not. Under finite element method framework, we will arrive at a linear system that</p>
-
-<p>$$(\mathrm{diag}(L_i) - S )\psi = g$$</p>
-
-<p>But with integral equation,</p>
-
-<p>$$\psi_i = \sum_i A_{ij} \psi_j + f$$</p>
-
-<p>the operators $A_{ij}$ are evaluated separately and $A = (A_{ij})$ is <strong>not</strong> sparse.</p>
-
-<p>These two methods have very similar last step, but they are quite different in many ways, in theory, differential equation form will work better because of lower computational cost. Unless there is a way to reduce the cost of integral equation&#39;s cost.</p>
-
+          
           <br />
 
 
