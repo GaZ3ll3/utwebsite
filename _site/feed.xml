@@ -8,7 +8,22 @@
     
       <item>
         <title>Simplified Spherical Harmonics</title>
-        <description></description>
+        <description>&lt;p&gt;Simplified spherical harmonics has been proposed decades ago [^1], and it provides an approximation to ERT, by generalizing differential operator $dx$ to $\nabla$. The solution can be obtained by solving a diffusion equation system, instead of solving just one diffusion equation by assuming diffusive regime, $SP_n$ can make corrections to diffusion system by capturing more details/modes.&lt;/p&gt;
+
+&lt;p&gt;One thing to notice is, $SP_n$ is still an approximation even $n\to \infty$, since it is not solving the actual equation.  Usually, the scattering behavior is described with phase function, and a common choice is Henyey-Greenstein phase function.&lt;/p&gt;
+
+&lt;p&gt;$$p(\mu, g) = \frac{1 - g^2}{4\pi (1 + g^2 - 2g\mu)^{3/2}}$$&lt;/p&gt;
+
+&lt;p&gt;where $\mu = \Omega&amp;#39;\cdot \Omega$ as the scattering angle. And&lt;/p&gt;
+
+&lt;p&gt;$$p(\mu, g) = \sum_{n=0}^{\infty} \frac{2n+1}{4\pi} g^n P_n(\mu)$$&lt;/p&gt;
+
+&lt;p&gt;One interesting thing is to compare the idea behind integral-based method with reduced phase, and simplified spherical harmonics. If we follow the idea of $SP_n$, consider the 1D model and generalize to finite domain, then it is straightforward, because we just take azimuth angle and ignore the polar angle, completely achieves the same complexity, but model is slightly changed.&lt;/p&gt;
+
+&lt;p&gt;Under forward-peaking regime with large scattering, this is  reasonable though.&lt;/p&gt;
+
+&lt;p&gt;[^1]:A.D. Klose, E.W. Larsen, &lt;em&gt;Light transport in biological tissue based on the simplified spherical harmonics equation&lt;/em&gt;&lt;/p&gt;
+</description>
         <pubDate>Thu, 10 Nov 2016 00:00:00 -0600</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/</guid>
