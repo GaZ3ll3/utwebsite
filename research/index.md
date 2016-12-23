@@ -7,6 +7,10 @@ title: Research
 - *[Inverse transport problems in quantitative PAT for molecular imaging](http://arxiv.org/abs/1506.01460)* (with K. Ren and R. Zhang), <del>_submitted_</del>  Inverse Problems, 31, 125012, 2015.
 - *[A fast algorithm for radiative transport in isotropic media](https://arxiv.org/abs/1610.00835)* (with K.Ren and R.Zhang), submitted.
 
+- *Reconstruction of acoustic and optical properties in PAT/TAT with data from multiple illuminations* (with K.Ren), Preprint, 2016
+
+- *Recovering point soures in unknown inhomogeneous environments* (with K.Ren), In preparation, 2016
+
 ## Activities
 
 - 2016 - 2017
