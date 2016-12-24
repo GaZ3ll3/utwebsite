@@ -19,7 +19,7 @@ $$(s^2 + s(\sigma_x + \sigma_y + \sigma_z) + (\sigma_x\sigma_y + \sigma_y\sigma_
 
 where $\Phi = (\phi^1, \phi^2, \phi^3)$ are auxiliary functions, inverting $s$ to $\partial_t$, we put the equation back to time domain,
 
-$$u_{tt} + p_1 u_t + p_2 + p_3 U = c^2 \Delta u + \nabla\cdot \Phi$$
+$$u_{tt} + p_1 u_t + p_2u + p_3 U = c^2 \Delta u + \nabla\cdot \Phi$$
 
 $$\Phi_t + \Sigma \Phi = c^2 (p_1 \mathbb{I} - \Sigma)\nabla u + \Gamma \nabla U$$
 

@@ -23,7 +23,7 @@ $$\tilde{x} = x + \displaystyle\int_0^x \sigma_x(\xi) d\xi$$&lt;/p&gt;
 
 &lt;p&gt;where $\Phi = (\phi^1, \phi^2, \phi^3)$ are auxiliary functions, inverting $s$ to $\partial_t$, we put the equation back to time domain,&lt;/p&gt;
 
-&lt;p&gt;$$u_{tt} + p_1 u_t + p_2 + p_3 U = c^2 \Delta u + \nabla\cdot \Phi$$&lt;/p&gt;
+&lt;p&gt;$$u_{tt} + p_1 u_t + p_2u + p_3 U = c^2 \Delta u + \nabla\cdot \Phi$$&lt;/p&gt;
 
 &lt;p&gt;$$\Phi_t + \Sigma \Phi = c^2 (p_1 \mathbb{I} - \Sigma)\nabla u + \Gamma \nabla U$$&lt;/p&gt;
 
