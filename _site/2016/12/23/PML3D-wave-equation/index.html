@@ -1,7 +1,7 @@
 <html>
   <head>
-    <meta content='Simplified Spherical Harmonics - Welcome to Yimin's Homepage' property='og:title' />
-    <title>Simplified Spherical Harmonics - Welcome to Yimin's Homepage</title>
+    <meta content='PML3D wave equation - Welcome to Yimin's Homepage' property='og:title' />
+    <title>PML3D wave equation - Welcome to Yimin's Homepage</title>
     <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
 <link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
@@ -58,8 +58,8 @@
 <meta content="/users/yzhong/image/fav.png" property="og:image" />
 <meta content="" property="fb:app_id" />
 
-<meta content='http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/' property='og:url' />
-<meta content="Simplified spherical harmonics has been proposed decades ago, and it provides an approximation to ERT, by generalizin..." property='og:description' />
+<meta content='http://www.ma.utexas.edu/users/yzhong/2016/12/23/PML3D-wave-equation/' property='og:url' />
+<meta content="In previous post, the wave equation in 2D, with PML for absorption boundary condition. The system is augmented to 4 u..." property='og:description' />
 <meta content="article" property="og:type" />
 
 <!-- - -->
@@ -108,39 +108,52 @@
       <section class="paging">
   
     <div class="left">
-      <a href="/users/yzhong/2016/09/19/time-domain-RTE/">
+      <a href="/users/yzhong/2016/11/10/simplified-spherical-harmonics/">
         ‹
       </a>
     </div>
   
-  
-    <div class="right">
-      <a href="/users/yzhong/2016/12/23/PML3D-wave-equation/">
-        ›
-      </a>
-    </div>
   
 </section>
 
       <div class="content">
         <section class='post'>
           <h1 class="upcase">
-            <div class='date'>10 Nov 2016</div>
-            Simplified Spherical Harmonics
+            <div class='date'>23 Dec 2016</div>
+            PML3D wave equation
           </h1>
-          <p>Simplified spherical harmonics has been proposed decades ago, and it provides an approximation to ERT, by generalizing differential operator $dx$ to $\nabla$. The solution can be obtained by solving a diffusion equation system, instead of solving just one diffusion equation by assuming diffusive regime, $SP_n$ can make corrections to diffusion system by capturing more details/modes.</p>
+          <p>In previous post, the wave equation in 2D, with PML for absorption boundary condition. The system is augmented to 4 unknown variables. And in 3D case, regardless of possible issues from PML, the system should involve more unknowns for additional dimension, however, it is actually more than that. It will bring an $s^{-1}$ term, representing an temporal integral.</p>
 
-<p>One thing to notice is, $SP_n$ is still an approximation even $n\to \infty$, since it is not solving the actual equation.  Usually, the scattering behavior is described with phase function, and a common choice is Henyey-Greenstein phase function.</p>
+<p>By Laplace transform (or Fourier transform) to frequency domain, the equation is simply as ($s$ is complex)</p>
 
-<p>$$p(\mu, g) = \frac{1 - g^2}{4\pi (1 + g^2 - 2g\mu)^{3/2}}$$</p>
+<p>$$s^2 u  = c^2 \Delta u$$</p>
 
-<p>where $\mu = \Omega&#39;\cdot \Omega$ as the scattering angle. And</p>
+<p>By changing coordinate for each axis (e.g. $x, y, z$),
+$$\tilde{x} = x + \displaystyle\int_0^x \sigma_x(\xi) d\xi$$</p>
 
-<p>$$p(\mu, g) = \sum_{n=0}^{\infty} \frac{2n+1}{4\pi} g^n P_n(\mu)$$</p>
+<p>we will arrive at a new system</p>
 
-<p>One interesting thing is to compare the idea behind integral-based method with reduced phase, and simplified spherical harmonics. If we follow the idea of $SP_n$, consider the 1D model and generalize to finite domain, then it is straightforward, because we just take azimuth angle and ignore the polar angle, completely achieves the same complexity, but model is slightly changed.</p>
+<p>$$(s^2 + s(\sigma_x + \sigma_y + \sigma_z) + (\sigma_x\sigma_y + \sigma_y\sigma_z + \sigma_z \sigma_x) + \sigma_x\sigma_y\sigma_z s^{-1}) u = c^2 \Delta u + \nabla\cdot \Phi$$</p>
 
-<p>Under forward-peaking regime with large scattering, this is  reasonable though.</p>
+<p>where $\Phi = (\phi^1, \phi^2, \phi^3)$ are auxiliary functions, inverting $s$ to $\partial_t$, we put the equation back to time domain,</p>
+
+<p>$$u_{tt} + p_1 u_t + p_2 + p_3 U = c^2 \Delta u + \nabla\cdot \Phi$$</p>
+
+<p>$$\Phi_t + \Sigma \Phi = c^2 (p_1 \mathbb{I} - \Sigma)\nabla u + \Gamma \nabla U$$</p>
+
+<p>$$U_t = u$$</p>
+
+<p>where $\Sigma = \mathrm{diag}(\sigma_x, \sigma_y, \sigma_z)$ and $\Gamma = \mathrm{diag}(\sigma_y\sigma_z, \sigma_z\sigma_x, \sigma_x\sigma_y)$. $p_1= \mathrm{Tr}(\Sigma)$, $p_2 = \mathrm{Tr}(\Gamma)$, $p_3 = \mathrm{det}(\Sigma)$.</p>
+
+<p>There are 6 unknowns to solve : $Y = (u, u_t, \phi^1, \phi^2, \phi^3, U)$. The system&#39;s initial condition is from wave equation, additional variables are initialized as zero.</p>
+
+<p>$$Y_t = L Y$$</p>
+
+<p>can be solved with various numerical methods, $L$ is a second order operator in spatial variables, thus we can use FDM, FEM, pseudo-spectral.</p>
+
+<p>Pseudo-spectral is slower in complexity, but it will involve less points, since it is more accurate on the derivatives. The system needs evaluation on $U_x, U_y, U_z, u_x, u_y, u_z, c^2\Delta u, \nabla\cdot \Phi$ respectively, which requires <code>fft</code> for 5 times on $u, U, \Phi$ and <code>ifft</code> for 8 times, each <code>fft/ifft</code> in theory needs $15Nlog_2N$ in 3D, thus total flops are $195 N\log_2 N$ flops, for a grid as large as 200x200x200, the total flops will be <code>7E10</code> or so. On a single core machine at effective frequency 2.0GHz, the time will be <code>30s</code> for one evaluation! For multi-core (say quad-core) platform, it will require (maybe) <code>10s</code> for one run, 1000 time-steps with forward Euler will be about 3h, multi-step methods like RK2, RK3, RK4, the time will be much longer.</p>
+
+<p>If precision is not important, using <code>single</code> precision will cut the timing in half.</p>
 
           <br />
 
