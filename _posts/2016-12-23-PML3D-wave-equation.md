@@ -1,6 +1,6 @@
 ---
 layout: post
-title: PML3D wave equation
+title: PML3D Wave Equation
 disqus: 'y'
 ---
 

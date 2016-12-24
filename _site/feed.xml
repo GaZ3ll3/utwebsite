@@ -7,7 +7,7 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>PML3D wave equation</title>
+        <title>PML3D Wave Equation</title>
         <description>&lt;p&gt;In previous post, the wave equation in 2D, with PML for absorption boundary condition. The system is augmented to 4 unknown variables. And in 3D case, regardless of possible issues from PML, the system should involve more unknowns for additional dimension, however, it is actually more than that. It will bring an $s^{-1}$ term, representing an temporal integral.&lt;/p&gt;
 
 &lt;p&gt;By Laplace transform (or Fourier transform) to frequency domain, the equation is simply as ($s$ is complex)&lt;/p&gt;
