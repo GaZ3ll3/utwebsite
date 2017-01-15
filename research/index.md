@@ -13,6 +13,9 @@ title: Research
 
 ## Activities
 
+- 2017 - 2018
+  - Jan. 4, 2017
+      - JMM 2017, A fast algorithm for isotropic radiative transport equation@Atlanta
 - 2016 - 2017
   - Sept. 30, 2016
       - Numerical Seminar, Fast multipole method for frequency-dependent radiative transfer equation (RTE)@Austin

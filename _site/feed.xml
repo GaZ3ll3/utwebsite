@@ -7,6 +7,19 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Coding with Sparse Matrix</title>
+        <description>&lt;p&gt;The difficulty in handling sparse matrix in coding is always underestimated. In &lt;code&gt;MATLAB&lt;/code&gt;, there is nothing extra to do with sparse matrix, because the software has taken care of it. For other languages like &lt;code&gt;C++&lt;/code&gt;, a fast and robust sparse matrix library is quite necessary for radiative transport equation, since each ray-tracing forms a extremely sparse matrix. And it will involve intense additions for sparse matrices.&lt;/p&gt;
+
+&lt;p&gt;There are several popular libraries for sparse matrix operations. &lt;code&gt;csparse&lt;/code&gt; is one of it, using traditional &lt;code&gt;CSC&lt;/code&gt; or &lt;code&gt;CSR&lt;/code&gt; format to store the matrix.&lt;/p&gt;
+
+&lt;p&gt;TO BE CONTINUED.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 03 Jan 2017 00:00:00 -0600</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2017/01/03/coding-with-sparse-matrix/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/01/03/coding-with-sparse-matrix/</guid>
+      </item>
+    
+      <item>
         <title>PML for 3D Wave Equation</title>
         <description>&lt;p&gt;In previous post, the wave equation in 2D, with PML for absorption boundary condition. The system is augmented to 4 unknown variables. And in 3D case, regardless of possible issues from PML, the system should involve more unknowns for additional dimension, however, it is actually more than that. It will bring an $s^{-1}$ term, representing an temporal integral.&lt;/p&gt;
 
@@ -462,44 +475,6 @@ intense evaluations of FMM kernels.&lt;/p&gt;
         <pubDate>Wed, 27 Jul 2016 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/07/27/accelerated-transport/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/07/27/accelerated-transport/</guid>
-      </item>
-    
-      <item>
-        <title>Monte Carlo Transport</title>
-        <description>&lt;p&gt;Radiative transport equation has multiple ways to solve, here I prefer to talk about one efficient way using MC.&lt;/p&gt;
-
-&lt;p&gt;MC simulation will try to emit a huge number of particles and track each particle&amp;#39;s life cycle. We are particularly interested in intensity of the solution which is the angular integral of solution at each point. This will save a lot of time in simulating. As we know, the error related to MC is proportional to $\frac{1}{\sqrt{N}}$, where $N$ is the particles emitted at each point.&lt;/p&gt;
-
-&lt;p&gt;We select an easier case to handle here,&lt;/p&gt;
-
-&lt;p&gt;$$v \cdot \nabla u(x, v) + \sigma_t u = \sigma_s \frac{1}{\mathrm{Vol}(V)}\int_V u + q$$&lt;/p&gt;
-
-&lt;p&gt;where $\sigma_t = \sigma_a + \sigma_s$, and coefficients are all positive constants. To put the model into numerical framework, we discretize the domain $[0,1]^2$ into small squares for convenience. Suppose we have mesh as $L \times L$, $L$ represents the number of boxes along one side.&lt;/p&gt;
-
-&lt;p&gt;Following is the pseudo-code.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;location&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;spawn&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;particles&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;particle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;carries&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;energy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;initially&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;has&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;finished&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traveling&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;travel&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;along&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;its&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;illuminate&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39; with its energy&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;going&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;absorbed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;loop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;since&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;change&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;its&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;another&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;one&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The most time-costing part is random number generating. We can do this very quickly if we know the distribution and sample the distribution intentionally, which works perfectly under our case.&lt;/p&gt;
-
-&lt;p&gt;The distance traveled is $-\log(\xi)/\sigma_t$, where $\xi\in U[0,1]$. The performance is good if there is not a large $N$ or $\sigma_s$ is not too large, we should have a quick stop for one run. For other cases, it will take a long time for sure.&lt;/p&gt;
-
-&lt;p&gt;For parallel computing in this case, it will be better to run simulation distributed, using the MapReduce framework.&lt;/p&gt;
-
-&lt;p&gt;One thing needs to point out is the discretized case, if we try to approximate the solution in $C^0$ sense, the error will not just first order, it will be worse than first order. Even if the coefficients are constants.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 23 Jul 2016 00:00:00 -0500</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/07/23/monte-carlo-transport/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/07/23/monte-carlo-transport/</guid>
       </item>
     
   </channel>
