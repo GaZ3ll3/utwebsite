@@ -14,8 +14,11 @@ title: Research
 ## Activities
 
 - 2017 - 2018
+  - April 10, 2017
+      - UCI applied math seminar, TBA
   - Feb 27, 2017 - March, 3, 2017
-      - SIAM CSE17. COMING.
+      - SIAM CSE17, An FMM preconditioner for radiative transport equation@Atlanta[.pdf](/users/yzhong/_static/radfmm.pdf)
+      - SIAM CSE17, Inverse transport problems in quantitative PAT for molecular@Atlanta
   - Jan 30, 2017 - Feb 3, 2017
       - IPAM, Big Data Meets Computation@UCLA
   - Jan. 4, 2017
