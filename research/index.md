@@ -15,7 +15,7 @@ title: Research
 
 - 2017 - 2018
   - June 9 - June 10, 2017 (coming)
-    - Modern Advances in Computational and Applied Mathematics
+      - Modern Advances in Computational and Applied Mathematics
   - April 10, 2017 (coming)
       - UCI applied math seminar, TBA
   - Feb 27, 2017 - March, 3, 2017
