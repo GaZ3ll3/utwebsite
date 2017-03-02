@@ -14,7 +14,9 @@ title: Research
 ## Activities
 
 - 2017 - 2018
-  - April 10, 2017
+  - June 9 - June 10, 2017 (coming)
+    - Modern Advances in Computational and Applied Mathematics
+  - April 10, 2017 (coming)
       - UCI applied math seminar, TBA
   - Feb 27, 2017 - March, 3, 2017
       - SIAM CSE17, An FMM preconditioner for radiative transport equation@Atlanta[.pdf](/users/yzhong/_static/radfmm.pdf)
