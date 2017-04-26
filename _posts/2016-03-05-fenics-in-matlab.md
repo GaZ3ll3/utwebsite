@@ -16,4 +16,7 @@ This will lead to two problems:
 
 - GUI will not work anymore, since it will load too many libraries.
 
-- Confusing ``double free or corruption`` error when exiting, because the corresponding ``C++`` code can run very well. 
+- Confusing ``double free or corruption`` error when exiting, because the corresponding ``C++`` code can run very well.
+
+update:
+The problem is highly likely on ``mpi`` part. To avoid this fatal error, just do not waste time on fixing it.

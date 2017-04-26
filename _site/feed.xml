@@ -7,6 +7,17 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Quadrature Rule</title>
+        <description>&lt;p&gt;For many PDE problems, they have some integral equation representation form too. I once mentioned whether it is good or not to put problem into integral form or not. For a lot of times, I think explicit form of something like Green&amp;#39;s function is necessary for such a solution
+$$u = \int G(x, y)f(y)$$
+over surface or volume.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 26 Apr 2017 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2017/04/26/quadrature-rule/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/04/26/quadrature-rule/</guid>
+      </item>
+    
+      <item>
         <title>PAT IN 3D</title>
         <description>&lt;p&gt;It is quite challenging to numerically implement PAT in 3D. Especially for very high resolution imaging reconstruction.&lt;/p&gt;
 
@@ -323,160 +334,6 @@ $$u(x) = \sum_{|\alpha|\le m - 1} \int_{\partial\Omega} \Lambda_{\alpha}(x, y) \
         <pubDate>Tue, 16 Aug 2016 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/08/16/thoughts-on-fast-multipole/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/08/16/thoughts-on-fast-multipole/</guid>
-      </item>
-    
-      <item>
-        <title>More on Transport</title>
-        <description>&lt;p&gt;The radiative transfer equation involves several parameters, $\mu_t$,
-$\mu_s$ be the attenuation(transport) and scattering coefficient
-respectively. $K(\hat{\mathbf{s}}, \hat{\mathbf{s}}&amp;#39;)$ is the phase
-function describing the probability of scattering from
-$\hat{\mathbf{s}}$ to $\hat{\mathbf{s}}&amp;#39;$.&lt;/p&gt;
-
-&lt;p&gt;$$\hat{\mathbf{s}}\cdot \nabla u(\mathbf{r}, \hat{\mathbf{s}}) + \mu_t u(\mathbf{r}, \hat{\mathbf{s}}) = \mu_s \frac{1}{\mathrm{Vol}(\mathbb{S}^{d-1})}\int_{\mathbb{S}^{d-1}} K(\hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39;) u(\mathbf{r}, \hat{\mathbf{s}}&amp;#39;) d\hat{\mathbf{s}}&amp;#39; + q$$&lt;/p&gt;
-
-&lt;p&gt;When the phase function is isotropic, we are aware that FMM based
-algorithm would be a good approximation to the solution. Here we try to
-develop more application cases.&lt;/p&gt;
-
-&lt;h2 id=&quot;toc_0&quot;&gt;Isotropic $\delta$-Eddington approximation&lt;/h2&gt;
-
-&lt;p&gt;In 3D, the phase function is selected as&lt;/p&gt;
-
-&lt;p&gt;$$K(\cos\theta) = 2f\delta(1 - \cos\theta) + (1-f)(1 + 3g&amp;#39;\cos\theta)$$&lt;/p&gt;
-
-&lt;p&gt;where $f = g^2, g&amp;#39; = g/(1+g)$ are constant parameters and
-$\cos\theta = \hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39;$. Then the RTE
-will be reduced to&lt;/p&gt;
-
-&lt;p&gt;$$\hat{\mathbf{s}}\cdot \nabla u(\mathbf{r}, \hat{\mathbf{s}}) + \mu_t&amp;#39;u(\mathbf{r}, \hat{\mathbf{s}}) = \mu_s&amp;#39;\frac{1}{\mathrm{Vol}(\mathbb{S}^{d-1})}\int_{\mathbb{S}^2}(1 + 3g&amp;#39; \hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39;) u(\mathbf{r}, \hat{\mathbf{s}}&amp;#39;) d\hat{\mathbf{s}}&amp;#39; + q$$&lt;/p&gt;
-
-&lt;p&gt;where $\mu_s&amp;#39; = (1- f)\mu_s$ and $\mu_t&amp;#39; = \mu_a + \mu_s&amp;#39;$. If $g&amp;#39; = 0$,
-we will again land on our original FMM settings.&lt;/p&gt;
-
-&lt;h2 id=&quot;toc_1&quot;&gt;Anisotrpic $\delta$-Eddington approximation&lt;/h2&gt;
-
-&lt;p&gt;Here we consider more general case $g&amp;#39;\neq 0$, to simplify our work, we
-assume the domain $\Omega\subset \mathbb{R}^2$, where $\delta$-Eddington
-approximation should be similar. We consider the equation with ,&lt;/p&gt;
-
-&lt;p&gt;$$\hat{\mathbf{s}}\cdot \nabla u(\mathbf{r}, \hat{\mathbf{s}}) + \mu_t u(\mathbf{r}, \hat{\mathbf{s}}) = \mu_s \frac{1}{\mathrm{Vol}(\mathbb{S}^{d-1})}\int_{\mathbb{S}^2}(1 + \kappa\hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39;) u(\mathbf{r}, \hat{\mathbf{s}}&amp;#39;) d\hat{\mathbf{s}}&amp;#39; + q$$&lt;/p&gt;
-
-&lt;p&gt;where $\kappa$ is an appropriate constant. In 2D, we can substitute
-$\hat{\mathbf{s}}$ with $\theta$. And
-$\hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39; = \cos\theta \cos\theta&amp;#39; + \sin\theta\sin\theta&amp;#39;$.
-Then&lt;/p&gt;
-
-&lt;p&gt;$$
-    u(\mathbf{r}, \theta) = \int_0^{\tau_{-}(\mathbf{r}, \theta)} E(\mathbf{r}, \mathbf{y})\Big( \mu_s(\mathbf{y})\left(U(\mathbf{y}) + \kappa C(\mathbf{y})\cos\theta  + \kappa S(\mathbf{y})\sin\theta \right) + q(\mathbf{y})\Big) dt
-$$&lt;/p&gt;
-
-&lt;p&gt;where $y = \mathbf{r}- t\hat{\mathbf{s}}$, $E(\mathbf{r},\mathbf{y})$ is
-the line integral, and&lt;/p&gt;
-
-&lt;p&gt;$$\begin{aligned}
-    U(\mathbf{r}) &amp;amp;= \frac{1}{2\pi}\int_0^{2\pi} u(\mathbf{r}, \theta) d\theta\\
-    C(\mathbf{r}) &amp;amp;=  \frac{1}{2\pi}\int_0^{2\pi} \cos\theta u(\mathbf{r}, \theta) d\theta\\
-    S(\mathbf{r}) &amp;amp;=  \frac{1}{2\pi}\int_0^{2\pi} \sin\theta u(\mathbf{r}, \theta) d\theta
-    \end{aligned}
-$$&lt;/p&gt;
-
-&lt;p&gt;Then we integrate over $\theta \in \mathbb{S}^1$.&lt;/p&gt;
-
-&lt;p&gt;$$U(\mathbf{r}) =  \frac{1}{2\pi}\int_0^{2\pi}  \int_0^{\tau_{-}(\mathbf{r}, \theta)} E(\mathbf{r}, \mathbf{y})\Big( \mu_s(\mathbf{y})\left(U(\mathbf{y}) + \kappa C(\mathbf{y})\cos\theta  + \kappa S(\mathbf{y})\sin\theta \right) + q(\mathbf{y})\Big) dt$$&lt;/p&gt;
-
-&lt;p&gt;change from polar coordinate to Cartesian, also we know that&lt;/p&gt;
-
-&lt;p&gt;$$(\cos\theta, \sin\theta) = \frac{\mathbf{r}- \mathbf{y}}{|\mathbf{r}- \mathbf{y}|}$$&lt;/p&gt;
-
-&lt;p&gt;then&lt;/p&gt;
-
-&lt;p&gt;$$\begin{aligned}
-    U(\mathbf{r}) &amp;amp;= \int_{\mathbf{y}\in \Omega} \frac{1}{2\pi} \frac{E(\mathbf{r}, \mathbf{y})}{|\mathbf{r}- \mathbf{y}|} \Big(\mu_s(\mathbf{y}) U(\mathbf{y}) + q(\mathbf{y})\Big)d\mathbf{y}\\
-    &amp;amp;+ \int_{y\in\Omega} \frac{\kappa}{2\pi} \frac{E(\mathbf{r}, \mathbf{y}) (\mathbf{r}_x - \ \mathbf{y}_x)}{|\mathbf{r}- \mathbf{y}|^2}\mu_s(\mathbf{y}) C(\mathbf{y}) d\mathbf{y}\\
-    &amp;amp;+ \int_{y\in\Omega} \frac{\kappa}{2\pi} \frac{E(\mathbf{r}, \mathbf{y}) (\mathbf{r}_y - \ \mathbf{y}_y)}{|\mathbf{r}- \mathbf{y}|^2}\mu_s(\mathbf{y}) S(\mathbf{y}) d\mathbf{y}\end{aligned}
-$$&lt;/p&gt;
-
-&lt;p&gt;In the same way, we also have&lt;/p&gt;
-
-&lt;p&gt;$$\begin{aligned}
-    C(\mathbf{r}) &amp;amp;= \int_{\mathbf{y}\in \Omega} \frac{1}{2\pi} \frac{E(\mathbf{r}, \mathbf{y})(\mathbf{r}_x - \mathbf{y}_x)}{|\mathbf{r}- \mathbf{y}|^2} \Big(\mu_s(\mathbf{y}) U(\mathbf{y}) + q(\mathbf{y})\Big)d\mathbf{y}\\
-    &amp;amp;+ \int_{y\in\Omega} \frac{\kappa}{2\pi} \frac{E(\mathbf{r}, \mathbf{y}) (\mathbf{r}_x - \ \mathbf{y}_x)^2}{|\mathbf{r}- \mathbf{y}|^3}\mu_s(\mathbf{y}) C(\mathbf{y}) d\mathbf{y}\\
-    &amp;amp;+ \int_{y\in\Omega} \frac{\kappa}{2\pi} \frac{E(\mathbf{r}, \mathbf{y}) (\mathbf{r}_x - \ \mathbf{y}_x)(\mathbf{r}_y - \ \mathbf{y}_y)}{|\mathbf{r}- \mathbf{y}|^3}\mu_s(\mathbf{y}) S(\mathbf{y}) d\mathbf{y}\end{aligned}
-$$&lt;/p&gt;
-
-&lt;p&gt;$$\begin{aligned}
-    S(\mathbf{r}) &amp;amp;= \int_{\mathbf{y}\in \Omega} \frac{1}{2\pi} \frac{E(\mathbf{r}, \mathbf{y})(\mathbf{r}_y - \mathbf{y}_y)}{|\mathbf{r}- \mathbf{y}|^2} \Big(\mu_s(\mathbf{y}) U(\mathbf{y}) + q(\mathbf{y})\Big) d\mathbf{y}\\
-    &amp;amp;+ \int_{y\in\Omega} \frac{\kappa}{2\pi} \frac{E(\mathbf{r}, \mathbf{y}) (\mathbf{r}_x - \ \mathbf{y}_x)(\mathbf{r}_y - \mathbf{y}_y)}{|\mathbf{r}- \mathbf{y}|^3}\mu_s(\mathbf{y}) C(\mathbf{y}) d\mathbf{y}\\
-    &amp;amp;+ \int_{y\in\Omega} \frac{\kappa}{2\pi} \frac{E(\mathbf{r}, \mathbf{y}) (\mathbf{r}_y - \ \mathbf{y}_y)^2}{|\mathbf{r}- \mathbf{y}|^3}\mu_s(\mathbf{y}) S(\mathbf{y}) d\mathbf{y}\end{aligned}
-$$&lt;/p&gt;
-
-&lt;p&gt;which is a system of first kind integrals, let
-$\Psi(\mathbf{r}) =   \begin{pmatrix}
-    U(\mathbf{r})\\
-    C(\mathbf{r})\\
-    S(\mathbf{r})
-    \end{pmatrix}$ and $Q(\mathbf{r}) =\begin{pmatrix}
-    q(\mathbf{r})\\
-    0\\
-    0
-    \end{pmatrix}$, then&lt;/p&gt;
-
-&lt;p&gt;$$\Psi(\mathbf{r}) =
-    \int_{y\in \Omega} \mathcal{K} (\mathbf{r}, \mathbf{y})\Big(\mu_s(\mathbf{y})\Psi(\mathbf{y}) + Q(\mathbf{y})\Big)
-    d\mathbf{y}= K(\mu_s\Psi + Q
-)$$&lt;/p&gt;
-
-&lt;p&gt;It is obvious that solving $\Psi$ will automatically give solution
-$u(\mathbf{r}, \theta)$ from .&lt;/p&gt;
-
-&lt;p&gt;$$\Psi(\mathbf{r}) = \frac{1}{\mu_s} (I - \mu_sK )^{-1}(\mu_s K Q)$$&lt;/p&gt;
-
-&lt;h2 id=&quot;toc_2&quot;&gt;Algorithm complexity&lt;/h2&gt;
-
-&lt;p&gt;From above system, there are six kernels ($\mathcal{K}$ is symmetric) to
-be calculated, also $\kappa K_{UU} = K_{CC} + K_{SS}$ can reduce the
-evaluation complexity. Unlike our previous algorithm for isotropic phase
-function, instead of caching all matrices for interaction (M2L) only, we
-also will cache variables $E(\mathbf{r}, \mathbf{y})$ in order to
-accelerate other kernels building process by re-using them, the time
-complexity in caching the kernels will be $\mathcal{O}(nN_p)$. We solve
-the linear system by Krylov subspace methods such as GMRES or MINRES, if
-there are $l$ iterations, then the time cost is $\mathcal{O}(l^2 nN_p)$.&lt;/p&gt;
-
-&lt;h2 id=&quot;toc_3&quot;&gt;Possible pre-conditioner for the system&lt;/h2&gt;
-
-&lt;p&gt;In FMM, we have to evaluate the self-contribution on each grid, however,
-we can easily observe that off-diagonal kernels in $K$ should produce
-zero for self-contributions, and integrand will drop fast for further
-points, thus we may approximate $K$ using its diagonal operators.&lt;/p&gt;
-
-&lt;h2 id=&quot;toc_4&quot;&gt;Possible anisotropic source&lt;/h2&gt;
-
-&lt;p&gt;Currently we cannot handle anisotropic source term
-$q(\mathbf{r}, \hat{\mathbf{s}})$ unless we know exact explicit form, since the coupling between
-$\mathbf{r}$ and $\hat{\mathbf{s}}$ could involve higher ordered terms
-(in Legendre polynomial sense). In this very case, first order
-approximation, we could assume
-$q(\mathbf{r}, \theta) \sim q_0(\mathbf{r}) + \cos\theta q_c(\mathbf{r}) + \sin\theta q_s(\mathbf{r})$
-without hurting the analysis and algorithm too much.&lt;/p&gt;
-
-&lt;h2 id=&quot;toc_5&quot;&gt;Error analysis&lt;/h2&gt;
-
-&lt;p&gt;Similar to previous report, the error of approximation by FMM is bounded
-by $-C l \log (l) + \varepsilon_{FMM}$, when $l\to 0^{+}$.&lt;/p&gt;
-
-&lt;h2 id=&quot;toc_6&quot;&gt;More general case&lt;/h2&gt;
-
-&lt;p&gt;Consider the phase function $K(\hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39;)$
-expansion in terms of $\hat{\mathbf{s}}\cdot \hat{\mathbf{s}}&amp;#39;$, with
-Legendre polynomials for 3D or Chebyshev polynomial for 2D. Then similar
-argument will bring us to a large linear system which requires very
-intense evaluations of FMM kernels.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 02 Aug 2016 00:00:00 -0500</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/08/02/more-on-transport/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/08/02/more-on-transport/</guid>
       </item>
     
   </channel>

@@ -140,8 +140,11 @@
 
 <ul>
 <li><p>GUI will not work anymore, since it will load too many libraries.</p></li>
-<li><p>Confusing <code>double free or corruption</code> error when exiting, because the corresponding <code>C++</code> code can run very well. </p></li>
+<li><p>Confusing <code>double free or corruption</code> error when exiting, because the corresponding <code>C++</code> code can run very well.</p></li>
 </ul>
+
+<p>update:
+The problem is highly likely on <code>mpi</code> part. To avoid this fatal error, just do not waste time on fixing it.</p>
 
           <br />
 
