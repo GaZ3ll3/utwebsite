@@ -18,7 +18,7 @@ over surface or volume.&lt;/p&gt;
       </item>
     
       <item>
-        <title>PAT IN 3D</title>
+        <title>PAT in 3D</title>
         <description>&lt;p&gt;It is quite challenging to numerically implement PAT in 3D. Especially for very high resolution imaging reconstruction.&lt;/p&gt;
 
 &lt;p&gt;Even for solving the photon diffusion part is nontrivial on a grid of &lt;code&gt;512x512x512&lt;/code&gt;. To stably get recovery in diffusion coefficient, we need to solve the multi-source problem to at least third order, which means &lt;code&gt;H&lt;/code&gt; must be non-vanishing and accurate up to error of &lt;code&gt;h^3&lt;/code&gt;. If we are solving the equation with finite element forward solver, it is not cheap at all. The system will involve millions of dofs, only supercomputer or cluster could help.&lt;/p&gt;
