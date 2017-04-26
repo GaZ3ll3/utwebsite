@@ -16,8 +16,8 @@ title: Research
 - 2017 - 2018
   - June 9 - June 10, 2017 (coming)
       - Modern Advances in Computational and Applied Mathematics
-  - April 10, 2017 (coming)
-      - UCI applied math seminar, TBA
+  - April 10, 2017
+      - UCI applied math seminar, A fast preconditioner for RTE@UCI
   - Feb 27, 2017 - March, 3, 2017
       - SIAM CSE17, An FMM preconditioner for radiative transport equation@Atlanta[.pdf](/users/yzhong/_static/radfmm.pdf)
       - SIAM CSE17, Inverse transport problems in quantitative PAT for molecular@Atlanta
