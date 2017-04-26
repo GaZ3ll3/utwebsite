@@ -14,7 +14,11 @@
 
 &lt;p&gt;On our laptop, it is still unclear that whether a mesh larger than &lt;code&gt;64x64x64&lt;/code&gt; could work under second order FE smoothly. Down-sampling from the data, it is still reasonable to get some reconstruction up to some resolution.&lt;/p&gt;
 
-&lt;p&gt;Follow-ups would be implementation choices. [TO BE CONTINUED]&lt;/p&gt;
+&lt;p&gt;All we need is a fast forward solver, with parallelism, an option will be &lt;code&gt;PETSc&lt;/code&gt;. The detailed implementation could be any, &lt;code&gt;fenics&lt;/code&gt; is well-built for finite element solvers on top of &lt;code&gt;PETSc&lt;/code&gt;, could run in parallel over many cores.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;MATLAB&lt;/code&gt; will be a tough choice to handle too large system, it does not provide good support on MPI either. &lt;code&gt;Julia&lt;/code&gt; has some good libraries and graph tools, but not as many as &lt;code&gt;Python&lt;/code&gt; currently does.&lt;/p&gt;
+
+&lt;p&gt;An interface prototype is needed then. [TO BE CONTINUED]&lt;/p&gt;
 </description>
         <pubDate>Mon, 24 Apr 2017 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2017/04/24/PAT-in-3D/</link>

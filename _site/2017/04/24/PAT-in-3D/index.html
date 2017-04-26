@@ -128,7 +128,11 @@
 
 <p>On our laptop, it is still unclear that whether a mesh larger than <code>64x64x64</code> could work under second order FE smoothly. Down-sampling from the data, it is still reasonable to get some reconstruction up to some resolution.</p>
 
-<p>Follow-ups would be implementation choices. [TO BE CONTINUED]</p>
+<p>All we need is a fast forward solver, with parallelism, an option will be <code>PETSc</code>. The detailed implementation could be any, <code>fenics</code> is well-built for finite element solvers on top of <code>PETSc</code>, could run in parallel over many cores.</p>
+
+<p><code>MATLAB</code> will be a tough choice to handle too large system, it does not provide good support on MPI either. <code>Julia</code> has some good libraries and graph tools, but not as many as <code>Python</code> currently does.</p>
+
+<p>An interface prototype is needed then. [TO BE CONTINUED]</p>
 
           <br />
 
