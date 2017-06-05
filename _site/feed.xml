@@ -7,10 +7,33 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Maxwell's Equations</title>
+        <description>&lt;p&gt;This is a note for Maxwell&amp;#39;s equations (ME), ME is made up by 4 equations: Faraday&amp;#39;s law, Ampere&amp;#39;s law, Gauss&amp;#39; electric law, Gauss&amp;#39; magnetic law.&lt;/p&gt;
+
+&lt;p&gt;[to be CONTINUED].&lt;/p&gt;
+</description>
+        <pubDate>Sun, 04 Jun 2017 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2017/06/04/maxwell-equation/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/06/04/maxwell-equation/</guid>
+      </item>
+    
+      <item>
         <title>Quadrature Rule</title>
         <description>&lt;p&gt;For many PDE problems, they have some integral equation representation form too. I once mentioned whether it is good or not to put problem into integral form or not. For a lot of times, I think explicit form of something like Green&amp;#39;s function is necessary for such a solution
 $$u = \int G(x, y)f(y)$$
 over surface or volume.&lt;/p&gt;
+
+&lt;p&gt;For smooth kernel function $G(x,y)$ in both variable, satisfying mild growth of derivatives magnitude. The local Taylor expansion could give sufficient high accuracy.&lt;/p&gt;
+
+&lt;p&gt;For non-smooth kernel function, say piecewise defined function or globally $C^k(D)\times C^k(D)$, then it is not possible to approximate $G$ with high order polynomials. In the other word, the accuracy is limited to the discretization and its regularity.&lt;/p&gt;
+
+&lt;p&gt;When $G(x,y) \in C^k(D)\times C^k(D)$, we can take derivatives upto $k$-th order for each of the variables, meaning that locally we have a reminder like $O(h^{k+1})$ near the irregular part.&lt;/p&gt;
+
+&lt;p&gt;For instance, if our function $G(x, y) = |x-y|$ for volumetric integral, then $k=0$, and irregular part happens only at $x=y$, for uniform discretization of size $h$, the local error is at order $O(h)$. We can expect the integrated error to be $O(h^{d+1})$ provided the dimension is $d$. The convergence rate is expected to be $d+1$.&lt;/p&gt;
+
+&lt;p&gt;For other cases such that singularity exists, e.g. $G(x,y) = |x-y|^{-1}$, special care has to be applied to the near interactions, which is far more tricky and expensive than irregular cases. Here the usual way is to divide the integral into several parts according to the &amp;quot;magnitude&amp;quot; of steepness. For those mild change parts, smoothness is preserved; for nearby parts, the change is faster, so divide into pieces to reduce the change rate; for the singular part, coordinate transform is applied.&lt;/p&gt;
+
+&lt;p&gt;At the end of the day, it is all about tricks, there is no general rule for every kernel function, the precomputed quadrature has to be done for all geometries and all quadrature points. It should be also noticed that for those translation invariant kernel functions like $G(x,y) = G(|x-y|)$, the precomputation could be reused for similar (e.g. $G(\lambda t) = \lambda^{\beta} G(t)$) or the same geometries under rotations.&lt;/p&gt;
 </description>
         <pubDate>Wed, 26 Apr 2017 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2017/04/26/quadrature-rule/</link>
@@ -263,77 +286,6 @@ $$u(x) = \sum_{|\alpha|\le m - 1} \int_{\partial\Omega} \Lambda_{\alpha}(x, y) \
         <pubDate>Thu, 18 Aug 2016 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/08/18/thoughts-on-fast-multipole-II/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/08/18/thoughts-on-fast-multipole-II/</guid>
-      </item>
-    
-      <item>
-        <title>Thoughts on Fast Multipole</title>
-        <description>&lt;p&gt;We are most interested in those kernel independent methods, and so far, we are aware of two mainstream methods, one is &lt;code&gt;KIFMM&lt;/code&gt;, the other is &lt;code&gt;BBFMM&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;They have very similar structure(upward pass, downward pass) of algorithm and exact the same data interaction, we call these common steps &lt;code&gt;M2M&lt;/code&gt;, &lt;code&gt;M2L&lt;/code&gt;, &lt;code&gt;L2L&lt;/code&gt;, by building a &lt;code&gt;kd-tree&lt;/code&gt;, with each leaf node containing at least $s$ particles. The brief algorithm is described as&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;# build tree(partly) involves S2M, M2M two parts.&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;upwardPass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;c&quot;&gt;# postorder traversal&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;particles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;threshold&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# it is at leaf&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;S2M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# not leaf&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;divide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;xrange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;upwardPass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;M2M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;# downPass involves M2L, L2L.&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;downPass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;c&quot;&gt;# preorder&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isLeaf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;L2L&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# U List&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;L2P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# put current data into correct spots&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;processData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# V List&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;M2L&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# preorder traversal&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;xrange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;downPass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The algorithm is trivial with understanding of the information flow, however, we are particular interested in the core idea.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;KIFMM&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;It bases on potential theory in harmonic analysis, or simply Green&amp;#39;s formula for second order operator like Laplacian. Second order PDE always has unique solution for exterior and interior boundary value problem, which means, the kernel must obey harmonic property, inside information must be equivalent(can transform to each other) to information on surface.&lt;/p&gt;
-
-&lt;p&gt;This makes the algorithm very effective if the kernel is fundmental solution of second order PDE, because, using a few points on surface will total be equivalent to all nodes inside the grid.&lt;/p&gt;
-
-&lt;p&gt;However, the limitation is also obvious, it can only work under the second order PDE, because the equation must have the potential property, that outside information can be calculated through following boundary integral, since the source is inside $\Omega$, it is a homogeneous exterior boundary value problem, solution should be something like&lt;/p&gt;
-
-&lt;p&gt;$$u(x) = \int_{\partial\Omega} K(x, y) \psi(y)$$&lt;/p&gt;
-
-&lt;p&gt;If the kernel does not fit the potential theory framework, this method does not work anymore, surface/boundary value cannot be used for the evaluation of the solution merely.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;BBFMM&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;This is method is something general, but requires more time on solution for special problems, since interpolation methods always need redundant interior data, this method actually is doing expansion of the kernel into small decoupling products.&lt;/p&gt;
-
-&lt;p&gt;$$K(x, y) \sim \sum_{k=1}^N c_k S_k(x)T_k(y)$$&lt;/p&gt;
-
-&lt;p&gt;Currently, there are some polynomial based $S_k, T_k$ such as Chebyshev and Lagrange, providing cut-off residue as higher ordered terms.&lt;/p&gt;
-
-&lt;p&gt;We are more interested in selecting appropriate basis $S$ and $T$ such that&lt;/p&gt;
-
-&lt;p&gt;$$\min |K(x, y) - \sum_{k=1}^N c_k S_k(x)T_k(y)|_{L^p(\Omega\times \Omega)}$$&lt;/p&gt;
-
-&lt;p&gt;since in discretized model, this turns out to be&lt;/p&gt;
-
-&lt;p&gt;$$\min\max_i | \sum_j K(x_i, y_j)\phi_j -\sum_{k=1}^N c_k S_k(x_i)\sum_j T_k(y_j)\phi_j| $$&lt;/p&gt;
-
-&lt;p&gt;we observe that once the functions are found, the cost will be $\mathcal{O}(N n)$. It is quite straightforward to see Fourier transform is an example, but only good for fluctuation kernel, for smooth case, polynomial could be good approximation with good performance in accuracy. Thus if we are facing some unknown kernel or something other than second order PDE, &lt;code&gt;BBFMM&lt;/code&gt; is somewhat a first choice for the first try.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Tue, 16 Aug 2016 00:00:00 -0500</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/08/16/thoughts-on-fast-multipole/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/08/16/thoughts-on-fast-multipole/</guid>
       </item>
     
   </channel>
