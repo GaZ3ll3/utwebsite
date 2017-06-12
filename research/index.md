@@ -14,8 +14,10 @@ title: Research
 ## Activities
 
 - 2017 - 2018
-  - June 9 - June 10, 2017 (coming)
-      - Modern Advances in Computational and Applied Mathematics
+  - July 18 - July 22, 2017
+      - Stanford University visit.
+  - June 9 - June 10, 2017
+      - Modern Advances in Computational and Applied Mathematics@Yale
   - April 10, 2017
       - UCI applied math seminar, A fast preconditioner for RTE@UCI
   - Feb 27, 2017 - March, 3, 2017
