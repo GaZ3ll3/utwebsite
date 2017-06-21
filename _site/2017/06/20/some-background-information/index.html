@@ -1,7 +1,7 @@
 <html>
   <head>
-    <meta content='Maxwell's Equations - Welcome to Yimin's Homepage' property='og:title' />
-    <title>Maxwell's Equations - Welcome to Yimin's Homepage</title>
+    <meta content='Some Math Background in Biology - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Some Math Background in Biology - Welcome to Yimin's Homepage</title>
     <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
 <link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
@@ -58,8 +58,8 @@
 <meta content="/users/yzhong/image/fav.png" property="og:image" />
 <meta content="" property="fb:app_id" />
 
-<meta content='http://www.ma.utexas.edu/users/yzhong/2017/06/04/maxwell-equation/' property='og:url' />
-<meta content="This is a note for Maxwell's equations (ME), ME is made up by 4 equations: Faraday's law, Ampere's law, Gauss' electr..." property='og:description' />
+<meta content='http://www.ma.utexas.edu/users/yzhong/2017/06/20/some-background-information/' property='og:url' />
+<meta content="In terms of biology, here we only focus on molecule level. The molecules/proteins are clusters of atoms with bonds fo..." property='og:description' />
 <meta content="article" property="og:type" />
 
 <!-- - -->
@@ -108,29 +108,39 @@
       <section class="paging">
   
     <div class="left">
-      <a href="/users/yzhong/2017/04/26/quadrature-rule/">
+      <a href="/users/yzhong/2017/06/20/fmm-as-compression/">
         ‹
       </a>
     </div>
   
-  
-    <div class="right">
-      <a href="/users/yzhong/2017/06/20/fmm-as-compression/">
-        ›
-      </a>
-    </div>
   
 </section>
 
       <div class="content">
         <section class='post'>
           <h1 class="upcase">
-            <div class='date'>04 Jun 2017</div>
-            Maxwell's Equations
+            <div class='date'>20 Jun 2017</div>
+            Some Math Background in Biology
           </h1>
-          <p>This is a note for Maxwell&#39;s equations (ME), ME is made up by 4 equations: Faraday&#39;s law, Ampere&#39;s law, Gauss&#39; electric law, Gauss&#39; magnetic law.</p>
+          <p>In terms of biology, here we only focus on molecule level. The molecules/proteins are clusters of atoms with bonds for interactions. The structure of protein could be quite different from each other and topologically complicated. Most structures are detected by X-ray, which is called X-ray crystallography.</p>
 
-<p>[to be CONTINUED].</p>
+<p>Crystals are periodical heterogeneous media under certain conditions. When X-ray passes through crystal, we will get diffraction pattern in 3D using various plane sensors for example. The light propagation is modeled as waves (geometric optics), and scattered by the crystal internal electrons.</p>
+
+<p>The patterns are simply Fourier transform of the density function, however, only magnitudes are captured. We will have to deal with a <code>phase recovery problem</code>, this problem turns out to be an important and interesting topic in signal processing.</p>
+
+<p>When we are aware of the structure of such molecules, for many researchers, they are interested in the deformation of molecules/proteins, these motions of atoms are driven by some force field, computationally, it is called molecular dynamics (MD).</p>
+
+<p>This problem involved highly intensive numerical computing. There are several existing models. Solving Poisson Boltzmann equation is one of the tasks. To evaluate the potential on each atom requires solving the <code>PBE</code>, which is non-linear in general, but there are linear approximation under certain condition. A popular method is to re-formulate as boundary integral equation and solve with fast solvers.</p>
+
+<p>The first kind integral equation is generally ill-conditioned, many researchers are shifting to second kind integral equation by differentiate the integral equation against target locations, however, this integral involves hyper-singular kernel and increase computational for each evaluation of integral.</p>
+
+<p>If we are only interested in solving the problem, there are some direct method for factorization of such dense matrix (HSS), which compresses the matrix with very few information, but without using expensive <code>svd</code>.  While if we are interested in dynamics, then we have to take some extra cost in mind: for mesh dependent methods, re-meshing is necessary during each time step.</p>
+
+<p>For (weakly) singular integrals, when the mesh is changed, those diagonal values (pre-computed quadrature) will be re-computed again. Not mentioning the compression time.</p>
+
+<p>Hence, a more intriguing problem rises as:</p>
+
+<p>Operator $K$ is compressible with some algorithm (e.g. FMM or MG), if there is (global but possibly small) update to $K\to K&#39;$, hopefully $K&#39;$ has higher rank, but still compressible. (in terms of some other basis). Is there a fast algorithm for such update operation.</p>
 
           <br />
 

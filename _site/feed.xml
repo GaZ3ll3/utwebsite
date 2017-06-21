@@ -7,6 +7,44 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Some Math Background in Biology</title>
+        <description>&lt;p&gt;In terms of biology, here we only focus on molecule level. The molecules/proteins are clusters of atoms with bonds for interactions. The structure of protein could be quite different from each other and topologically complicated. Most structures are detected by X-ray, which is called X-ray crystallography.&lt;/p&gt;
+
+&lt;p&gt;Crystals are periodical heterogeneous media under certain conditions. When X-ray passes through crystal, we will get diffraction pattern in 3D using various plane sensors for example. The light propagation is modeled as waves (geometric optics), and scattered by the crystal internal electrons.&lt;/p&gt;
+
+&lt;p&gt;The patterns are simply Fourier transform of the density function, however, only magnitudes are captured. We will have to deal with a &lt;code&gt;phase recovery problem&lt;/code&gt;, this problem turns out to be an important and interesting topic in signal processing.&lt;/p&gt;
+
+&lt;p&gt;When we are aware of the structure of such molecules, for many researchers, they are interested in the deformation of molecules/proteins, these motions of atoms are driven by some force field, computationally, it is called molecular dynamics (MD).&lt;/p&gt;
+
+&lt;p&gt;This problem involved highly intensive numerical computing. There are several existing models. Solving Poisson Boltzmann equation is one of the tasks. To evaluate the potential on each atom requires solving the &lt;code&gt;PBE&lt;/code&gt;, which is non-linear in general, but there are linear approximation under certain condition. A popular method is to re-formulate as boundary integral equation and solve with fast solvers.&lt;/p&gt;
+
+&lt;p&gt;The first kind integral equation is generally ill-conditioned, many researchers are shifting to second kind integral equation by differentiate the integral equation against target locations, however, this integral involves hyper-singular kernel and increase computational for each evaluation of integral.&lt;/p&gt;
+
+&lt;p&gt;If we are only interested in solving the problem, there are some direct method for factorization of such dense matrix (HSS), which compresses the matrix with very few information, but without using expensive &lt;code&gt;svd&lt;/code&gt;.  While if we are interested in dynamics, then we have to take some extra cost in mind: for mesh dependent methods, re-meshing is necessary during each time step.&lt;/p&gt;
+
+&lt;p&gt;For (weakly) singular integrals, when the mesh is changed, those diagonal values (pre-computed quadrature) will be re-computed again. Not mentioning the compression time.&lt;/p&gt;
+
+&lt;p&gt;Hence, a more intriguing problem rises as:&lt;/p&gt;
+
+&lt;p&gt;Operator $K$ is compressible with some algorithm (e.g. FMM or MG), if there is (global but possibly small) update to $K\to K&amp;#39;$, hopefully $K&amp;#39;$ has higher rank, but still compressible. (in terms of some other basis). Is there a fast algorithm for such update operation.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 20 Jun 2017 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2017/06/20/some-background-information/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/06/20/some-background-information/</guid>
+      </item>
+    
+      <item>
+        <title>FMM as Compression</title>
+        <description>&lt;p&gt;Direct method for structured matrix has been proposed during recent years.&lt;/p&gt;
+
+&lt;p&gt;[TO BE CONTINUED]&lt;/p&gt;
+</description>
+        <pubDate>Tue, 20 Jun 2017 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2017/06/20/fmm-as-compression/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/06/20/fmm-as-compression/</guid>
+      </item>
+    
+      <item>
         <title>Maxwell's Equations</title>
         <description>&lt;p&gt;This is a note for Maxwell&amp;#39;s equations (ME), ME is made up by 4 equations: Faraday&amp;#39;s law, Ampere&amp;#39;s law, Gauss&amp;#39; electric law, Gauss&amp;#39; magnetic law.&lt;/p&gt;
 
@@ -198,94 +236,6 @@ $$&lt;/p&gt;
         <pubDate>Sun, 04 Sep 2016 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/09/04/differential-equation-vs-fmm/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/09/04/differential-equation-vs-fmm/</guid>
-      </item>
-    
-      <item>
-        <title>Thoughts on Fast Multipole III</title>
-        <description>&lt;p&gt;Continue with last post. Consider the pseudo-differential elliptic operator $P = \sum_{|\alpha|\le 2m} c_{\alpha}(x) D^{\alpha}$, if we have $P u(x) = f(x)$, with Dirichlet boundary condition $u^{\alpha} = 0$ for $|\alpha|\le m-1$.&lt;/p&gt;
-
-&lt;p&gt;$$\int_{\Omega}(P^{\ast}v(x, y))u(x) -  (Pu(x)) v(x, y) dx   = \sum_{\beta}\int_{\partial\Omega}\psi_{\beta}(x) v^{\beta}(x, y) dx$$&lt;/p&gt;
-
-&lt;p&gt;Here consider Green function $P^{\ast}v(x, y) = \delta_y(x)$, which is $P v(y, x) = \delta_y(x)$. If we say $K(x, y)$ is Green function of $P$, then we have to replace $x$ and $y$ in $v$, thus $K(x, y) = v(y, x)$.&lt;/p&gt;
-
-&lt;p&gt;$$u(y) - \int_{\Omega}  f(x)K(y, x)dx = \sum_{\beta} \int_{\partial\Omega}\psi_{\beta}(x) K^{\beta}(y, x) dx$$&lt;/p&gt;
-
-&lt;p&gt;Now come back to our previous exterior problem, if $f = 0$ in $\Omega^{c}$, then for $y\in\Omega$, here $\Omega$ could be internal domain or external domain.&lt;/p&gt;
-
-&lt;p&gt;$$u(y) =\sum_{|\beta|\le m - 1}\int_{\partial\Omega}\psi_{\beta}(x) K^{\beta}(y, x) dx$$&lt;/p&gt;
-
-&lt;p&gt;In 2D, there are $C_{m+1}^2$ terms in this summation, with discretization, and merge weights into $\psi$.&lt;/p&gt;
-
-&lt;p&gt;$$u(y_j) = \sum_{\beta} \sum_{k=1}^p \psi_{\beta}(x_k) K^{\beta}(x_k, y_j) $$&lt;/p&gt;
-
-&lt;p&gt;There are $pC_{m+1}^2$ unknowns for this problem. Just one surface is enough. This can be seen as an extension of &lt;code&gt;KIFMM&lt;/code&gt; method.&lt;/p&gt;
-
-&lt;h3 id=&quot;toc_0&quot;&gt;Numerical concerns&lt;/h3&gt;
-
-&lt;p&gt;The summation over $\partial\Omega$ requires too many points (unknowns) to find out. Here we can simulate  $K^{\beta}(x_k, y_j)$ by taking finite difference to approximate the derivatives. Then we only need $m$ surfaces to find out all $K^{\beta}(x, \cdot)$, each surfaces we can place equally spaced $p$ points.&lt;/p&gt;
-
-&lt;h3 id=&quot;toc_1&quot;&gt;Infinite order case&lt;/h3&gt;
-
-&lt;p&gt;It seems to me that given all points inside a annulus will be enough for this.&lt;/p&gt;
-
-&lt;h3 id=&quot;toc_2&quot;&gt;Failure for numerics&lt;/h3&gt;
-
-&lt;p&gt;Just for a update. In numerical world, finite difference is rather a really bad idea to approximate derivatives, esp. those high order terms. Thus &lt;code&gt;KIFMM&lt;/code&gt; is an effective fast &lt;em&gt;low&lt;/em&gt; order PDE solver.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 19 Aug 2016 00:00:00 -0500</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/08/19/thoughts-on-fast-multipole-iii/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/08/19/thoughts-on-fast-multipole-iii/</guid>
-      </item>
-    
-      <item>
-        <title>Thoughts on Fast Multipole II</title>
-        <description>&lt;p&gt;In last post, I sort of believe that &lt;code&gt;KIFMM&lt;/code&gt; was limited to a small portion of PDE, especially for second order elliptic equations, while the deeper idea is not the same thing at all.&lt;/p&gt;
-
-&lt;h3 id=&quot;toc_0&quot;&gt;Equivalence of information&lt;/h3&gt;
-
-&lt;p&gt;I realized that there is something called &lt;code&gt;Equivalence of information&lt;/code&gt; here, for example, Laplacian $\Delta u = 0$ made solution depending only information on boundary, as we called boundary value problems.  Then we can define the equivalence class of equation $P u = 0$ that associated with pseudo-differential operator $P$.&lt;/p&gt;
-
-&lt;p&gt;In theory, even higher ordered elliptic equation&lt;/p&gt;
-
-&lt;p&gt;$$P(x, D) u =  \sum_{|\alpha| \le 2m} c_{\alpha} D^{\alpha} u = 0$$&lt;/p&gt;
-
-&lt;p&gt;we can see that for this equation, classical results could apply easily, and we consider the weak formulation, if vector-function $\tilde{g} = (g_{\alpha})_{|\alpha|\le m-1}$,  which satisfies
-$$|\tilde{g}| = \sum_{\alpha} |g_{\alpha}| $$
-is finite, we say $\tilde{g} \in W^{m-1}(\partial\Omega)$. We are looking for $u\in W^{2m}(\Omega)\cap W^{m-1}(\overline{\Omega})$ such that  $Pu = 0$ and $D^{\alpha} u|_{\partial\Omega} = g_{\alpha}$.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;For any bounded domain $\Omega$, there is unique weak solution to the Dirichlet problem $P u = 0$. When boundary is smooth enough, the weak solution is also classical solution.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;On the other hand, the exterior problem also has unique solution for the same Dirichlet boundary conditions.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;If $Pu = 0$, for any given measure $\nu^{\alpha}\in\Omega$, there exists $\mu^{\alpha}\in \partial\Omega$ that
-$$\sum_{|\alpha|\le m-1} \int (D^{\alpha}u) d\mu^{\alpha} = \sum_{|\alpha|\le m -1} \int (D^{\alpha} u) d\nu^{\alpha}$$&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The proof should be found somewhere in &lt;code&gt;ADN (Agmon, Douglis, Nirenberg)&lt;/code&gt;, uniqueness could be concluded from something similar of Lax-Milgram. That also reveals the fact that this operator $P$ has equivalence class $\Omega\sim (\partial\Omega)^{m}$. Since we can use finite difference method to approximate $D^{\alpha} u$ on $\partial \Omega$, by giving $u$ at $\partial\Omega + t_i\mathbf{n}$ surfaces, where $t_0, \cdots, t_{m-1}\in (0,\epsilon)$. Now our problem is how to generate those surfaces/or small domains for equivalence potential.&lt;/p&gt;
-
-&lt;h3 id=&quot;toc_1&quot;&gt;Equivalent cluster of surfaces&lt;/h3&gt;
-
-&lt;p&gt;Define cluster of surfaces $C(t_i),i=0,\cdots, m-1$, where $C(t_i) = {x + t_i \mathbf{n}, x\in \partial\Omega}$. We also consider the solutions on each surfaces $C_i = C(t_i)$ as $u_i$.&lt;/p&gt;
-
-&lt;p&gt;Then $D^{\alpha} u$ can be computed through finite difference. Especially, on square surface, this is quite straightforward to compute each derivatives.&lt;/p&gt;
-
-&lt;h3 id=&quot;toc_2&quot;&gt;Exterior to Interior problem&lt;/h3&gt;
-
-&lt;p&gt;Consider free space Green function for internal source $f$, the whole space solution is
-$$u(x) = \int_{\Omega} K(x, y) f(y) dy$$
-and here we are looking for $\Lambda_{\alpha}$ such that $x\in \Omega^{c}$,
-$$u(x) = \sum_{|\alpha|\le m - 1} \int_{\partial\Omega} \Lambda_{\alpha}(x, y) \underline{D^{\alpha} u(y)}dy$$&lt;/p&gt;
-
-&lt;h3 id=&quot;toc_3&quot;&gt;Interior to Exterior problem&lt;/h3&gt;
-
-&lt;p&gt;The exterior problem will be the same, except the source $f$ lives outside of the domain $\Omega$.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 18 Aug 2016 00:00:00 -0500</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/08/18/thoughts-on-fast-multipole-II/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/08/18/thoughts-on-fast-multipole-II/</guid>
       </item>
     
   </channel>
