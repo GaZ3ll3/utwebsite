@@ -1,7 +1,7 @@
 <html>
   <head>
-    <meta content='Jenkins For Simulations - Welcome to Yimin's Homepage' property='og:title' />
-    <title>Jenkins For Simulations - Welcome to Yimin's Homepage</title>
+    <meta content='Bregman As Default - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Bregman As Default - Welcome to Yimin's Homepage</title>
     <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
 <link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
@@ -58,8 +58,8 @@
 <meta content="/users/yzhong/image/fav.png" property="og:image" />
 <meta content="" property="fb:app_id" />
 
-<meta content='http://www.ma.utexas.edu/users/yzhong/2017/07/23/jenkins-for-simulation/' property='og:url' />
-<meta content="It is a note about how to make numerical simulations easier.I recently found that using some continuous integration p..." property='og:description' />
+<meta content='http://www.ma.utexas.edu/users/yzhong/2017/07/25/Bregman-as-default/' property='og:url' />
+<meta content="For most nonlinear inverse problem, direct solution is not accessible easily, thus many people chose an iterative opt..." property='og:description' />
 <meta content="article" property="og:type" />
 
 <!-- - -->
@@ -108,33 +108,78 @@
       <section class="paging">
   
     <div class="left">
-      <a href="/users/yzhong/2017/06/20/some-background-information/">
+      <a href="/users/yzhong/2017/07/23/jenkins-for-simulation/">
         ‹
       </a>
     </div>
   
-  
-    <div class="right">
-      <a href="/users/yzhong/2017/07/25/Bregman-as-default/">
-        ›
-      </a>
-    </div>
   
 </section>
 
       <div class="content">
         <section class='post'>
           <h1 class="upcase">
-            <div class='date'>23 Jul 2017</div>
-            Jenkins For Simulations
+            <div class='date'>25 Jul 2017</div>
+            Bregman As Default
           </h1>
-          <p>It is a note about how to make numerical simulations easier.</p>
+          <p>For most nonlinear inverse problem, direct solution is not accessible easily, thus many people chose an iterative optimization scheme.</p>
 
-<p>I recently found that using some continuous integration pipeline for simulations is quite convenient. Softwares like Jenkins can organize the cluster through <code>ssh</code> and try to balance all the loads.</p>
+<p>Suppose forward model $\mathcal{M}: (\sigma, u_g, g)\to m$ passes unknown variable coefficient $\sigma\in \mathcal{E}$, unknown solution $u_g$ and known input $g\in\mathcal{G}$ to some observable measurement $m$, where $u$ satisfies solution model constraint $F(u_g, \sigma, g) = 0$. we usually use minimization scheme:
+$$\min_{\sigma} J(\sigma) = \sum_{g\in\mathcal{G}} |\mathcal{M}(\sigma, u_g, g) - m|^q + \frac{\beta}{2}|\sigma|_{p}$$</p>
 
-<p>The setting up is quite easy, there are tutorials anywhere.</p>
+<p>values for $p,q$ are found everywhere, common choices for regularization is TV or $L_1, L_2$.</p>
 
-<p>For numerical simulations, all the different settings should be built in configuration file style or passed through stdin and taken as input instead built in binary executable. In this way, Jenkins run the simulations easily without manually setups.</p>
+<p>When $q=2$, adjoint method is often used to reduce computational cost, ignoring $g$ for each input,</p>
+
+<p>$$\frac{\partial |\mathcal{M}(\sigma,u) - m|^2}{\partial \sigma} (\delta \sigma)=2( \frac{\partial \mathcal{M}}{\partial \sigma}(\delta \sigma))^t(\mathcal{M}(\sigma,u) - m)$$
+and
+$$\frac{\partial \mathcal{M}(\sigma, u)}{\partial \sigma}(\delta \sigma) = \mathcal{M}_{\sigma}\delta\sigma + \mathcal{M}_{u}\frac{\partial u}{\partial \sigma}(\delta \sigma)$$</p>
+
+<p>we need to resolve $\frac{\partial u}{\partial \sigma}$ which is reduced from solution model that
+$$F_u \frac{\partial u}{\partial \sigma}(\delta \sigma) + F_{\sigma}(\delta\sigma) = 0$$</p>
+
+<p>so we have
+$$\frac{\partial \mathcal{M}(\sigma, u)}{\partial \sigma}(\delta \sigma) = \mathcal{M}_{\sigma}\delta\sigma + \mathcal{M}_u F_u^{-1} F_{\sigma}(\delta\sigma)$$</p>
+
+<p>The $F^{-1}_u$ is some solution operator, we take adjoint, then we only need solve
+$$(F_{\sigma}(\delta\sigma))^t F_u^{-t} \mathcal{M}_u^t (\mathcal{M}(\sigma, u) - m)$$</p>
+
+<p>Now, for each iteration, we need to evaluate operations, mostly matrix-vector multiplications.</p>
+
+<p>$$\mathcal{M}_u^t(y), F_u^{-t}(y), F_{\sigma}(\delta \sigma), F^{-1}(y)$$</p>
+
+<p>For linear operators, we have $F_u = F$, but $F_{\sigma}$ has to be calculated separately, for large system, $F^{-1}$ is nontrivial to update fast.</p>
+
+<p>This is the unconstrained version. This version of numerical implementation has to calculate exact solutions to $F$ multiple times $O(1)$.</p>
+
+<p>In order to quantify the cost, we consider following model of time cost.</p>
+
+<ul>
+<li>$t_{mv}$ is sparse matrix-vector multiplication time.</li>
+<li>$t_{sv}$ is the inversion time.</li>
+<li>$t_{pre}$ is precomputing time for <code>mv</code> or <code>sv</code>.</li>
+<li>$t_{set}$ is total intrinsic setting time for all operators, which is minimal.</li>
+</ul>
+
+<p>Total time for each iteration will be: $t_{set} + t_{pre} + 2t_{sv} + (n+1)t_{mv}$. When the operators are sparse (local), then $t_{mv} = O(n)$, $t_{sv} = O(n)$, but mostly ill-conditioned, preconditioner is needed, total is $O(n^2)$. In this case, it is not optimal to use the low rank compression here due to high overhead in $t_{pre}$.</p>
+
+<p>If $F$ is integral equation, then system is dense. $F_u^{-1}$ or $F^{-1}$ is not cheap to calculate in practice, iterative method might be utilized for such problems, in such case, low rank method can kick in.</p>
+
+<p>Then we look at constrained version. Optimization problem is
+$$\min_{\sigma, u_g} J(\sigma, u_g) = \sum_{g\in\mathcal{G}} |\mathcal{M}(\sigma, u_g, g) - m|^q + \frac{\beta}{2}|\sigma|_{p}$$
+subject to
+$$F(u_g, \sigma, g) = 0.$$</p>
+
+<p>The Lagrangian multiplier method gives
+$$\min_{\sigma, u_g, \lambda}L(\sigma, u_g, \lambda_g) =  J(\sigma) - \sum_g\lambda_g F_g$$</p>
+
+<p>The KKT conditon says
+$$J_{\sigma} = \sum_g \lambda_g F_{g,\sigma},\quad J_{u_g} = \sum_{g}\lambda_g F_{g, u_g}$$</p>
+
+<p>To solve the problem, we use some penalty term in addition to get <code>AL</code> as
+$$L_{al}(\sigma, u_g, \lambda_g, \mu) = J(\sigma) - \sum_{g}\lambda_g F_g + \frac{\mu}{2}|F(u_g,\sigma, g)|^2$$</p>
+
+<p>[TO BE CONTINUED]</p>
 
           <br />
 
