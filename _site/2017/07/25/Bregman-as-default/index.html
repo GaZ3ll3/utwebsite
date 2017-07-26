@@ -1,7 +1,7 @@
 <html>
   <head>
-    <meta content='Bregman As Default - Welcome to Yimin's Homepage' property='og:title' />
-    <title>Bregman As Default - Welcome to Yimin's Homepage</title>
+    <meta content='Bregman As Default? - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Bregman As Default? - Welcome to Yimin's Homepage</title>
     <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
 <link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
@@ -59,7 +59,7 @@
 <meta content="" property="fb:app_id" />
 
 <meta content='http://www.ma.utexas.edu/users/yzhong/2017/07/25/Bregman-as-default/' property='og:url' />
-<meta content="For most nonlinear inverse problem, direct solution is not accessible easily, thus many people chose an iterative opt..." property='og:description' />
+<meta content="#### Some verbose trashFor most nonlinear inverse problem, direct solution is not accessible easily, thus many people..." property='og:description' />
 <meta content="article" property="og:type" />
 
 <!-- - -->
@@ -120,12 +120,14 @@
         <section class='post'>
           <h1 class="upcase">
             <div class='date'>25 Jul 2017</div>
-            Bregman As Default
+            Bregman As Default?
           </h1>
-          <p>For most nonlinear inverse problem, direct solution is not accessible easily, thus many people chose an iterative optimization scheme.</p>
+          <h4 id="toc_0">Some verbose trash</h4>
+
+<p>For most nonlinear inverse problem, direct solution is not accessible easily, thus many people chose an iterative optimization scheme.</p>
 
 <p>Suppose forward model $\mathcal{M}: (\sigma, u_g, g)\to m$ passes unknown variable coefficient $\sigma\in \mathcal{E}$, unknown solution $u_g$ and known input $g\in\mathcal{G}$ to some observable measurement $m$, where $u$ satisfies solution model constraint $F(u_g, \sigma, g) = 0$. we usually use minimization scheme:
-$$\min_{\sigma} J(\sigma) = \sum_{g\in\mathcal{G}} |\mathcal{M}(\sigma, u_g, g) - m|^q + \frac{\beta}{2}|\sigma|_{p}$$</p>
+$$\min_{\sigma} J(\sigma, u_g) = \sum_{g\in\mathcal{G}} |\mathcal{M}(\sigma, u_g, g) - m|^q + \frac{\beta}{2}|\sigma|_{p}$$</p>
 
 <p>values for $p,q$ are found everywhere, common choices for regularization is TV or $L_1, L_2$.</p>
 
@@ -146,7 +148,7 @@ $$(F_{\sigma}(\delta\sigma))^t F_u^{-t} \mathcal{M}_u^t (\mathcal{M}(\sigma, u) 
 
 <p>Now, for each iteration, we need to evaluate operations, mostly matrix-vector multiplications.</p>
 
-<p>$$\mathcal{M}_u^t(y), F_u^{-t}(y), F_{\sigma}(\delta \sigma), F^{-1}(y)$$</p>
+<p>$$\mathcal{M}_u^t(y), F_u^{-t}(y), F_{\sigma}(y), F^{-1}(y)$$</p>
 
 <p>For linear operators, we have $F_u = F$, but $F_{\sigma}$ has to be calculated separately, for large system, $F^{-1}$ is nontrivial to update fast.</p>
 
@@ -171,15 +173,43 @@ subject to
 $$F(u_g, \sigma, g) = 0.$$</p>
 
 <p>The Lagrangian multiplier method gives
-$$\min_{\sigma, u_g, \lambda}L(\sigma, u_g, \lambda_g) =  J(\sigma) - \sum_g\lambda_g F_g$$</p>
+$$\min_{\sigma, u_g, \lambda}L(\sigma, u_g, \lambda_g) =  J(\sigma, u_g) - \sum_g\lambda_g F_g$$</p>
 
 <p>The KKT conditon says
 $$J_{\sigma} = \sum_g \lambda_g F_{g,\sigma},\quad J_{u_g} = \sum_{g}\lambda_g F_{g, u_g}$$</p>
 
 <p>To solve the problem, we use some penalty term in addition to get <code>AL</code> as
-$$L_{al}(\sigma, u_g, \lambda_g, \mu) = J(\sigma) - \sum_{g}\lambda_g F_g + \frac{\mu}{2}|F(u_g,\sigma, g)|^2$$</p>
+$$L_{aug}(\sigma, u_g, \lambda_g, \mu) = J(\sigma, u_g) - \sum_{g}\lambda_g F_g + \frac{\mu}{2}|F(u_g,\sigma, g)|^2$$</p>
 
-<p>[TO BE CONTINUED]</p>
+<p>Then KKT condition implies at $k$-th iteration,<br>
+$$J_{\sigma} -(\sum_g\lambda^k_g - \mu^k F)F_{g,\sigma} = 0 ,\quad J_{u_g} -(\sum_g\lambda^k_g - \mu^k F)F_{u_g,\sigma} = 0 $$</p>
+
+<p>which implies that near optimal, we have
+$$\lambda_g^{\ast} = \lambda^{k}_g - \mu^k F_g.$$
+giving equivalent Bregman iteration as
+$$\lambda_g^{k+1} = \lambda^{k}_g - \mu^k F_g.$$</p>
+
+<h4 id="toc_1">Bregman is faster ?</h4>
+
+<p>No matter what method, one problem is in common, we need to solve sub-problem of finding $(\sigma^k, u_g^k)$ each time.</p>
+
+<p>In unconstrained case, $u_g$ must be solution of $F$. In Bregman, it is not. The problem is unconstrained, variables will increase to $O(n + N)$, where $n$ is unknowns of $\sigma$ and $N$ is unknowns of $u_g$.</p>
+
+<p>Let&#39;s put everything into Bregman&#39;s frame, set $u = (\sigma, u_g)$ and $J(u)$ defined in previous part is convex in $u$ and penalty term is
+$$H(u) = \frac{\mu}{2}|F(u, g)|^2$$</p>
+
+<p>We are solving
+$$\min_u {J(u) + H(u)}$$</p>
+
+<p>with Bregman distance $D^p_J(u, v) = J(u) - J(v) - \langle p , u-v\rangle$,the iteration is given by</p>
+
+<ul>
+<li>$u^{k+1} = \arg\min_{u} D_J^{p^k}(u , u^k) + H(u)$</li>
+<li>$p^{k+1} = p^k - \nabla H(u^{k+1})\in \partial J(u^{k+1})$</li>
+<li>update $\mu$.</li>
+</ul>
+
+<p>So what is the complexity in each iteration? In first update, we solve a minimization problem by BFGS/Newton. This problem is not easier than original problem at all. But adding $\mu$ makes the system less ill-conditioned, so finding a solution needs less iterations, while total iteration number might be large.</p>
 
           <br />
 
