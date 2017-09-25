@@ -11,9 +11,17 @@ title: Research
 
 - *Recovering point soures in unknown inhomogeneous environments* (with K.Ren), In preparation, 2016
 
+- *An implicit boundary integral method for computing electric potential of macromolecules in solvent* (with K.Ren and R.Tsai), 2017
+
 ## Activities
 
 - 2017 - 2018
+  - Oct 2 - Oct 3, 2017
+      -TBA
+  - Sept 21 - Sept 23, 2017
+      - Texas Applied Mathematics and Engineering Symposium, A fast preconditioner for radiative transfer.
+  - Sept 6 - Dec 8, 2017
+      - ICERM, Mathematical and Computational Challenges in Radar and Seismic Reconstruction
   - July 18 - July 22, 2017
       - Stanford University visit.
   - June 9 - June 10, 2017

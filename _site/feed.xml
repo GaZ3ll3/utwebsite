@@ -97,7 +97,7 @@ $$\min_u {J(u) + H(u)}$$&lt;/p&gt;
 
 &lt;p&gt;So what is the complexity in each iteration? In first update, we solve a minimization problem by BFGS/Newton. This problem is not easier than original problem at all. But adding $\mu$ makes the system less ill-conditioned, so finding a solution needs less iterations, while total iteration number might be large.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 25 Jul 2017 00:00:00 -0500</pubDate>
+        <pubDate>Tue, 25 Jul 2017 00:00:00 -0400</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2017/07/25/Bregman-as-default/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/07/25/Bregman-as-default/</guid>
       </item>
@@ -112,7 +112,7 @@ $$\min_u {J(u) + H(u)}$$&lt;/p&gt;
 
 &lt;p&gt;For numerical simulations, all the different settings should be built in configuration file style or passed through stdin and taken as input instead built in binary executable. In this way, Jenkins run the simulations easily without manually setups.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 23 Jul 2017 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 23 Jul 2017 00:00:00 -0400</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2017/07/23/jenkins-for-simulation/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/07/23/jenkins-for-simulation/</guid>
       </item>
@@ -139,7 +139,7 @@ $$\min_u {J(u) + H(u)}$$&lt;/p&gt;
 
 &lt;p&gt;Operator $K$ is compressible with some algorithm (e.g. FMM or MG), if there is (global but possibly small) update to $K\to K&amp;#39;$, hopefully $K&amp;#39;$ has higher rank, but still compressible. (in terms of some other basis). Is there a fast algorithm for such update operation.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 20 Jun 2017 00:00:00 -0500</pubDate>
+        <pubDate>Tue, 20 Jun 2017 00:00:00 -0400</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2017/06/20/some-background-information/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/06/20/some-background-information/</guid>
       </item>
@@ -150,7 +150,7 @@ $$\min_u {J(u) + H(u)}$$&lt;/p&gt;
 
 &lt;p&gt;[to be CONTINUED].&lt;/p&gt;
 </description>
-        <pubDate>Sun, 04 Jun 2017 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 04 Jun 2017 00:00:00 -0400</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2017/06/04/maxwell-equation/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/06/04/maxwell-equation/</guid>
       </item>
@@ -173,7 +173,7 @@ over surface or volume.&lt;/p&gt;
 
 &lt;p&gt;At the end of the day, it is all about tricks, there is no general rule for every kernel function, the precomputed quadrature has to be done for all geometries and all quadrature points. It should be also noticed that for those translation invariant kernel functions like $G(x,y) = G(|x-y|)$, the precomputation could be reused for similar (e.g. $G(\lambda t) = \lambda^{\beta} G(t)$) or the same geometries under rotations.&lt;/p&gt;
 </description>
-        <pubDate>Wed, 26 Apr 2017 00:00:00 -0500</pubDate>
+        <pubDate>Wed, 26 Apr 2017 00:00:00 -0400</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2017/04/26/quadrature-rule/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/04/26/quadrature-rule/</guid>
       </item>
@@ -192,7 +192,7 @@ over surface or volume.&lt;/p&gt;
 
 &lt;p&gt;An interface prototype is needed then. [TO BE CONTINUED]&lt;/p&gt;
 </description>
-        <pubDate>Mon, 24 Apr 2017 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 24 Apr 2017 00:00:00 -0400</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2017/04/24/PAT-in-3D/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/04/24/PAT-in-3D/</guid>
       </item>
@@ -205,7 +205,7 @@ over surface or volume.&lt;/p&gt;
 
 &lt;p&gt;TO BE CONTINUED.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 03 Jan 2017 00:00:00 -0600</pubDate>
+        <pubDate>Tue, 03 Jan 2017 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2017/01/03/coding-with-sparse-matrix/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/01/03/coding-with-sparse-matrix/</guid>
       </item>
@@ -245,7 +245,7 @@ $$\tilde{x} = x + \displaystyle\int_0^x \sigma_x(\xi) d\xi$$&lt;/p&gt;
 
 &lt;p&gt;If precision is not important, using &lt;code&gt;single&lt;/code&gt; precision will cut the timing in half.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 23 Dec 2016 00:00:00 -0600</pubDate>
+        <pubDate>Fri, 23 Dec 2016 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/12/23/PML-for-3D-wave-equation/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/12/23/PML-for-3D-wave-equation/</guid>
       </item>
@@ -266,7 +266,7 @@ $$\tilde{x} = x + \displaystyle\int_0^x \sigma_x(\xi) d\xi$$&lt;/p&gt;
 
 &lt;p&gt;Under forward-peaking regime with large scattering, this is  reasonable though.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 10 Nov 2016 00:00:00 -0600</pubDate>
+        <pubDate>Thu, 10 Nov 2016 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/</guid>
       </item>
@@ -308,7 +308,7 @@ $$&lt;/p&gt;
 
 &lt;p&gt;And solving this can apply some fast algorithm like &lt;code&gt;treecode&lt;/code&gt; or &lt;code&gt;FMM&lt;/code&gt; as we did before, forward Euler scheme will generate $O(\Delta x)$ error.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 19 Sep 2016 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 19 Sep 2016 00:00:00 -0400</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/09/19/time-domain-RTE/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/09/19/time-domain-RTE/</guid>
       </item>
