@@ -7,6 +7,52 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Wignerization</title>
+        <description>&lt;p&gt;Though it is tedious, I would think some notes on Wigner transform is necessary to some beginner like me. All notes are based on H.T. Yau&amp;#39;s famous result in 1999.&lt;/p&gt;
+
+&lt;p&gt;For Schrodinger equation, $i\psi_t = H\psi$, where $H = H_0 + \lambda V$, $H_0 = -\frac{1}{2}\Delta$. Formally, we have Dyson series&lt;/p&gt;
+
+&lt;p&gt;$$\psi_t = e^{-itH}\psi_0 = \sum_{n=0}^{N-1} \psi_n(t) + \Psi_N(t)$$
+where $V$ is spatially variable,
+$$\psi_n(t) = (-i\lambda)^n (\int_0^t)^{n+1} \prod_{j=0}^n(ds_j) \delta(t - \sum_{j=0}^n s_j) e^{-is_0H_0}V\cdots Ve^{-is_n H_0}  \psi_0$$
+and remainder is
+$$\Psi_N(t) = -i\lambda \int_0^t ds e^{-i(t-s)H}V\psi_{N-1}$$&lt;/p&gt;
+
+&lt;p&gt;We take Fourier transform on $\psi_n$, ignoring the constants $(2\pi)^d$ by normalizing the Lebesgue measure. The integral is actually in a simplex instead of full cube.&lt;/p&gt;
+
+&lt;p&gt;$$\widehat{\psi}_n(t, p_0) = \lambda^n \int \prod_{j=1}^n (dp_j) K(t;p,n) L(p, n) \widehat{\psi}_0(p_n)$$&lt;/p&gt;
+
+&lt;p&gt;where $$K = (-i)^n \int_0^t \prod_{j=0}^n (ds_j) \delta(t - \sum_{j=0}^n s_j) \prod_{j=0}^n e^{-is_j p_j^2}$$ $$L(p,n) = \prod_{j=0}^{n-1} \widehat{V}(p_j - p_{j+1})$$ It is straightforward to check this by convolution back.&lt;/p&gt;
+
+&lt;p&gt;The main result shows that if we truncate the series, we can get error term goes away by taking limit.&lt;/p&gt;
+
+&lt;p&gt;For $\psi = \psi_1 + \psi_2$, with $\psi_2$ as error, we can show that for any admissible functional $\widehat{J}_{\epsilon}(\xi, v)$,
+$$|E\int \overline{\widehat{J}_{\epsilon}}(\xi, v)(\widehat{W}_{\psi}(\xi, v) - \widehat{W}_{\psi_1}(\xi, v))| d\xi dv\le C \sup|\widehat{J}_{\epsilon}|_{1,\infty}\sqrt{E|\psi_2|^2 E|\psi_1|^2}$$&lt;/p&gt;
+
+&lt;p&gt;Thus after truncation of Dyson series, above limit will be zero as $N\to\infty$, which means weak convergence.&lt;/p&gt;
+
+&lt;p&gt;The Wignerization of the truncated series will involve all terms like
+$$ E \int \overline{\widehat{J}}_{\epsilon} \overline{\widehat{\psi}_n(t, v-\frac{\xi}{2})} \widehat{\psi}_{m}(t, v + \frac{\xi}{2}) d\xi dv$$
+above expectation involves $L(p,n), L(p&amp;#39;,m)$, when $V$ is standard Gaussian process, then $n+m$ must be even to get perfect pairing to be nonzero.&lt;/p&gt;
+
+&lt;p&gt;Knowing that $E \overline{\widehat{V}(p)}\widehat{V}(q) = \delta(p - q) R(p)R(q)$, we will try to find out all cases like&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;$\widehat{V}(p_j - p_{j+1})\widehat{V}(p&amp;#39;_{k} -p&amp;#39;_{k+1})$&lt;/li&gt;
+&lt;li&gt;$\widehat{V}(p_j - p_{j+1})\widehat{V}(p_{k} -p_{k+1})$&lt;/li&gt;
+&lt;li&gt;$\widehat{V}(p&amp;#39;_j - p&amp;#39;_{j+1})\widehat{V}(p&amp;#39;_{k} -p&amp;#39;_{k+1})$&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;where $p_0 = v-\frac{\xi}{2}$ and $p&amp;#39;_0 = v + \frac{\xi}{2}$. Connecting all $p$ and $p&amp;#39;$ forming a loop, all relations can be classified as nested, crossing and simple. It can be shown that these kinds of interaction is dominated by simple relations.&lt;/p&gt;
+
+&lt;p&gt;[TO BE CONTINUED]&lt;/p&gt;
+</description>
+        <pubDate>Sun, 01 Oct 2017 00:00:00 -0400</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2017/10/01/Wigerization/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/10/01/Wigerization/</guid>
+      </item>
+    
+      <item>
         <title>Bregman As Default?</title>
         <description>&lt;h4 id=&quot;toc_0&quot;&gt;Some verbose trash&lt;/h4&gt;
 
@@ -269,48 +315,6 @@ $$\tilde{x} = x + \displaystyle\int_0^x \sigma_x(\xi) d\xi$$&lt;/p&gt;
         <pubDate>Thu, 10 Nov 2016 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/</guid>
-      </item>
-    
-      <item>
-        <title>Time domain RTE</title>
-        <description>&lt;p&gt;The time dependent radiative transport equation is stated as
-$$
-\begin{equation}
-\begin{aligned}
-&amp;amp;\frac{1}{c}\frac{\partial u}{\partial t} + \hat{s}\cdot \nabla u = \sigma(B(\nu, T) - u)\\
-&amp;amp;C_{\nu}\frac{\partial T}{\partial t} = \int_{S^{d-1}}\int_0^{\infty} \sigma(u - B(\nu, T)) d\nu d\hat{s}
-\end{aligned}
-\end{equation}
-$$
-which describes the interaction of material and radiation. where $u(x, t, \hat{s},\nu)$ is radiation intensity, $T = T(x,t)$ is material temperature. $\sigma = \sigma(x, \nu, T)$ is opacity thickness, $C_{\nu}$ is heat capacity.
-$$B(\nu, T) = \frac{2h}{c^3}\frac{\nu^3}{\exp(h\nu/k T) - 1}$$&lt;/p&gt;
-
-&lt;p&gt;by using approximation, the equation can be rewritten as an easier one,
-$$
-\begin{equation}
-\begin{aligned}
-&amp;amp;\frac{1}{c}\frac{\partial u}{\partial t} + \hat{s}\cdot \nabla u + \sigma u = \frac{\sigma b}{|S^{d-1}|} acT^4\\
-&amp;amp;C_{\nu}\frac{\partial T}{\partial t} = \int_{S^{d-1}}\int_0^{\infty} \sigma d\nu \int_{S^{d-1}} u \hat{s} - \sigma_p acT^4
-\end{aligned}
-\end{equation}
-$$&lt;/p&gt;
-
-&lt;p&gt;where $b$ is average of $B$, $\sigma_p$ is average of $\sigma b$.&lt;/p&gt;
-
-&lt;p&gt;There is a way to decouple the equations, by taking $t$ as another spatial variable. $z = (x, t)$, we have
-$$
-\tilde{s}\cdot \nabla_z u + \sigma(z, \nu) u = H(z, \nu)
-$$&lt;/p&gt;
-
-&lt;p&gt;which is quite easy to come up with a solution for $\phi = \int_{S^{d-1}} u$. And insert into temperature equation.&lt;/p&gt;
-
-&lt;p&gt;$$C_{\nu}\frac{\partial T}{\partial t} = \int_0^{\infty}\sigma d\nu \int_{S^{d-1}}\int_0^{\tau^{-}(z,\tilde{s})} \exp(-\int_0^p\sigma(z-\mu\tilde{s})d\mu) H(z - p\tilde{s}) dp d\tilde{s} - \sigma_p ac T^4$$&lt;/p&gt;
-
-&lt;p&gt;And solving this can apply some fast algorithm like &lt;code&gt;treecode&lt;/code&gt; or &lt;code&gt;FMM&lt;/code&gt; as we did before, forward Euler scheme will generate $O(\Delta x)$ error.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 19 Sep 2016 00:00:00 -0400</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/09/19/time-domain-RTE/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/09/19/time-domain-RTE/</guid>
       </item>
     
   </channel>

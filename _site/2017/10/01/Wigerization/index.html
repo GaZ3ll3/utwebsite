@@ -1,0 +1,213 @@
+<html>
+  <head>
+    <meta content='Wignerization - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Wignerization - Welcome to Yimin's Homepage</title>
+    <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='/users/yzhong/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" rel='stylesheet' type='text/css'/> -->
+
+<div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+        }
+    });
+
+    MathJax.Hub.Queue(function() {
+        // Fix <code> tags after MathJax finishes running. This is a
+        // hack to overcome a shortcoming of Markdown. Discussion at
+        // https://github.com/mojombo/jekyll/issues/199
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/CommonHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+      TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      }
+    });
+</script>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script> -->
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- - -->
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+<meta content="/users/yzhong/image/fav.png" property="og:image" />
+<meta content="" property="fb:app_id" />
+
+<meta content='http://www.ma.utexas.edu/users/yzhong/2017/10/01/Wigerization/' property='og:url' />
+<meta content="Though it is tedious, I would think some notes on Wigner transform is necessary to some beginner like me. All notes a..." property='og:description' />
+<meta content="article" property="og:type" />
+
+<!-- - -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19164221-4']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=604714799556697";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/users/yzhong"><img src="/users/yzhong/images/scribble.png" alt="scribble" width="53" height="59"></a>
+<p>Welcome to Yimin's Homepage</p>
+</header>
+
+    <div id='container'>
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+      <section class="paging">
+  
+    <div class="left">
+      <a href="/users/yzhong/2017/07/25/Bregman-as-default/">
+        ‹
+      </a>
+    </div>
+  
+  
+</section>
+
+      <div class="content">
+        <section class='post'>
+          <h1 class="upcase">
+            <div class='date'>01 Oct 2017</div>
+            Wignerization
+          </h1>
+          <p>Though it is tedious, I would think some notes on Wigner transform is necessary to some beginner like me. All notes are based on H.T. Yau&#39;s famous result in 1999.</p>
+
+<p>For Schrodinger equation, $i\psi_t = H\psi$, where $H = H_0 + \lambda V$, $H_0 = -\frac{1}{2}\Delta$. Formally, we have Dyson series</p>
+
+<p>$$\psi_t = e^{-itH}\psi_0 = \sum_{n=0}^{N-1} \psi_n(t) + \Psi_N(t)$$
+where $V$ is spatially variable,
+$$\psi_n(t) = (-i\lambda)^n (\int_0^t)^{n+1} \prod_{j=0}^n(ds_j) \delta(t - \sum_{j=0}^n s_j) e^{-is_0H_0}V\cdots Ve^{-is_n H_0}  \psi_0$$
+and remainder is
+$$\Psi_N(t) = -i\lambda \int_0^t ds e^{-i(t-s)H}V\psi_{N-1}$$</p>
+
+<p>We take Fourier transform on $\psi_n$, ignoring the constants $(2\pi)^d$ by normalizing the Lebesgue measure. The integral is actually in a simplex instead of full cube.</p>
+
+<p>$$\widehat{\psi}_n(t, p_0) = \lambda^n \int \prod_{j=1}^n (dp_j) K(t;p,n) L(p, n) \widehat{\psi}_0(p_n)$$</p>
+
+<p>where $$K = (-i)^n \int_0^t \prod_{j=0}^n (ds_j) \delta(t - \sum_{j=0}^n s_j) \prod_{j=0}^n e^{-is_j p_j^2}$$ $$L(p,n) = \prod_{j=0}^{n-1} \widehat{V}(p_j - p_{j+1})$$ It is straightforward to check this by convolution back.</p>
+
+<p>The main result shows that if we truncate the series, we can get error term goes away by taking limit.</p>
+
+<p>For $\psi = \psi_1 + \psi_2$, with $\psi_2$ as error, we can show that for any admissible functional $\widehat{J}_{\epsilon}(\xi, v)$,
+$$|E\int \overline{\widehat{J}_{\epsilon}}(\xi, v)(\widehat{W}_{\psi}(\xi, v) - \widehat{W}_{\psi_1}(\xi, v))| d\xi dv\le C \sup|\widehat{J}_{\epsilon}|_{1,\infty}\sqrt{E|\psi_2|^2 E|\psi_1|^2}$$</p>
+
+<p>Thus after truncation of Dyson series, above limit will be zero as $N\to\infty$, which means weak convergence.</p>
+
+<p>The Wignerization of the truncated series will involve all terms like
+$$ E \int \overline{\widehat{J}}_{\epsilon} \overline{\widehat{\psi}_n(t, v-\frac{\xi}{2})} \widehat{\psi}_{m}(t, v + \frac{\xi}{2}) d\xi dv$$
+above expectation involves $L(p,n), L(p&#39;,m)$, when $V$ is standard Gaussian process, then $n+m$ must be even to get perfect pairing to be nonzero.</p>
+
+<p>Knowing that $E \overline{\widehat{V}(p)}\widehat{V}(q) = \delta(p - q) R(p)R(q)$, we will try to find out all cases like</p>
+
+<ol>
+<li>$\widehat{V}(p_j - p_{j+1})\widehat{V}(p&#39;_{k} -p&#39;_{k+1})$</li>
+<li>$\widehat{V}(p_j - p_{j+1})\widehat{V}(p_{k} -p_{k+1})$</li>
+<li>$\widehat{V}(p&#39;_j - p&#39;_{j+1})\widehat{V}(p&#39;_{k} -p&#39;_{k+1})$</li>
+</ol>
+
+<p>where $p_0 = v-\frac{\xi}{2}$ and $p&#39;_0 = v + \frac{\xi}{2}$. Connecting all $p$ and $p&#39;$ forming a loop, all relations can be classified as nested, crossing and simple. It can be shown that these kinds of interaction is dominated by simple relations.</p>
+
+<p>[TO BE CONTINUED]</p>
+
+          <br />
+
+
+
+        </section>
+      </div>
+      
+
+      
+        <div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'outverse';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+      
+      <div class="block">
+  
+    <a target="_top" class="main" href="/users/yzhong/cv">CV</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/research">Research</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/teach">Teach</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/more">More</a>
+  
+    <a target="_top" class="main" href="/users/yzhong/blog">Blog</a>
+  
+    <a target="_blank" class="main" href="mailto:yzhong@math.utexas.edu">Email</a>
+  
+</div>
+
+    </div>
+    <footer>
+  <a href="http://www.ma.utexas.edu" class="muted">Dept. of Math@University of Texas at Austin</a>
+  <br />
+</footer>
+
+  </body>
+</html>
