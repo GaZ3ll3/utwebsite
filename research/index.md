@@ -16,8 +16,10 @@ title: Research
 ## Activities
 
 - 2017 - 2018
+  - Oct 5, 2017
+      - ICERM seminar, numerical algorithms for radiative transfer
   - Oct 2 - Oct 3, 2017
-      -TBA
+      - Houston Imaging Sciences Symposium, one-step reconstruction in PAT
   - Sept 21 - Sept 23, 2017
       - Texas Applied Mathematics and Engineering Symposium, A fast preconditioner for radiative transfer.
   - Sept 6 - Dec 8, 2017
@@ -47,9 +49,9 @@ title: Research
 - 2015 - 2016
   - Dec 22, 2015 - Dec 23, 2015
       - Inverse transport problems in quantitative PAT for molecular imaging@Hefei
-	- Oct 14, 2015 - Oct 17, 2015
+  - Oct 14, 2015 - Oct 17, 2015
       - Numerical and Multiscale Issues for Partial and Integral Differential Equations@Austin
-	- May 1st, 2015
+  - May 1st, 2015
       - Numerical Seminar, Uniqueness and Stability in BLT problem@Austin
 - 2014 - 2015
 	- March 20, 2014 - March 21, 2014
