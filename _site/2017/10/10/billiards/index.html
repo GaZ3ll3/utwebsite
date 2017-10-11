@@ -1,7 +1,7 @@
 <html>
   <head>
-    <meta content='Wignerization - Welcome to Yimin's Homepage' property='og:title' />
-    <title>Wignerization - Welcome to Yimin's Homepage</title>
+    <meta content='Billiards - Welcome to Yimin's Homepage' property='og:title' />
+    <title>Billiards - Welcome to Yimin's Homepage</title>
     <link href='/users/yzhong/images/fav.png' rel='shortcut icon'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
 <link href='/users/yzhong/stylesheets/style.css' rel='stylesheet' type='text/css' />
@@ -58,8 +58,8 @@
 <meta content="/users/yzhong/image/fav.png" property="og:image" />
 <meta content="" property="fb:app_id" />
 
-<meta content='http://www.ma.utexas.edu/users/yzhong/2017/10/01/Wigerization/' property='og:url' />
-<meta content="Though it is tedious, I would think some notes on Wigner transform is necessary to some beginner like me. All notes a..." property='og:description' />
+<meta content='http://www.ma.utexas.edu/users/yzhong/2017/10/10/billiards/' property='og:url' />
+<meta content="It is an old topic and until today I finally implemented it. On a heterogeneous 2D disk, we consider geodesics in pha..." property='og:description' />
 <meta content="article" property="og:type" />
 
 <!-- - -->
@@ -108,64 +108,72 @@
       <section class="paging">
   
     <div class="left">
-      <a href="/users/yzhong/2017/07/25/Bregman-as-default/">
+      <a href="/users/yzhong/2017/10/01/Wigerization/">
         ‹
       </a>
     </div>
   
-  
-    <div class="right">
-      <a href="/users/yzhong/2017/10/10/billiards/">
-        ›
-      </a>
-    </div>
   
 </section>
 
       <div class="content">
         <section class='post'>
           <h1 class="upcase">
-            <div class='date'>01 Oct 2017</div>
-            Wignerization
+            <div class='date'>10 Oct 2017</div>
+            Billiards
           </h1>
-          <p>Though it is tedious, I would think some notes on Wigner transform is necessary to some beginner like me. All notes are based on H.T. Yau&#39;s famous result in 1999.</p>
+          <p>It is an old topic and until today I finally implemented it. On a heterogeneous 2D disk, we consider geodesics in phase space according to Hamiltonian as $H = c^2 |\xi|^2$, which depicts the movement of a point billiard traveling inside the disk, $H$ can be seen as some mountains for potential.</p>
 
-<p>For Schrodinger equation, $i\psi_t = H\psi$, where $H = H_0 + \lambda V$, $H_0 = -\frac{1}{2}\Delta$. Formally, we have Dyson series</p>
+<p>To fully recover the information of speed $c(x)$, we will need the scatter relation $(X_s, X_r, t_{sr})$, which is a tuple of input phase coordinate, output phase coordinate and traveltime. In theory, $X_s$ and $X_r$ do not need to be located on the boundary, but in practice, we set sources are equi-spaced located on circle, with equi-spaced angles of input, and we record traveltime and output location, angle on the boundary.</p>
 
-<p>$$\psi_t = e^{-itH}\psi_0 = \sum_{n=0}^{N-1} \psi_n(t) + \Psi_N(t)$$
-where $V$ is spatially variable,
-$$\psi_n(t) = (-i\lambda)^n (\int_0^t)^{n+1} \prod_{j=0}^n(ds_j) \delta(t - \sum_{j=0}^n s_j) e^{-is_0H_0}V\cdots Ve^{-is_n H_0}  \psi_0$$
-and remainder is
-$$\Psi_N(t) = -i\lambda \int_0^t ds e^{-i(t-s)H}V\psi_{N-1}$$</p>
+<p>So the data we have is described by a $N_s N_a \times 9$ matrix, each row containns information about a ray. Numerically, the disk is discretized on grid, so we need to let each grid passed by at least one ray. And it is quite easy to see that error will accumulate exponentially (Since it is simply a time integral).</p>
 
-<p>We take Fourier transform on $\psi_n$, ignoring the constants $(2\pi)^d$ by normalizing the Lebesgue measure. The integral is actually in a simplex instead of full cube.</p>
+<p>For reconstruction of speed $c(x)$, once we use linearization, we will arrive at a linear system, but time integral related. We have to solve a non-coupled time integral.</p>
 
-<p>$$\widehat{\psi}_n(t, p_0) = \lambda^n \int \prod_{j=1}^n (dp_j) K(t;p,n) L(p, n) \widehat{\psi}_0(p_n)$$</p>
+<p>$$\frac{dX}{ds} = L(X), \quad X(0) = X_s,\quad X(t_{sr}) = X_r$$
+where $L = \mathrm{diag}(1,-1)\partial H/\partial X$. And Jacobian $\partial X/\partial X(0)$ satisfies
+$$\frac{dJ}{ds} = M(X)J,\quad J(0) = I$$</p>
 
-<p>where $$K = (-i)^n \int_0^t \prod_{j=0}^n (ds_j) \delta(t - \sum_{j=0}^n s_j) \prod_{j=0}^n e^{-is_j p_j^2}$$ $$L(p,n) = \prod_{j=0}^{n-1} \widehat{V}(p_j - p_{j+1})$$ It is straightforward to check this by convolution back.</p>
+<p>which of course forms a one-parameter group. We immediately get</p>
 
-<p>The main result shows that if we truncate the series, we can get error term goes away by taking limit.</p>
+<p>$$X_r - X_s \simeq \int_0^{t_{sr}} J(t_{sr}) J(t)^{-1} S(\delta c, X(t))dt $$
+where $S(f, X)$ is linear operator in $f$, for each phase coordinate $X$. Thus by trapezoid rule and take matrix form of $S$,</p>
 
-<p>For $\psi = \psi_1 + \psi_2$, with $\psi_2$ as error, we can show that for any admissible functional $\widehat{J}_{\epsilon}(\xi, v)$,
-$$|E\int \overline{\widehat{J}_{\epsilon}}(\xi, v)(\widehat{W}_{\psi}(\xi, v) - \widehat{W}_{\psi_1}(\xi, v))| d\xi dv\le C \sup|\widehat{J}_{\epsilon}|_{1,\infty}\sqrt{E|\psi_2|^2 E|\psi_1|^2}$$</p>
+<p>$$X_r - X_s = J(t_{sr})(\sum_j w_j \Delta t J(t)^{-1} S_j) \delta c $$</p>
 
-<p>Thus after truncation of Dyson series, above limit will be zero as $N\to\infty$, which means weak convergence.</p>
+<p>$w_j$ are weights. And using all scattering pairs, we have a linear system as
+$$D_{4m\times N} = A_{4m\times N} \delta c$$</p>
 
-<p>The Wignerization of the truncated series will involve all terms like
-$$ E \int \overline{\widehat{J}}_{\epsilon} \overline{\widehat{\psi}_n(t, v-\frac{\xi}{2})} \widehat{\psi}_{m}(t, v + \frac{\xi}{2}) d\xi dv$$
-above expectation involves $L(p,n), L(p&#39;,m)$, when $V$ is standard Gaussian process, then $n+m$ must be even to get perfect pairing to be nonzero.</p>
+<p>As we have seen from previous discussion, matrix $A$ has rank ordering property, which means some pairs involves less unknowns, some pairs are involving more unknowns of $\delta c$. So we can reorder the measurement $D$ and $A$ according to the rank <code>nnz(A(k, :))</code>, in MATLAB, just use <code>colperm(A&#39;)</code> to get the ordering. It is not a surprise that, the longest ray maybe involve almost all unknowns.</p>
 
-<p>Knowing that $E \overline{\widehat{V}(p)}\widehat{V}(q) = \delta(p - q) R(p)R(q)$, we will try to find out all cases like</p>
+<h2 id="toc_0">Foliation</h2>
+
+<p>We can show the continuity of dependence of $X_r$ on $X_s$, which is trivial. We need to take small input angle to make sure dependence is minimal, i.e. ray only passes through a minimal number of grids, although, passing through one grid will automatically involve 12 grid points due to gradient in $S$. Thus, it is not numerically possible to do the problem on fine grid, therefore, fine resolution is not doable.</p>
+
+<p>Roughly speaking, for boundary grids, there are 12 values involved for one grid, thus, the safe option for angular discretization is use at least 24 rays at each boundary point to recover boundary values. For interior, it depends, the most central grid needs to be resolved by rays, i.e. strongly/weakly passing through.</p>
+
+<p>Foliation should be done automatically if we have the matrix $A$, rearranged as
+$$A = \begin{pmatrix} A_1 \A_2 \A_3\\dots\end{pmatrix}$$</p>
+
+<p>Where $A_k$ are smaller sparse matrices and of low rank, means corresponding $D_k = A_k \delta c$ is possible to solve for some values of $\delta c$. This process is called &quot;Foliation&quot;.</p>
+
+<p>The algorithm can be stated easily (noiseless).</p>
 
 <ol>
-<li>$\widehat{V}(p_j - p_{j+1})\widehat{V}(p&#39;_{k} -p&#39;_{k+1})$</li>
-<li>$\widehat{V}(p_j - p_{j+1})\widehat{V}(p_{k} -p_{k+1})$</li>
-<li>$\widehat{V}(p&#39;_j - p&#39;_{j+1})\widehat{V}(p&#39;_{k} -p&#39;_{k+1})$</li>
+<li>Consider index set, $S_{1}$ and $S_2$, put all non-dependent grid values in $S_2$, since they are known.</li>
+<li>only consider $S_1$ grids, rearrange $A$ by <code>nnz</code> of each row, ordering is $p$.</li>
+<li>solve part of the problem $D(p(1:s)) = A(p(1:s)) \delta c$ for a selected $s$, and move this part of index from $S_1$ to $S_2$.</li>
+<li>Run forward problem and get new data.</li>
+<li>If $S_1$ is non-empty, goto 2.</li>
 </ol>
 
-<p>where $p_0 = v-\frac{\xi}{2}$ and $p&#39;_0 = v + \frac{\xi}{2}$. Connecting all $p$ and $p&#39;$ forming a loop, all relations can be classified as nested, crossing and simple. It can be shown that these kinds of interaction is dominated by simple relations.</p>
+<h2 id="toc_1">Complexity</h2>
 
-<p>[TO BE CONTINUED]</p>
+<p>The linear scheme can give at most first order convergence, all timing should be linear. Most time cost are spent on solving the rays, which is a 20-dimensional problem. A fast parallel solver is required for 1000 measurement or above.</p>
+
+<p>In MATLAB, <code>ode45</code> or <code>ode23</code> can be used as time integrator, but it kills flexibility if we need to calculate matrix $A$ at the same time without memorizing everything, one should implement <code>rk4</code> for this purpose.</p>
+
+<p>It will be quite slow for sure, the matrix manipulation are not simple ones.</p>
 
           <br />
 

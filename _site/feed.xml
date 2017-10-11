@@ -7,6 +7,66 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Billiards</title>
+        <description>&lt;p&gt;It is an old topic and until today I finally implemented it. On a heterogeneous 2D disk, we consider geodesics in phase space according to Hamiltonian as $H = c^2 |\xi|^2$, which depicts the movement of a point billiard traveling inside the disk, $H$ can be seen as some mountains for potential.&lt;/p&gt;
+
+&lt;p&gt;To fully recover the information of speed $c(x)$, we will need the scatter relation $(X_s, X_r, t_{sr})$, which is a tuple of input phase coordinate, output phase coordinate and traveltime. In theory, $X_s$ and $X_r$ do not need to be located on the boundary, but in practice, we set sources are equi-spaced located on circle, with equi-spaced angles of input, and we record traveltime and output location, angle on the boundary.&lt;/p&gt;
+
+&lt;p&gt;So the data we have is described by a $N_s N_a \times 9$ matrix, each row containns information about a ray. Numerically, the disk is discretized on grid, so we need to let each grid passed by at least one ray. And it is quite easy to see that error will accumulate exponentially (Since it is simply a time integral).&lt;/p&gt;
+
+&lt;p&gt;For reconstruction of speed $c(x)$, once we use linearization, we will arrive at a linear system, but time integral related. We have to solve a non-coupled time integral.&lt;/p&gt;
+
+&lt;p&gt;$$\frac{dX}{ds} = L(X), \quad X(0) = X_s,\quad X(t_{sr}) = X_r$$
+where $L = \mathrm{diag}(1,-1)\partial H/\partial X$. And Jacobian $\partial X/\partial X(0)$ satisfies
+$$\frac{dJ}{ds} = M(X)J,\quad J(0) = I$$&lt;/p&gt;
+
+&lt;p&gt;which of course forms a one-parameter group. We immediately get&lt;/p&gt;
+
+&lt;p&gt;$$X_r - X_s \simeq \int_0^{t_{sr}} J(t_{sr}) J(t)^{-1} S(\delta c, X(t))dt $$
+where $S(f, X)$ is linear operator in $f$, for each phase coordinate $X$. Thus by trapezoid rule and take matrix form of $S$,&lt;/p&gt;
+
+&lt;p&gt;$$X_r - X_s = J(t_{sr})(\sum_j w_j \Delta t J(t)^{-1} S_j) \delta c $$&lt;/p&gt;
+
+&lt;p&gt;$w_j$ are weights. And using all scattering pairs, we have a linear system as
+$$D_{4m\times N} = A_{4m\times N} \delta c$$&lt;/p&gt;
+
+&lt;p&gt;As we have seen from previous discussion, matrix $A$ has rank ordering property, which means some pairs involves less unknowns, some pairs are involving more unknowns of $\delta c$. So we can reorder the measurement $D$ and $A$ according to the rank &lt;code&gt;nnz(A(k, :))&lt;/code&gt;, in MATLAB, just use &lt;code&gt;colperm(A&amp;#39;)&lt;/code&gt; to get the ordering. It is not a surprise that, the longest ray maybe involve almost all unknowns.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_0&quot;&gt;Foliation&lt;/h2&gt;
+
+&lt;p&gt;We can show the continuity of dependence of $X_r$ on $X_s$, which is trivial. We need to take small input angle to make sure dependence is minimal, i.e. ray only passes through a minimal number of grids, although, passing through one grid will automatically involve 12 grid points due to gradient in $S$. Thus, it is not numerically possible to do the problem on fine grid, therefore, fine resolution is not doable.&lt;/p&gt;
+
+&lt;p&gt;Roughly speaking, for boundary grids, there are 12 values involved for one grid, thus, the safe option for angular discretization is use at least 24 rays at each boundary point to recover boundary values. For interior, it depends, the most central grid needs to be resolved by rays, i.e. strongly/weakly passing through.&lt;/p&gt;
+
+&lt;p&gt;Foliation should be done automatically if we have the matrix $A$, rearranged as
+$$A = \begin{pmatrix} A_1 \A_2 \A_3\\dots\end{pmatrix}$$&lt;/p&gt;
+
+&lt;p&gt;Where $A_k$ are smaller sparse matrices and of low rank, means corresponding $D_k = A_k \delta c$ is possible to solve for some values of $\delta c$. This process is called &amp;quot;Foliation&amp;quot;.&lt;/p&gt;
+
+&lt;p&gt;The algorithm can be stated easily (noiseless).&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Consider index set, $S_{1}$ and $S_2$, put all non-dependent grid values in $S_2$, since they are known.&lt;/li&gt;
+&lt;li&gt;only consider $S_1$ grids, rearrange $A$ by &lt;code&gt;nnz&lt;/code&gt; of each row, ordering is $p$.&lt;/li&gt;
+&lt;li&gt;solve part of the problem $D(p(1:s)) = A(p(1:s)) \delta c$ for a selected $s$, and move this part of index from $S_1$ to $S_2$.&lt;/li&gt;
+&lt;li&gt;Run forward problem and get new data.&lt;/li&gt;
+&lt;li&gt;If $S_1$ is non-empty, goto 2.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;toc_1&quot;&gt;Complexity&lt;/h2&gt;
+
+&lt;p&gt;The linear scheme can give at most first order convergence, all timing should be linear. Most time cost are spent on solving the rays, which is a 20-dimensional problem. A fast parallel solver is required for 1000 measurement or above.&lt;/p&gt;
+
+&lt;p&gt;In MATLAB, &lt;code&gt;ode45&lt;/code&gt; or &lt;code&gt;ode23&lt;/code&gt; can be used as time integrator, but it kills flexibility if we need to calculate matrix $A$ at the same time without memorizing everything, one should implement &lt;code&gt;rk4&lt;/code&gt; for this purpose.&lt;/p&gt;
+
+&lt;p&gt;It will be quite slow for sure, the matrix manipulation are not simple ones.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 10 Oct 2017 00:00:00 -0400</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2017/10/10/billiards/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/10/10/billiards/</guid>
+      </item>
+    
+      <item>
         <title>Wignerization</title>
         <description>&lt;p&gt;Though it is tedious, I would think some notes on Wigner transform is necessary to some beginner like me. All notes are based on H.T. Yau&amp;#39;s famous result in 1999.&lt;/p&gt;
 
@@ -294,27 +354,6 @@ $$\tilde{x} = x + \displaystyle\int_0^x \sigma_x(\xi) d\xi$$&lt;/p&gt;
         <pubDate>Fri, 23 Dec 2016 00:00:00 -0500</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2016/12/23/PML-for-3D-wave-equation/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/12/23/PML-for-3D-wave-equation/</guid>
-      </item>
-    
-      <item>
-        <title>Simplified Spherical Harmonics</title>
-        <description>&lt;p&gt;Simplified spherical harmonics has been proposed decades ago, and it provides an approximation to ERT, by generalizing differential operator $dx$ to $\nabla$. The solution can be obtained by solving a diffusion equation system, instead of solving just one diffusion equation by assuming diffusive regime, $SP_n$ can make corrections to diffusion system by capturing more details/modes.&lt;/p&gt;
-
-&lt;p&gt;One thing to notice is, $SP_n$ is still an approximation even $n\to \infty$, since it is not solving the actual equation.  Usually, the scattering behavior is described with phase function, and a common choice is Henyey-Greenstein phase function.&lt;/p&gt;
-
-&lt;p&gt;$$p(\mu, g) = \frac{1 - g^2}{4\pi (1 + g^2 - 2g\mu)^{3/2}}$$&lt;/p&gt;
-
-&lt;p&gt;where $\mu = \Omega&amp;#39;\cdot \Omega$ as the scattering angle. And&lt;/p&gt;
-
-&lt;p&gt;$$p(\mu, g) = \sum_{n=0}^{\infty} \frac{2n+1}{4\pi} g^n P_n(\mu)$$&lt;/p&gt;
-
-&lt;p&gt;One interesting thing is to compare the idea behind integral-based method with reduced phase, and simplified spherical harmonics. If we follow the idea of $SP_n$, consider the 1D model and generalize to finite domain, then it is straightforward, because we just take azimuth angle and ignore the polar angle, completely achieves the same complexity, but model is slightly changed.&lt;/p&gt;
-
-&lt;p&gt;Under forward-peaking regime with large scattering, this is  reasonable though.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 10 Nov 2016 00:00:00 -0500</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2016/11/10/simplified-spherical-harmonics/</guid>
       </item>
     
   </channel>
