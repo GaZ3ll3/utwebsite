@@ -39,7 +39,7 @@ $$D_{4m\times N} = A_{4m\times N} \delta c$$&lt;/p&gt;
 &lt;p&gt;Roughly speaking, for boundary grids, there are 12 values involved for one grid, thus, the safe option for angular discretization is use at least 24 rays at each boundary point to recover boundary values. For interior, it depends, the most central grid needs to be resolved by rays, i.e. strongly/weakly passing through.&lt;/p&gt;
 
 &lt;p&gt;Foliation should be done automatically if we have the matrix $A$, rearranged as
-$$A = \begin{pmatrix} A_1 \A_2 \A_3\\dots\end{pmatrix}$$&lt;/p&gt;
+$$A = [A_1; A_2; A_3; ...]$$&lt;/p&gt;
 
 &lt;p&gt;Where $A_k$ are smaller sparse matrices and of low rank, means corresponding $D_k = A_k \delta c$ is possible to solve for some values of $\delta c$. This process is called &amp;quot;Foliation&amp;quot;.&lt;/p&gt;
 

@@ -35,7 +35,7 @@ We can show the continuity of dependence of $X_r$ on $X_s$, which is trivial. We
 Roughly speaking, for boundary grids, there are 12 values involved for one grid, thus, the safe option for angular discretization is use at least 24 rays at each boundary point to recover boundary values. For interior, it depends, the most central grid needs to be resolved by rays, i.e. strongly/weakly passing through.
 
 Foliation should be done automatically if we have the matrix $A$, rearranged as
-$$A = \begin{pmatrix} A_1 \\A_2 \\A_3\\\dots\end{pmatrix}$$
+$$A = [A_1; A_2; A_3; ...]$$
 
 Where $A_k$ are smaller sparse matrices and of low rank, means corresponding $D_k = A_k \delta c$ is possible to solve for some values of $\delta c$. This process is called "Foliation".
 
