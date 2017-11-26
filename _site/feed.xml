@@ -7,6 +7,15 @@
     <atom:link href="http://www.ma.utexas.edu/users/yzhong/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>An End and A New Start</title>
+        <description>&lt;p&gt;The site is shuting down due to my graduation. It has been to &lt;a href=&quot;https://lowrank.github.io&quot;&gt;https://lowrank.github.io&lt;/a&gt; .&lt;/p&gt;
+</description>
+        <pubDate>Sun, 26 Nov 2017 00:00:00 -0500</pubDate>
+        <link>http://www.ma.utexas.edu/users/yzhong/2017/11/26/a-new-start/</link>
+        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/11/26/a-new-start/</guid>
+      </item>
+    
+      <item>
         <title>Billiards Rebounce</title>
         <description>&lt;p&gt;When there is a perfect scatterer $T$ inside medium, the foliation process will be difficult.  The ray satisfies bi-characteristic,&lt;/p&gt;
 
@@ -23,7 +32,7 @@ $$\frac{d\xi}{ds} = 2\delta(x - x_b) \vec{v}(\xi)$$&lt;/p&gt;
 
 &lt;p&gt;Instead, we consider recovering the broken rays. Suppose all broken rays are corresponding to single scattering. Foliation is able to recover all non-broken rays (why?), or we are able to distinguish most non-broken and most broken rays.&lt;/p&gt;
 
-&lt;p&gt;[TO BE CONTINUED]&lt;/p&gt;
+&lt;p&gt;We bring fidelity term $p(x)$ into the system.&lt;/p&gt;
 </description>
         <pubDate>Tue, 10 Oct 2017 00:00:00 -0400</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2017/10/10/billiards-rebounce/</link>
@@ -325,19 +334,6 @@ over surface or volume.&lt;/p&gt;
         <pubDate>Mon, 24 Apr 2017 00:00:00 -0400</pubDate>
         <link>http://www.ma.utexas.edu/users/yzhong/2017/04/24/PAT-in-3D/</link>
         <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/04/24/PAT-in-3D/</guid>
-      </item>
-    
-      <item>
-        <title>Coding with Sparse Matrix</title>
-        <description>&lt;p&gt;The difficulty in handling sparse matrix in coding is always underestimated. In &lt;code&gt;MATLAB&lt;/code&gt;, there is nothing extra to do with sparse matrix, because the software has taken care of it. For other languages like &lt;code&gt;C++&lt;/code&gt;, a fast and robust sparse matrix library is quite necessary for radiative transport equation, since each ray-tracing forms a extremely sparse matrix. And it will involve intense additions for sparse matrices.&lt;/p&gt;
-
-&lt;p&gt;There are several popular libraries for sparse matrix operations. &lt;code&gt;csparse&lt;/code&gt; is one of it, using traditional &lt;code&gt;CSC&lt;/code&gt; or &lt;code&gt;CSR&lt;/code&gt; format to store the matrix.&lt;/p&gt;
-
-&lt;p&gt;TO BE CONTINUED.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 03 Jan 2017 00:00:00 -0500</pubDate>
-        <link>http://www.ma.utexas.edu/users/yzhong/2017/01/03/coding-with-sparse-matrix/</link>
-        <guid isPermaLink="true">http://www.ma.utexas.edu/users/yzhong/2017/01/03/coding-with-sparse-matrix/</guid>
       </item>
     
   </channel>

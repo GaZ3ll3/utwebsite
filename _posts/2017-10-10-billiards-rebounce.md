@@ -19,4 +19,4 @@ But $H$ cannot take this information without hurting continuity, unless normal v
 
 Instead, we consider recovering the broken rays. Suppose all broken rays are corresponding to single scattering. Foliation is able to recover all non-broken rays (why?), or we are able to distinguish most non-broken and most broken rays.
 
-[TO BE CONTINUED]
+We bring fidelity term $p(x)$ into the system.
